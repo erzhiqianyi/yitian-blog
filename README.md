@@ -1,2 +1,2 @@
-# vue-admin-bootstrap
-vue admin based on BootstrapVue
+# vue-blog
+vue blog based on BootstrapVue
