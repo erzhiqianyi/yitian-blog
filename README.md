@@ -59,7 +59,7 @@ blog
 ├─ package-lock.json 锁定安装时的包的版本号,保证依赖一致
 ├─ package.json 定义项目所需要的各种模块，以及项目的配置信息，npm install下载所需的模块
 ```
-### 引入bootstrampvue 
+### 引入bootstrap vue 
 ```
 vue add bootstrap-vue
 ```
