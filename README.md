@@ -1,47 +1,50 @@
-# vue-blog
-vue blog based on BootstrapVue
+# spring-boot-vue-blog
+a blog based on spring boot and vue 
 ## reference 
+- [spring-boot](https://spring.io/projects/spring-boot)
 - [vue](https://cn.vuejs.org/index.html)
 - [BootstrapVue](https://bootstrap-vue.js.org/docs/)
 - [vue cli ](https://cli.vuejs.org/)
 
-## Project setup
-### create a vue project 
+##  Project setup
+
+###  vue project set up
+1. create a vue project 
 use vue cli3 create a vue project 
 ```
 vue create blog
 ```
-### install 
+2. install 
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+3. Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 project preview 
 ![hello vue](image/hello.png)
-### Compiles and minifies for production
+
+4. Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Run your tests
+5. Run  tests
 ```
 npm run test
 ```
 
-### Lints and fixes files
+5. Lints and fixes files
 ```
 npm run lint
 ```
 
-### Customize configuration
+7. Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
-###  defult project structure
+8.  defult project structure
 ```
 blog
 ├─ node_modules 安装的依赖包
@@ -59,7 +62,7 @@ blog
 ├─ package-lock.json 锁定安装时的包的版本号,保证依赖一致
 ├─ package.json 定义项目所需要的各种模块，以及项目的配置信息，npm install下载所需的模块
 ```
-### 引入bootstrap vue 
+9. 引入bootstrap vue 
 ```
 vue add bootstrap-vue
 ```
@@ -86,7 +89,10 @@ main.js中自动引入插件
 ```js
 import './plugins/bootstrap-vue'
 ```
-## crate a login page 
+### spring boot project set up 
+
+##  login page  and login interface
+### vue login page 
 在src目录下新建一个目录"views"，用来存放所有的路由组件,再新建一个pages来存放单独（没有其他页面结构）的路由组件，
 ```
 blog
@@ -97,7 +103,7 @@ blog
 │                 └─ index.vue 登录路由
 
 ```
-### a vue page structure 
+#### a vue page structure 
 ```js
 <template>
 //组件 一个tempalte只能有一个根div组件
@@ -111,4 +117,8 @@ blog
 //样式
 </style>
 ```
-### used components
+#### used components
+
+#### il18n
+
+### spring boot login interface
