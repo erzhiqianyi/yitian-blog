@@ -6,6 +6,7 @@
           <b-card-group>
             <b-card no-body class="p-4">
               <b-card-body>
+     <i class="icon-user"></i>
                 <b-form>
                   <h1>Login</h1>
                   <p class="text-muted">Sign In to your account</p>

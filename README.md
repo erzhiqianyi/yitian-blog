@@ -24,7 +24,7 @@ npm install
 npm run serve
 ```
 project preview 
-![hello vue](image/hello.png)
+![hello vue](https://raw.githubusercontent.com/erzhiqianyi/spring-boot-vue-blog/master/image/hello.PNG)
 
 4. Compiles and minifies for production
 ```
@@ -90,7 +90,78 @@ main.js中自动引入插件
 import './plugins/bootstrap-vue'
 ```
 ### spring boot project set up 
+在[https://start.spring.io/](https://start.spring.io/)新建一个spring boot项目，使用maven管理项目。添加lombok和Spring Reatvice Web依赖，其他依赖用到再添加。
 
+pom 文件如下
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.erzhiqianyi</groupId>
+	<artifactId>spring-boot-blog</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>sprint boot blog</name>
+	<description>a blog based on spring boot  </description>
+
+	<properties>
+		<java.version>10</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+```
+项目结构如下
+```
+spring-boot-blog
+├─ src 源代码目录
+│  ├─ main 
+│       ├─ java java代码目录
+│       ├─ resources 资源文件
+│           ├─  application.properties默认配置文件
+│  ├─ test  测试目录
+│       ├─ java 测试java代码目录
+├─ pom.xml project object model，项目对象模型
+
+```
+在idea中打开项目，运行BlogApplication的main函数，执行该方法，即可运行项目。
 ##  login page  and login interface
 ### vue login page 
 在src目录下新建一个目录"views"，用来存放所有的路由组件,再新建一个pages来存放单独（没有其他页面结构）的路由组件，
@@ -118,7 +189,18 @@ blog
 </style>
 ```
 #### used components
+- [simple-line-icons](https://www.npmjs.com/package/simple-line-icons)
+Simple line icons with CSS, SAAS, LESS & Web-fonts files. 
 
+把依赖加到package.json的dependencies中，depencies为生产环境需要的依赖，devDependencies为开发环境需要的依赖，开发环境需要构建工具，生产环境不需要。
+
+这个依赖主要是一些icon,指定元素class即可使用相应的icon。
+如
+```html
+<i class="icon-user"></i>
+```
+元素效果如下
+![hello vue](https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/simple-line-pre.PNG?raw=true)
 #### il18n
 
 ### spring boot login interface
