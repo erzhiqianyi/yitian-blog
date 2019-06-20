@@ -10,6 +10,9 @@ a blog based on spring boot and vue
 		- [used components](#used-components)
 			- [simple-line-icons](#simple-line-icons)
 			- [BootstrapVue](#BootstrapVue)
+			- [i18n](#i18n)
+			- [use login page](#use-login-page)
+			- [login page detail](#login-page-detail)
 ## reference 
 - [spring-boot](https://spring.io/projects/spring-boot)
 - [vue](https://cn.vuejs.org/index.html)
@@ -230,9 +233,86 @@ $simple-line-font-path: '~simple-line-icons/fonts/';
 - [Cards](https://bootstrap-vue.js.org/docs/components/card/#comp-ref-b-card)
 	- b-card
 	- b-bard-body
-#### il18n
 
-#### use Login.vue
+#### i18n
+使用[vue-i18n](https://github.com/kazupon/vue-i18n)实现国际化。我觉得即使不需要国际化，也可以引入，提取所有汉字，避免写死。
+##### install 
+在package.json中添加[vue-i18n](https://www.npmjs.com/package/vue-i18n)和[js-cookie](https://www.npmjs.com/package/js-cookie)。执行
+```
+npm install
+```
+##### register i18n
+在src目录下新建目录"lang"，用来存放语言文件。
+```
+blog
+├─ src 代码
+│  ├─ lang 语言包
+│      └─ index.js 
+│      └─ en.js 英语语言包
+│      └─ zh.js 中文语言包
+```
+如果需要其他语言，添加相应的文件，并在index.js注册。
+index.js代码
+```js
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+
+// 引入自定义语言文件
+import enLocale from './en'
+import zhLocale from './zh'
+import Cookies from 'js-cookie'
+
+Vue.use(VueI18n)
+
+//定义message
+const messages = {
+  en: {
+    ...enLocale,
+  },
+  zh: {
+    ...zhLocale,
+  },
+}
+
+const i18n = new VueI18n({
+  // set locale
+  // options: en | zh | es
+  locale: getLanguage(),
+  // set locale messages
+  messages
+})
+
+// get lang from cookie, default return zh
+export function getLanguage() {
+  const chooseLanguage = Cookies.get('language')
+  if (chooseLanguage) return chooseLanguage
+
+  return 'zh'
+}
+
+export default i18n
+```
+
+在main.js中注册lang
+```js
+import i18n from './lang' // internationalization
+
+new Vue({
+  i18n ,
+  render: h => h(App),
+}).$mount('#app')
+```
+##### user i18n
+使用$t('VALUE')来提取相应语言,在html中要用{{}}将值包装起来。
+```js
+// html 需要使用 {{}} 将 name包装起来
+{{$t('name')}}
+
+// js
+$t('name')
+```
+
+#### use login page
 在App.vue中引入Login.vue ,并注册,把Login.vue当作组件使用。
 App.vue代码
 ```js
@@ -267,12 +347,76 @@ import 'mutationobserver-shim'
 import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App.vue'
+import i18n from './lang' // internationalization
 
 new Vue({
+  i18n ,
   render: h => h(App),
 }).$mount('#app')
+
+
 ```
 运行项目
 ![Login page ](https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/login_pre.png?raw=true)
+
 #### login page detail
+##### data bind
+>当一个 Vue 实例被创建时，它将 data 对象中的所有的属性加入到 Vue 的响应式系统中。当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。
+
+账号输入框和密码输入框需要相应的属性,在index.vue中，定义登录需要的数据。
+```js
+export default {
+  name: "Login",
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+};
+
+```
+
+输入框绑定相应数据。用v-model指令绑定data中的属性。
+```js
+<b-form-input
+  type="text"
+  class="form-control"
+  :placeholder="$t('login.username')"
+  autocomplete="username email"
+  v-model.trim="username" //绑定username属性
+/>
+ 
+<b-form-input
+  type="password"
+  class="form-control"
+  :placeholder="$t('login.password')"
+  autocomplete="current-password"
+  v-model.trim="password" //绑定password属性
+/>
+```
+
+##### Event Handling
+使用@cloick监听点击事件，在script中定义login方法
+```js
+<b-button variant="primary" class="px-4" @click="login">{{$t('login.login')}}</b-button>
+```
+```js
+<script>
+export default {
+  name: "Login",
+  methods: {
+    login: function() {
+		console.log("login method")
+    }
+  }
+};
+</script>
+```
+##### Computed Properties and Watchers
+账号和密码需要校验长度和强度，可以通过[侦听属性](https://cn.vuejs.org/v2/guide/computed.html)来监控输入数据。这里使用[bootstrap-vue的Validation state feedback](https://bootstrap-vue.js.org/docs/components/form-group/)校验数据。
+
+
+##### send http reqest
+使用[axios](https://github.com/axios/axios/projects)发送http请求,在package.json中添加axios依赖。
 ### spring boot login interface

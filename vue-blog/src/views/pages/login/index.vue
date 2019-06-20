@@ -7,53 +7,77 @@
             <b-card no-body class="p-4">
               <b-card-body>
                 <b-form>
-                  <h1>Login</h1>
-                  <p class="text-muted">Sign In to your account</p>
-                  <b-input-group class="mb-3">
-                    <b-input-group-prepend>
-                      <b-input-group-text>
-                        <i class="icon-user"></i>
-                      </b-input-group-text>
-                    </b-input-group-prepend>
-                    <b-form-input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                      autocomplete="username email"
-                      v-model.trim="username"
-                    />
-                  </b-input-group>
-                  <b-input-group class="mb-4">
-                    <b-input-group-prepend>
-                      <b-input-group-text>
-                        <i class="icon-lock"></i>
-                      </b-input-group-text>
-                    </b-input-group-prepend>
-                    <b-form-input
-                      type="password"
-                      class="form-control"
-                      placeholder="Password"
-                      autocomplete="current-password"
-                      v-model.trim="password"
-                    />
-                  </b-input-group>
+                  <h1>{{$t('login.login')}}</h1>
+                  <p class="text-muted">{{$t('login.desc')}}</p>
+                  <b-form-group
+                    id="usernameLabel"
+                    label-for="username"
+                    :invalid-feedback="usernameInvalidFeedback"
+                    :state="usernameState"
+                  >
+                    <b-input-group class="mb-3">
+                      <b-input-group-prepend>
+                        <b-input-group-text>
+                          <i class="icon-user"></i>
+                        </b-input-group-text>
+                      </b-input-group-prepend>
+                      <b-form-input
+                        id="username"
+                        type="text"
+                        class="form-control"
+                        :placeholder="$t('login.username')"
+                        :state="usernameState"
+                        autocomplete="username email"
+                        v-model.trim="username"
+                      />
+                    </b-input-group>
+                  </b-form-group>
+                  <b-form-group
+                    id="passwordLabel"
+                    label-for="username"
+                    :invalid-feedback="passwordInvalidFeedback"
+                    :state="passwordState"
+                  >
+                    <b-input-group class="mb-4">
+                      <b-input-group-prepend>
+                        <b-input-group-text>
+                          <i class="icon-lock"></i>
+                        </b-input-group-text>
+                      </b-input-group-prepend>
+                      <b-form-input
+                        id="password"
+                        type="password"
+                        class="form-control"
+                        :placeholder="$t('login.password')"
+                        :state="passwordState"
+                        autocomplete="current-password"
+                        v-model.trim="password"
+                      />
+                    </b-input-group>
+                  </b-form-group>
                   <b-row>
                     <b-col cols="6">
-                      <b-button variant="primary" class="px-4" @click="login">Login</b-button>
+                      <b-button
+                        variant="primary"
+                        class="px-4"
+                        @click="login"
+                        :disabled="!(usernameState && passwordState )"
+                      >{{$t('login.login')}}</b-button>
                     </b-col>
                     <b-col cols="6" class="text-right">
-                      <b-button variant="link" class="px-0">Forgot password?</b-button>
+                      <b-button variant="link" class="px-0">{{$t('login.forgot_password')}}</b-button>
                     </b-col>
                   </b-row>
                 </b-form>
               </b-card-body>
             </b-card>
-            <b-card no-body class="text-white bg-primary py-5 d-md-down-none" style="width:44%">
+            <b-card no-body class="text-white bg-primary py-5 d-md-down-none">
               <b-card-body class="text-center">
                 <div>
-                 <h2>Sign up</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <b-button variant="primary" class="active mt-3">Register Now!</b-button>
+                  <h2>{{$t('login.register')}}</h2>
+                  <p>{{$t('login.motto_one')}}</p>
+                  <p>{{$t('login.motto_two')}}</p>
+                  <b-button variant="primary" class="active mt-3">{{$t('login.register_now')}}</b-button>
                 </div>
               </b-card-body>
             </b-card>
@@ -62,12 +86,31 @@
       </b-row>
     </div>
   </div>
-
 </template>
 
 <script>
+import { validSize } from "@/utils/validate";
 export default {
   name: "Login",
+  computed: {
+    usernameState() {
+      return (
+        validSize(this.username, 3, 20, this.$t("login.username")).length === 0
+      );
+    },
+    usernameInvalidFeedback() {
+      return validSize(this.username, 3, 20, this.$t("login.username"));
+    },
+    passwordState() {
+      return (
+        validSize(this.password, 6, 30, this.$t("login.password")).length === 0
+      );
+    },
+    passwordInvalidFeedback() {
+      return validSize(this.password, 6, 30, this.$t("login.password"));
+    }
+  },
+
   data() {
     return {
       username: "",
@@ -77,15 +120,12 @@ export default {
   methods: {
     login: function() {
       let payload = {
-        username: this.username
+        username: this.username,
+        password: this.password
       };
-      console.log(this.username)
-      console.log(this.password)
     }
   }
 };
-
 </script>
 <style>
-
 </style>
