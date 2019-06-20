@@ -1,6 +1,15 @@
 ## spring-boot-vue-blog
 a blog based on spring boot and vue 
-[TOC]
+- [reference](#reference )
+- [Project Init](#project-init)
+	- [Vue Init](#vue-init)
+	- [SpringBoot Init](#springboot-init)
+- [Login](#login)
+	- [login page](#login-page)
+		- [vue page structure](#vue-page-structure)
+		- [used components](#used-components)
+			- [simple-line-icons](#simple-line-icons)
+			- [BootstrapVue](#BootstrapVue)
 ## reference 
 - [spring-boot](https://spring.io/projects/spring-boot)
 - [vue](https://cn.vuejs.org/index.html)
@@ -9,7 +18,7 @@ a blog based on spring boot and vue
 - [core-ui](https://github.com/coreui/coreui-vue)
 ## Project Init
 project init ,include vue and spring-boot
-###  Vue Init 
+### Vue Init 
 1. create a vue project 
 use vue cli3 create a vue project 
 ```
@@ -90,7 +99,7 @@ main.js中自动引入插件
 ```js
 import './plugins/bootstrap-vue'
 ```
-### Spring-boot  Init
+### SpringBoot Init
 在[https://start.spring.io/](https://start.spring.io/)新建一个spring boot项目，使用maven管理项目。添加lombok和Spring Reatvice Web依赖，其他依赖用到再添加。
 
 pom 文件如下
@@ -177,7 +186,7 @@ blog
 │                 └─ index.vue 登录路由
 
 ```
-#### a vue page structure 
+#### vue page structure 
 ```js
 <template>
 //组件 一个tempalte只能有一个根div组件
@@ -192,7 +201,7 @@ blog
 </style>
 ```
 #### used components
-##### [simple-line-icons](https://www.npmjs.com/package/simple-line-icons)
+##### simple-line-icons
 Simple line icons with CSS, SAAS, LESS & Web-fonts files. 
 
 把依赖加到package.json的dependencies中，depencies为生产环境需要的依赖，devDependencies为开发环境需要的依赖，开发环境需要构建工具，生产环境不需要。
@@ -212,7 +221,7 @@ $simple-line-font-path: '~simple-line-icons/fonts/';
 @import '~simple-line-icons/scss/simple-line-icons.scss';
 </style>
 ```
-##### [BootstrapVue](https://bootstrap-vue.js.org/docs)
+##### BootstrapVue 
 - [Layout and grid system](https://bootstrap-vue.js.org/docs/components/layout/#rows-b-row-and-b-form-row)
 	- b-container
 	- b-row
