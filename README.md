@@ -1,14 +1,15 @@
-# spring-boot-vue-blog
+## spring-boot-vue-blog
 a blog based on spring boot and vue 
+[TOC]
 ## reference 
 - [spring-boot](https://spring.io/projects/spring-boot)
 - [vue](https://cn.vuejs.org/index.html)
 - [BootstrapVue](https://bootstrap-vue.js.org/docs/)
 - [vue cli ](https://cli.vuejs.org/)
-
-##  Project setup
-
-###  vue project set up
+- [core-ui](https://github.com/coreui/coreui-vue)
+## Project Init
+project init ,include vue and spring-boot
+###  Vue Init 
 1. create a vue project 
 use vue cli3 create a vue project 
 ```
@@ -89,7 +90,7 @@ main.js中自动引入插件
 ```js
 import './plugins/bootstrap-vue'
 ```
-### spring boot project set up 
+### Spring-boot  Init
 在[https://start.spring.io/](https://start.spring.io/)新建一个spring boot项目，使用maven管理项目。添加lombok和Spring Reatvice Web依赖，其他依赖用到再添加。
 
 pom 文件如下
@@ -162,8 +163,10 @@ spring-boot-blog
 
 ```
 在idea中打开项目，运行BlogApplication的main函数，执行该方法，即可运行项目。
-##  login page  and login interface
-### vue login page 
+
+## Login 
+login page and interface
+### login page 
 在src目录下新建一个目录"views"，用来存放所有的路由组件,再新建一个pages来存放单独（没有其他页面结构）的路由组件，
 ```
 blog
@@ -189,7 +192,7 @@ blog
 </style>
 ```
 #### used components
-- [simple-line-icons](https://www.npmjs.com/package/simple-line-icons)
+##### [simple-line-icons](https://www.npmjs.com/package/simple-line-icons)
 Simple line icons with CSS, SAAS, LESS & Web-fonts files. 
 
 把依赖加到package.json的dependencies中，depencies为生产环境需要的依赖，devDependencies为开发环境需要的依赖，开发环境需要构建工具，生产环境不需要。
@@ -201,6 +204,66 @@ Simple line icons with CSS, SAAS, LESS & Web-fonts files.
 ```
 元素效果如下
 ![hello vue](https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/simple-line-pre.PNG?raw=true)
+
+在App.vue的style标签中引入```simple-line-icons```
+```js
+<style  lang="scss">
+$simple-line-font-path: '~simple-line-icons/fonts/';
+@import '~simple-line-icons/scss/simple-line-icons.scss';
+</style>
+```
+##### [BootstrapVue](https://bootstrap-vue.js.org/docs)
+- [Layout and grid system](https://bootstrap-vue.js.org/docs/components/layout/#rows-b-row-and-b-form-row)
+	- b-container
+	- b-row
+	- b-form-row
+	- b-col
+- [Cards](https://bootstrap-vue.js.org/docs/components/card/#comp-ref-b-card)
+	- b-card
+	- b-bard-body
 #### il18n
 
+#### use Login.vue
+在App.vue中引入Login.vue ,并注册,把Login.vue当作组件使用。
+App.vue代码
+```js
+<template>
+  <div id="app">
+    <Login/>
+  </div>
+</template>
+
+<script>
+import Login from './views/pages/login'
+
+export default {
+  name: 'app',
+  components: {
+    Login
+  }
+}
+</script>
+
+<style  lang="scss">
+$simple-line-font-path: '~simple-line-icons/fonts/';
+@import '~simple-line-icons/scss/simple-line-icons.scss';
+
+@import 'assets/scss/style';
+</style>
+```
+main.js 代码
+```js
+import '@babel/polyfill'
+import 'mutationobserver-shim'
+import Vue from 'vue'
+import './plugins/bootstrap-vue'
+import App from './App.vue'
+
+new Vue({
+  render: h => h(App),
+}).$mount('#app')
+```
+运行项目
+![Login page ](https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/login_pre.png?raw=true)
+#### login page detail
 ### spring boot login interface
