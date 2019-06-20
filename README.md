@@ -415,8 +415,93 @@ export default {
 ```
 ##### Computed Properties and Watchers
 账号和密码需要校验长度和强度，可以通过[侦听属性](https://cn.vuejs.org/v2/guide/computed.html)来监控输入数据。这里使用[bootstrap-vue的Validation state feedback](https://bootstrap-vue.js.org/docs/components/form-group/)校验数据。
-
+```js
+  <b-form-group
+    id="usernameLabel"
+    label-for="username"
+    :invalid-feedback="usernameInvalidFeedback"
+    :state="usernameState"
+  >
+    <b-input-group class="mb-3">
+      <b-input-group-prepend>
+        <b-input-group-text>
+          <i class="icon-user"></i>
+        </b-input-group-text>
+      </b-input-group-prepend>
+      <b-form-input
+        id="username"
+        type="text"
+        class="form-control"
+        :placeholder="$t('login.username')"
+        :state="usernameState"
+        autocomplete="username email"
+        v-model.trim="username"
+      />
+    </b-input-group>
+  </b-form-group>
+  <b-form-group
+    id="passwordLabel"
+    label-for="username"
+    :invalid-feedback="passwordInvalidFeedback"
+    :state="passwordState"
+  >
+	<b-input-group class="mb-4">
+		<b-input-group-prepend>
+		<b-input-group-text>
+		   <i class="icon-lock"></i>
+		</b-input-group-text>
+		</b-input-group-prepend>
+		    <b-form-input
+		        id="password"
+		        type="password"
+		        class="form-control"
+		        :placeholder="$t('login.password')"
+		        :state="passwordState"
+		        autocomplete="current-password"
+		        v-model.trim="password"
+		        />
+	</b-input-group>
+</b-form-group>
+```
+在computed中计算状态
+```js
+<script>
+import { validSize } from "@/utils/validate";
+export default {
+  name: "Login",
+  computed: {
+    usernameState() {
+      return (
+        validSize(this.username, 3, 20, this.$t("login.username")).length === 0
+      );
+    },
+    usernameInvalidFeedback() {
+      return validSize(this.username, 3, 20, this.$t("login.username"));
+    },
+    passwordState() {
+      return (
+        validSize(this.password, 6, 30, this.$t("login.password")).length === 0
+      );
+    },
+    passwordInvalidFeedback() {
+      return validSize(this.password, 6, 30, this.$t("login.password"));
+    }
+  },
+};
+</script>
+```
 
 ##### send http reqest
 使用[axios](https://github.com/axios/axios/projects)发送http请求,在package.json中添加axios依赖。
+axios发送post请求
+```js
+    axios
+        .post(api, param)
+        .then(response => {
+			console.log("success")
+       	})
+        .catch(error => {
+          console.log("fail");
+        });
+```
 ### spring boot login interface

@@ -90,6 +90,7 @@
 
 <script>
 import { validSize } from "@/utils/validate";
+import axios from "axios";
 export default {
   name: "Login",
   computed: {
@@ -123,6 +124,15 @@ export default {
         username: this.username,
         password: this.password
       };
+
+      axios
+        .post("api/auth/login", payload)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
