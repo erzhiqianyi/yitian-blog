@@ -39,6 +39,27 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-spring-webflux</artifactId>
+			<version>3.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -50,4 +71,15 @@
 		</plugins>
 	</build>
 
+
+	<repositories>
+		<repository>
+			<id>oss-snapshot</id>
+			<name>OSS Snapshot</name>
+			<url>http://oss.jfrog.org/oss-snapshot-local</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
