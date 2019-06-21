@@ -1,0 +1,8 @@
+swagger:
+  title: 一天博客系统接口文档
+  description: 一天博客系统接口文档
+  termsOfServiceUrl: https://github.com/erzhiqianyi/spring-boot-vue-blog
+  author: 二之前一
+  url: www.erzhiqianyi.com
+  version: 1.0
+  email: erzhiqianyi@gmail.com
