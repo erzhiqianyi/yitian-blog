@@ -2,6 +2,9 @@
   <div class="app">
     <div class="container">
       <b-row class="justify-content-center">
+        <h1>一天博客系统</h1>
+      </b-row>
+      <b-row class="justify-content-center">
         <b-col md="8">
           <b-card-group>
             <b-card no-body class="p-4">
