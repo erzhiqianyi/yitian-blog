@@ -2,7 +2,10 @@
   <div class="app">
     <div class="container">
       <b-row class="justify-content-center">
-        <h1>一天博客系统</h1>
+        <b-media>
+          <b-img slot="aside" :src="logo" fluid-grow></b-img>
+          <h1>{{systemName}}</h1>
+        </b-media>
       </b-row>
       <b-row class="justify-content-center">
         <b-col md="8">
@@ -10,7 +13,7 @@
             <b-card no-body class="p-4">
               <b-card-body>
                 <b-form>
-                  <h1>{{$t('login.login')}}</h1>
+                  <h2>{{$t('login.login')}}</h2>
                   <p class="text-muted">{{$t('login.desc')}}</p>
                   <b-form-group
                     id="usernameLabel"
@@ -64,8 +67,11 @@
                         variant="primary"
                         class="px-4"
                         @click="login"
-                        :disabled="!(usernameState && passwordState )"
-                      >{{$t('login.login')}}</b-button>
+                        :disabled="!(usernameState && passwordState) || loading"
+                      >
+                        <b-spinner v-show="loading" small type="grow" ></b-spinner>
+                        <span>{{loginState}}</span>
+                      </b-button>
                     </b-col>
                     <b-col cols="6" class="text-right">
                       <b-button variant="link" class="px-0">{{$t('login.forgot_password')}}</b-button>
@@ -118,7 +124,12 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      loading: false,
+      logo:
+        "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
+      systemName: "一天博客系统",
+      loginState: this.$t("login.login")
     };
   },
   methods: {
@@ -127,18 +138,25 @@ export default {
         username: this.username,
         password: this.password
       };
-
+      this.loading = true;
+      this.loginState =  this.$t("login.login_loading")
       axios
         .post("api/auth/login", payload)
         .then(response => {
-          console.log(response)
+          console.log(response);
         })
         .catch(error => {
-          console.log(error);
+            this.loading = false
+            this.loginState =  this.$t("login.login")
         });
     }
   }
 };
 </script>
 <style>
+h1 {
+  display: flex;
+  align-items: center;
+  min-height: 20vh;
+}
 </style>

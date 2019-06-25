@@ -1,6 +1,7 @@
 export default {
     login: {
         login: '登录',
+        login_loading: '登录中',
         desc: '登录系统',
         username: '账号',
         password: '密码',

@@ -1,6 +1,7 @@
 export default {
     login: {
         login: 'Login',
+        login_loading: 'Loging',
         desc: 'login to system',
         username: 'username',
         password: 'password',
@@ -9,6 +10,7 @@ export default {
         register_now: 'Register Now!',
         motto_one: 'day，word',
         motto_two: 'record，wondelful'
+
     },
     valid: {
         input: 'please input: ',
