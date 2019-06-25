@@ -10,8 +10,10 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 
 @Configuration
+@EnableSwagger2WebFlux
 public class SwaggerConfig {
 
 
@@ -37,21 +39,25 @@ public class SwaggerConfig {
     private String email;
 
 
+    @Value("${swagger.basePackage}")
+    private String controllerPackage;
+
     @Bean
     public Docket swaggerApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(swaggerApiInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.erzhiqianyi.blog.controller"))
+                .apiInfo(swaggerApiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage(controllerPackage))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo swaggerApiInfo() {
-        return new ApiInfoBuilder().title("系统接口文档")
-                .description("系统接口文档")
-                .termsOfServiceUrl("https://github.com/erzhiqianyi")
-                .contact(new Contact("二之前一", "www.erzhiqianyi.com", "erzhiqianyi@gmail.com"))
-                .version("1.0")
+        return new ApiInfoBuilder().title(title)
+                .description(description)
+                .termsOfServiceUrl(termsOfServiceUrl)
+                .contact(new Contact(author, url, email))
+                .version(version)
                 .build();
     }
 }

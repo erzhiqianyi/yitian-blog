@@ -13,6 +13,8 @@ a blog based on spring boot and vue
 			- [i18n](#i18n)
 			- [use login page](#use-login-page)
 			- [login page detail](#login-page-detail)
+	- [login interface](#login-interface)
+      - [use swagger](#use-swagger)
 ## reference 
 - [spring-boot](https://spring.io/projects/spring-boot)
 - [vue](https://cn.vuejs.org/index.html)
@@ -504,4 +506,83 @@ axios发送post请求
           console.log("fail");
         });
 ```
-### spring boot login interface
+### login interface
+
+#### use swagger
+使用[swagger](https://swagger.io/)来生成Restful风格的Api文档。
+- 添加swagger依赖
+本项目使用WebFlux，没有Spring Mvc，目前只有swagger3.0支持WebFlux。在pom文件中添加如下依赖。springfox-swagger-ui提供页面来访问接口和测试接口。无需自己编写页面。
+``` xml
+<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-swagger2</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+</dependency
+<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-spring-webflux</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+</dependency
+<dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-swagger-ui</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
+</dependency
+```
+- 配置swagger 
+新建一个“swagger"包，存放swagger相关配置。
+新建Swagger配置类```SwaggerConfig.java```
+```java
+
+@Configuration//标记为配置文件
+@EnableSwagger2WebFlux //开启Swagger ,项目使用WebFlux,所以要使用WebFlux相关的注解
+public class SwaggerConfig {
+
+    //配置写在配置文件中，使用@Value注入
+    @Value("${swagger.title}")
+    private String title;
+
+    @Value("${swagger.description}")
+    private String description;
+
+    @Value("${swagger.termsOfServiceUrl}")
+    private String termsOfServiceUrl;
+
+    @Value("${swagger.author}")
+    private String author;
+
+    @Value("${swagger.url}")
+    private String url;
+
+    @Value("${swagger.version}")
+    private String version;
+
+    @Value("${swagger.email}")
+    private String email;
+
+
+    @Value("${swagger.basePackage}")
+    private String controllerPackage;
+
+    //配置Swagger属性
+    @Bean
+    public Docket swaggerApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(swaggerApiInfo())//指定Api配置信息
+                .select()
+                .apis(RequestHandlerSelectors.basePackage(controllerPackage))//指定路由类所在包
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo swaggerApiInfo() {
+        return new ApiInfoBuilder().title(title)
+                .description(description)
+                .termsOfServiceUrl(termsOfServiceUrl)
+                .contact(new Contact(author, url, email))
+                .version(version)
+                .build();
+    }
+}
+```
+- 添加接口

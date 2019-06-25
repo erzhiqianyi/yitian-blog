@@ -6,3 +6,4 @@ swagger:
   url: www.erzhiqianyi.com
   version: 1.0
   email: erzhiqianyi@gmail.com
+  basePackage: com.erzhiqianyi.blog.controller
