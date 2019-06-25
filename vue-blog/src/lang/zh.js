@@ -11,6 +11,12 @@ export default {
         motto_one: '一天，世界',
         motto_two: '记录点滴，如此美好'
     },
+    register: {
+        register: '注册',
+        desc: '注册账号',
+        email: '邮箱',
+        username: '用户名',
+    },
     valid: {
         input: '请输入：',
         maxSize: '最大长度为：',

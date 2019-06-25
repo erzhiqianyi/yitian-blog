@@ -15,6 +15,7 @@ a blog based on spring boot and vue
 			- [login page detail](#login-page-detail)
 	- [login interface](#login-interface)
       - [use swagger](#use-swagger)
+- [Register](#REgister)
 ## reference 
 - [spring-boot](https://spring.io/projects/spring-boot)
 - [vue](https://cn.vuejs.org/index.html)
@@ -827,4 +828,6 @@ public @interface ApiModelProperty {
     }
 }
 ```
+
+### Register
 

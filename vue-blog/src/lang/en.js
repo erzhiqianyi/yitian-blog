@@ -12,6 +12,12 @@ export default {
         motto_two: 'record，wondelful'
 
     },
+    register: {
+        register: 'Register',
+        desc: 'resiger an accounter',
+        email: 'email',
+        username: 'user name',
+    },
     valid: {
         input: 'please input: ',
         maxSize: 'max Size is: ',
