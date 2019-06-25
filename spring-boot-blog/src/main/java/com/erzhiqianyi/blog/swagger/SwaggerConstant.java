@@ -16,6 +16,7 @@ public interface SwaggerConstant {
     String VALUE_LOGIN_THIRD = "第三方登录";
 
 
+    String PROPERTY_USER_ID ="用户id" ;
 
-
+    String PROPERTY_USER_NAME = "用户名" ;
 }

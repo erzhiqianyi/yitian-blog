@@ -16,7 +16,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @RunWith(SpringRunner.class)
 @AutoConfigureWebTestClient
 @Log4j2
-public class AuthControllerTest {
+public class AuthLoginControllerTest {
     private String loginUrl;
 
     @Before
@@ -34,6 +34,6 @@ public class AuthControllerTest {
                 .uri(loginUrl)
                 .exchange()
                 .returnResult(String.class)
-        ;   
+        ;
     }
 }

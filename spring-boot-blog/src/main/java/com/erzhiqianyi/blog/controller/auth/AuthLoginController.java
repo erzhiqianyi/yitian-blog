@@ -1,6 +1,7 @@
 package com.erzhiqianyi.blog.controller.auth;
 
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
+import com.erzhiqianyi.blog.view.auth.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
@@ -12,53 +13,49 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/auth")
 @Log4j2
-@Api(tags = "登录注册接口")
-public class AuthController {
+@Api(tags =SwaggerConstant.TAG_LOGIN)
+public class AuthLoginController {
 
     @PostMapping("login/password")
     @ApiOperation(
             value = SwaggerConstant.VALUE_LOGIN_PASSWORD,
             consumes = SwaggerConstant.MEDIA_JSON,
             produces = SwaggerConstant.MEDIA_JSON,
-            response = String.class
+            response = User.class
     )
-    public Mono<String> loginByPassWord(String username, String password) {
-        return Mono.just(username + password);
+    public Mono<User> loginByPassWord(String username, String password) {
+        return Mono.just(new User());
     }
 
-    /**
     @PostMapping("login/phone")
     @ApiOperation(
             value = SwaggerConstant.VALUE_LOGIN_PHONE,
-            tags = SwaggerConstant.TAG_LOGIN,
             consumes = SwaggerConstant.MEDIA_JSON, produces = SwaggerConstant.MEDIA_JSON,
-            response = String.class
+            response = User.class
     )
-    public Mono<String> loginByPhone(String phone) {
-        return Mono.just(phone);
+    public Mono<User> loginByPhone(String phone) {
+        return Mono.just(new User());
     }
 
     @PostMapping("login/email")
     @ApiOperation(
             value = SwaggerConstant.VALUE_LOGIN_EMAIL,
-            tags = SwaggerConstant.TAG_LOGIN,
             consumes = SwaggerConstant.MEDIA_JSON, produces = SwaggerConstant.MEDIA_JSON,
-            response = String.class
+            response = User.class
     )
-    public Mono<String> loginByEmail(String email) {
-        return Mono.just(email);
+    public Mono<User> loginByEmail(String email) {
+        return Mono.just(new User());
     }
 
 
     @PostMapping("login/third")
     @ApiOperation(
             value = SwaggerConstant.VALUE_LOGIN_THIRD,
-            tags = SwaggerConstant.TAG_LOGIN,
             consumes = SwaggerConstant.MEDIA_JSON, produces = SwaggerConstant.MEDIA_JSON,
-            response = String.class
+            response = User.class
     )
-    public Mono<String> loginByThird(String token) {
-        return Mono.just(token);
+    public Mono<User> loginByThird(String token) {
+        return Mono.just(new User());
     }
-    */
+
 }

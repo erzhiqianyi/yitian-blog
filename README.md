@@ -530,7 +530,7 @@ axios发送post请求
 </dependency
 ```
 - 配置swagger 
-新建一个“swagger"包，存放swagger相关配置。
+新建一个```swagger```包，存放swagger相关配置。
 新建Swagger配置类```SwaggerConfig.java```
 ```java
 
@@ -586,3 +586,244 @@ public class SwaggerConfig {
 }
 ```
 - 添加接口
+1. ```AuthController.java```
+
+```java
+@RestController
+@RequestMapping("/api/auth")
+@Log4j2
+@Api(tags =SwaggerConstant.TAG_LOGIN)
+public class AuthLoginController {
+
+    @PostMapping("login/password")
+    @ApiOperation(
+            value = SwaggerConstant.VALUE_LOGIN_PASSWORD,
+            consumes = SwaggerConstant.MEDIA_JSON,
+            produces = SwaggerConstant.MEDIA_JSON,
+            response = User.class
+    )
+    public Mono<User> loginByPassWord(String username, String password) {
+        return Mono.just(new User());
+    }
+
+    @PostMapping("login/phone")
+    @ApiOperation(
+            value = SwaggerConstant.VALUE_LOGIN_PHONE,
+            consumes = SwaggerConstant.MEDIA_JSON, produces = SwaggerConstant.MEDIA_JSON,
+            response = User.class
+    )
+    public Mono<User> loginByPhone(String phone) {
+        return Mono.just(new User());
+    }
+
+    @PostMapping("login/email")
+    @ApiOperation(
+            value = SwaggerConstant.VALUE_LOGIN_EMAIL,
+            consumes = SwaggerConstant.MEDIA_JSON, produces = SwaggerConstant.MEDIA_JSON,
+            response = User.class
+    )
+    public Mono<User> loginByEmail(String email) {
+        return Mono.just(new User());
+    }
+
+
+    @PostMapping("login/third")
+    @ApiOperation(
+            value = SwaggerConstant.VALUE_LOGIN_THIRD,
+            consumes = SwaggerConstant.MEDIA_JSON, produces = SwaggerConstant.MEDIA_JSON,
+            response = User.class
+    )
+    public Mono<User> loginByThird(String token) {
+        return Mono.just(new User());
+    }
+
+}
+```
+
+2. ```User.java```
+
+``` java
+@Data
+@ApiModel()
+public class User {
+   @ApiModelProperty(SwaggerConstant.PROPERTY_USER_ID)
+   private String id;
+
+   @ApiModelProperty(SwaggerConstant.PROPERTY_USER_NAME)
+   private String name;
+}
+```
+
+3. ```SwaggerConstant.java```
+```java
+public interface SwaggerConstant {
+
+    String MEDIA_JSON = "application/json";
+
+    String TAG_LOGIN = "登录接口";
+
+    String VALUE_LOGIN_PASSWORD = "密码登录";
+
+    String VALUE_LOGIN_PHONE = "手机验证码登录";
+
+    String VALUE_LOGIN_EMAIL = "邮箱验证码登录";
+
+    String VALUE_LOGIN_THIRD = "第三方登录";
+
+
+    String PROPERTY_USER_ID ="用户id" ;
+
+    String PROPERTY_USER_NAME = "用户名" ;
+}
+```
+- 接口文档预览
+运行项目，在浏览器中访问[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)查看接口文档。
+
+![swagger preview](https://github.com/erzhiqianyi/yitian-blog/blob/master/image/swagger_pre.PNG?raw=true)
+
+- 注解说明 
+
+1.  ```Api```
+
+给控制器添加标签信息，描述已经不推荐使用。建议给控制器添加该注解和tags，路由方法不需要再添tags。
+```java
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+public @interface Api {
+   String value() default "";
+
+   String[] tags() default "";
+
+   @Deprecated String description() default "";
+
+   @Deprecated String basePath() default "";
+
+   @Deprecated int position() default 0;
+
+   String produces() default "";
+
+   String consumes() default "";
+
+   String protocols() default "";
+
+   Authorization[] authorizations() default @Authorization(value = "");
+
+   boolean hidden() default false;
+}
+```
+2. ```ApiOperation```
+描述接口,可以不添加tags,如果添加tags，会出现重复接口。
+```java
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ApiOperation {
+   // 接口描述
+   String value();
+
+   String notes() default "";
+  // 分类标签
+   String[] tags() default "";
+
+  //返回数据类型
+   Class<?> response() default Void.class;
+
+   String responseContainer() default "";
+
+   String responseReference() default "";
+
+  //请求方法
+   String httpMethod() default "";
+
+   @Deprecated int position() default 0;
+
+   String nickname() default "";
+
+  //返回数据格式
+   String produces() default "";
+
+  //接收数据格式
+   String consumes() default "";
+
+  //协议
+   String protocols() default "";
+
+   Authorization[] authorizations() default @Authorization(value = "");
+
+   boolean hidden() default false;
+
+   ResponseHeader[] responseHeaders() default @ResponseHeader(name = "", response = Void.class);
+
+   int code() default 200;
+
+    Extension[] extensions() default @Extension(properties = @ExtensionProperty(name = "", value = ""));
+
+   boolean ignoreJsonView() default false;
+}
+```
+3. ```ApiModel```
+描述涉及到的对象 
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+public @interface ApiModel {
+   String value() default "";
+
+   String description() default "";
+
+   Class<?> parent() default Void.class;
+
+   String discriminator() default "";
+
+   Class<?>[] subTypes() default {};
+
+    String reference() default "";
+}
+```
+4. ```ApiModelProperty```
+定义对象相关属性
+```java
+@Target({ElementType.METHOD, ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ApiModelProperty {
+   String value() default "";
+
+   String name() default "";
+
+   String allowableValues() default "";
+
+   String access() default "";
+
+   String notes() default "";
+
+    String dataType() default "";
+
+   boolean required() default false;
+
+   int position() default 0;
+
+   boolean hidden() default false;
+
+   String example() default "";
+
+   @Deprecated
+    boolean readOnly() default false;
+
+   AccessMode accessMode() default AccessMode.AUTO;
+
+
+   String reference() default "";
+
+   boolean allowEmptyValue() default false;
+
+   Extension[] extensions() default @Extension(properties = @ExtensionProperty(name = "", value = ""));
+
+    enum AccessMode {
+        AUTO,
+        READ_ONLY,
+        READ_WRITE;
+    }
+}
+```
+
