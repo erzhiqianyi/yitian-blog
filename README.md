@@ -179,7 +179,8 @@ spring-boot-blog
 在idea中打开项目，运行BlogApplication的main函数，执行该方法，即可运行项目。
 
 ## Login 
-login page and interface
+login page and interface。
+目前还没有设计数据结构和数据库，不做实际的登录功能，只写下页面效果和定义登录接口。
 ### login page 
 在src目录下新建一个目录"views"，用来存放所有的路由组件,再新建一个pages来存放单独（没有其他页面结构）的路由组件，
 ```
