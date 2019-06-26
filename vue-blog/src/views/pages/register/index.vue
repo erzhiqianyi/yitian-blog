@@ -18,8 +18,8 @@
                   <b-form-group
                     id="emailLabel"
                     label-for="email"
-                    :invalid-feedback="usernameInvalidFeedback"
-                    :state="usernameState"
+                    :invalid-feedback="emailInvalidFeedback"
+                    :state="emailState"
                   >
                     <b-input-group class="mb-3">
                       <b-input-group-prepend>
@@ -32,9 +32,9 @@
                         type="text"
                         class="form-control"
                         :placeholder="$t('register.email')"
-                        :state="usernameState"
+                        :state="emailState"
                         autocomplete="username email"
-                        v-model.trim="username"
+                        v-model.trim="email"
                       />
                     </b-input-group>
                   </b-form-group>
@@ -124,15 +124,15 @@
 import { validSize } from "@/utils/validate";
 import axios from "axios";
 export default {
-  name: "Login",
+  name: "Register",
   computed: {
     usernameState() {
       return (
-        validSize(this.username, 3, 20, this.$t("login.username")).length === 0
+        validSize(this.username, 3, 20, this.$t("register.username")).length === 0
       );
     },
     usernameInvalidFeedback() {
-      return validSize(this.username, 3, 20, this.$t("login.username"));
+      return validSize(this.username, 3, 20, this.$t("register.username"));
     },
     passwordState() {
       return (
@@ -141,18 +141,28 @@ export default {
     },
     passwordInvalidFeedback() {
       return validSize(this.password, 6, 30, this.$t("login.password"));
-    }
+    },
+    emailState() {
+      return (
+        validSize(this.email, 3, 20, this.$t("register.email")).length === 0
+      );
+    },
+    emailInvalidFeedback() {
+      return validSize(this.email, 3, 20, this.$t("register.email"));
+    },
+
   },
 
   data() {
     return {
       username: "",
       password: "",
+      email: "",
       loading: false,
       logo:
         "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
       systemName: "一天博客系统",
-      loginState: this.$t("login.login")
+      loginState: this.$t("login.login"),
     };
   },
   methods: {
