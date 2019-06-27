@@ -7,6 +7,8 @@ public interface SwaggerConstant {
 
     String TAG_LOGIN = "登录接口";
 
+    String TAG_REGISTER = "用户注册接口";
+
     String VALUE_LOGIN_PASSWORD = "密码登录";
 
     String VALUE_LOGIN_PHONE = "手机验证码登录";
@@ -15,8 +17,11 @@ public interface SwaggerConstant {
 
     String VALUE_LOGIN_THIRD = "第三方登录";
 
+    String VALUE_REGISTER_BY_EMAIL = "通过邮箱注册";
 
     String PROPERTY_USER_ID ="用户id" ;
 
     String PROPERTY_USER_NAME = "用户名" ;
+
+
 }
