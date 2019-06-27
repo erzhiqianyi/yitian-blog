@@ -19,7 +19,9 @@ export default {
         register_loading: 'Registering',
         login: 'login',
         wrong_password : 'password not same',
-        code: "verify code"
+        code: "verify code",
+        agree_protocol: 'agree protocol',
+        prototol_feedback: 'please agree protocol'
     },
     valid: {
         input: 'please input: ',

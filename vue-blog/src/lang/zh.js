@@ -18,7 +18,9 @@ export default {
         register_loading: '注册中',
         login: '已有帐号，去登录',
         wrong_password : '两次密码不一致',
-        code: "验证码"
+        code: "验证码",
+        agree_protocol: '同意用户协议',
+        prototol_feedback: '请同意用户协议'
     },
     valid: {
         input: '请输入：',

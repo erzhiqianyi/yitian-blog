@@ -67,7 +67,7 @@
                     :invalid-feedback="passwordInvalidFeedback"
                     :state="passwordState"
                   >
-                    <b-input-group class="mb-4">
+                    <b-input-group class="mb-3">
                       <b-input-group-prepend>
                         <b-input-group-text>
                           <i class="icon-lock"></i>
@@ -90,7 +90,7 @@
                     :invalid-feedback="rePasswordInvalidFeedback"
                     :state="rePasswordState"
                   >
-                    <b-input-group class="mb-4">
+                    <b-input-group class="mb-3">
                       <b-input-group-prepend>
                         <b-input-group-text>
                           <i class="icon-lock"></i>
@@ -113,8 +113,8 @@
                     :invalid-feedback="codeInvalidFeedback"
                     :state="codeState"
                   >
-                    <b-input-group>
-                      <b-form-input 
+                    <b-input-group class="mb-3">
+                      <b-form-input
                         id="code"
                         type="text"
                         class="form-control"
@@ -122,9 +122,18 @@
                         :state="codeState"
                         v-model.trim="code"
                       ></b-form-input>
-                      <b-button  variant="primary" :disabled="!emailState" >获取验证码</b-button>
-                      
+                      <b-button variant="primary" :disabled="!emailState">获取验证码</b-button>
                     </b-input-group>
+                  </b-form-group>
+                  <b-form-group>
+                    <b-form-checkbox
+                      id="protocol"
+                      value="accepted"
+                      unchecked-value="not_accepted"
+                      v-model="agreeProtocol"
+                      :state="protocolState"
+                    >{{$t('register.agree_protocol')}}</b-form-checkbox>
+                    <b-form-invalid-feedback :state="protocolState">{{$t('register.prototol_feedback')}}</b-form-invalid-feedback>
                   </b-form-group>
                   <b-row>
                     <b-col cols="6">
@@ -209,6 +218,12 @@ export default {
     },
     codeInvalidFeedback() {
       return validSize(this.code, 6, 6, this.$t("register.code"));
+    },
+    protocolState() {
+      return this.agreeProtocol == "accepted";
+    },
+    protocolInvalidFeedback() {
+      return this.agreeProtocol == "accepted" ? "" : "请同意用户协议";
     }
   },
 
@@ -219,6 +234,7 @@ export default {
       rePassword: "",
       email: "",
       code: "",
+      agreeProtocol: "not_accepted",
       loading: false,
       logo:
         "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
