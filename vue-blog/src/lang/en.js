@@ -21,7 +21,9 @@ export default {
         wrong_password : 'password not same',
         code: "verify code",
         agree_protocol: 'agree protocol',
-        prototol_feedback: 'please agree protocol'
+        prototol_feedback: 'please agree protocol',
+        resend: ' seconds after  ',
+        send_code: 'send verify code'
     },
     valid: {
         input: 'please input: ',

@@ -20,7 +20,9 @@ export default {
         wrong_password : '两次密码不一致',
         code: "验证码",
         agree_protocol: '同意用户协议',
-        prototol_feedback: '请同意用户协议'
+        prototol_feedback: '请同意用户协议',
+        resend: 's后重新发送',
+        send_code: '获取验证码'
     },
     valid: {
         input: '请输入：',

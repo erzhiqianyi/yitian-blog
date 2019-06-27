@@ -122,7 +122,11 @@
                         :state="codeState"
                         v-model.trim="code"
                       ></b-form-input>
-                      <b-button variant="primary" :disabled="!emailState">获取验证码</b-button>
+                      <b-button
+                        variant="primary"
+                        :disabled="!emailState || !canSend"
+                        @click="sendCode"
+                      >{{sendCodeState}}</b-button>
                     </b-input-group>
                   </b-form-group>
                   <b-form-group>
@@ -133,7 +137,9 @@
                       v-model="agreeProtocol"
                       :state="protocolState"
                     >{{$t('register.agree_protocol')}}</b-form-checkbox>
-                    <b-form-invalid-feedback :state="protocolState">{{$t('register.prototol_feedback')}}</b-form-invalid-feedback>
+                    <b-form-invalid-feedback
+                      :state="protocolState"
+                    >{{$t('register.prototol_feedback')}}</b-form-invalid-feedback>
                   </b-form-group>
                   <b-row>
                     <b-col cols="6">
@@ -141,14 +147,14 @@
                         variant="primary"
                         class="px-4"
                         @click="login"
-                        :disabled="!( emailState && usernameState && passwordState && rePasswordState) || loading"
+                        :disabled="!( emailState && usernameState && passwordState && rePasswordState && protocolState) || loading"
                       >
                         <b-spinner v-show="loading" small type="grow"></b-spinner>
                         <span>{{registerState}}</span>
                       </b-button>
                     </b-col>
                     <b-col cols="6" class="text-right">
-                      <b-button variant="link" class="px-0">{{$t('register.login')}}</b-button>
+                      <b-button variant="link" class="px-0" :to="{path:'login'}">{{$t('register.login')}}</b-button>
                     </b-col>
                   </b-row>
                 </b-form>
@@ -232,7 +238,7 @@ export default {
       username: "",
       password: "",
       rePassword: "",
-      email: "",
+      email: "blog@caofeng.me",
       code: "",
       agreeProtocol: "not_accepted",
       loading: false,
@@ -240,7 +246,11 @@ export default {
         "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
       systemName: "一天博客系统",
       registerState: this.$t("register.register"),
-      protocol: "注册即代表你同意以下条款"
+      protocol: "注册即代表你同意以下条款",
+      totalTime: 60,
+      reSendMsg: this.$t("register.resend"),
+      sendCodeState: this.$t("register.send_code"),
+      canSend: true
     };
   },
   methods: {
@@ -260,6 +270,23 @@ export default {
           this.loading = false;
           this.registerState = this.$t("register.register");
         });
+    },
+    sendCode: function() {
+      if(!this.canSend){
+        return
+      }
+      this.canSend = false
+      this.sendCodeState = this.totalTime + this.reSendMsg;
+      let clock = window.setInterval(() => {
+        this.totalTime--;
+        this.sendCodeState = this.totalTime + this.reSendMsg;
+        if (this.totalTime < 0) {
+          window.clearInterval(clock);
+          this.sendCodeState = this.$t("register.send_code");
+          this.totalTime = 60
+          this.canSend = true
+        }
+      }, 1000);
     }
   }
 };

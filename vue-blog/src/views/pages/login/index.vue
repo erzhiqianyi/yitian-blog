@@ -85,7 +85,7 @@
                 <div>
                   <h2>{{$t('login.register')}}</h2>
                   <p>{{sologan}}</p>
-                  <b-button variant="primary" class="active mt-3">{{$t('login.register_now')}}</b-button>
+                  <b-button variant="primary" class="active mt-3"  :to="{path: 'register'}">{{$t('login.register_now')}}</b-button>
                 </div>
               </b-card-body>
             </b-card>
