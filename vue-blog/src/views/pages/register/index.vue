@@ -63,7 +63,7 @@
                   </b-form-group>
                   <b-form-group
                     id="passwordLabel"
-                    label-for="username"
+                    label-for="password"
                     :invalid-feedback="passwordInvalidFeedback"
                     :state="passwordState"
                   >
@@ -84,20 +84,62 @@
                       />
                     </b-input-group>
                   </b-form-group>
+                  <b-form-group
+                    id="rePasswordLabel"
+                    label-for="rePassword"
+                    :invalid-feedback="rePasswordInvalidFeedback"
+                    :state="rePasswordState"
+                  >
+                    <b-input-group class="mb-4">
+                      <b-input-group-prepend>
+                        <b-input-group-text>
+                          <i class="icon-lock"></i>
+                        </b-input-group-text>
+                      </b-input-group-prepend>
+                      <b-form-input
+                        id="rePassowrd"
+                        type="password"
+                        class="form-control"
+                        :placeholder="$t('login.re_password')"
+                        :state="rePasswordState"
+                        autocomplete="current-password"
+                        v-model.trim="rePassword"
+                      />
+                    </b-input-group>
+                  </b-form-group>
+
+                  <b-form-group
+                    id="codeLabel"
+                    label-for="code"
+                    :invalid-feedback="codeInvalidFeedback"
+                    :state="codeState"
+                  >
+                    <b-form inline>
+                      <b-form-input
+                        id="code"
+                        type="text"
+                        class="form-control"
+                        :placeholder="$t('register.code')"
+                        :state="codeState"
+                        v-model.trim="code"
+                      />
+                      <b-button variant="primary">获取验证码</b-button>
+                    </b-form>
+                  </b-form-group>
                   <b-row>
                     <b-col cols="6">
                       <b-button
                         variant="primary"
                         class="px-4"
                         @click="login"
-                        :disabled="!(usernameState && passwordState) || loading"
+                        :disabled="!(usernameState && passwordState && rePasswordState) || loading"
                       >
                         <b-spinner v-show="loading" small type="grow"></b-spinner>
-                        <span>{{loginState}}</span>
+                        <span>{{registerState}}</span>
                       </b-button>
                     </b-col>
                     <b-col cols="6" class="text-right">
-                      <b-button variant="link" class="px-0">{{$t('login.forgot_password')}}</b-button>
+                      <b-button variant="link" class="px-0">{{$t('register.login')}}</b-button>
                     </b-col>
                   </b-row>
                 </b-form>
@@ -106,10 +148,8 @@
             <b-card no-body class="text-white bg-primary py-5 d-md-down-none">
               <b-card-body class="text-center">
                 <div>
-                  <h2>{{$t('login.register')}}</h2>
-                  <p>{{$t('login.motto_one')}}</p>
-                  <p>{{$t('login.motto_two')}}</p>
-                  <b-button variant="primary" class="active mt-3">{{$t('login.register_now')}}</b-button>
+                  <h2>{{$t('system.user_protocol')}}</h2>
+                  <p>{{protocol}}</p>
                 </div>
               </b-card-body>
             </b-card>
@@ -121,14 +161,15 @@
 </template>
 
 <script>
-import { validSize } from "@/utils/validate";
+import { validSize, validEmail } from "@/utils/validate";
 import axios from "axios";
 export default {
   name: "Register",
   computed: {
     usernameState() {
       return (
-        validSize(this.username, 3, 20, this.$t("register.username")).length === 0
+        validSize(this.username, 3, 20, this.$t("register.username")).length ===
+        0
       );
     },
     usernameInvalidFeedback() {
@@ -142,14 +183,34 @@ export default {
     passwordInvalidFeedback() {
       return validSize(this.password, 6, 30, this.$t("login.password"));
     },
+    rePasswordState() {
+      return this.rePassword == this.password;
+    },
+    rePasswordInvalidFeedback() {
+      return this.rePassword != this.password
+        ? this.$t("register.wrong_password")
+        : "";
+    },
+
     emailState() {
       return (
-        validSize(this.email, 3, 20, this.$t("register.email")).length === 0
+        validEmail(this.email, 5, 50, this.$t("register.email")).length === 0 &&
+        validEmail(this.email).length === 0
       );
     },
     emailInvalidFeedback() {
-      return validSize(this.email, 3, 20, this.$t("register.email"));
+      return (
+        validSize(this.email, 5, 50, this.$t("register.email")) ||
+        validEmail(this.email)
+      );
     },
+    codeState() {
+      return validSize(this.code, 6, 6, this.$t("register.code")).length === 0;
+    },
+    codeInvalidFeedback() {
+      return validSize(this.code, 6, 6, this.$t("register.code"));
+    },
+
 
   },
 
@@ -157,12 +218,15 @@ export default {
     return {
       username: "",
       password: "",
+      rePassword: "",
       email: "",
+      code: "",
       loading: false,
       logo:
         "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
       systemName: "一天博客系统",
-      loginState: this.$t("login.login"),
+      registerState: this.$t("register.register"),
+      protocol: "注册即代表你同意以下条款"
     };
   },
   methods: {
@@ -172,7 +236,7 @@ export default {
         password: this.password
       };
       this.loading = true;
-      this.loginState = this.$t("login.login_loading");
+      this.registerState = this.$t("register.register_loading");
       axios
         .post("api/auth/login", payload)
         .then(response => {
@@ -180,7 +244,7 @@ export default {
         })
         .catch(error => {
           this.loading = false;
-          this.loginState = this.$t("login.login");
+          this.registerState = this.$t("register.register");
         });
     }
   }

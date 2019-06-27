@@ -8,19 +8,26 @@ export default {
         forgot_password: '忘记密码?',
         register: '注册',
         register_now: '立即注册!',
-        motto_one: '一天，世界',
-        motto_two: '记录点滴，如此美好'
+        re_password: '确认密码'
     },
     register: {
         register: '注册',
         desc: '注册账号',
         email: '邮箱',
         username: '用户名',
+        register_loading: '注册中',
+        login: '已有帐号，去登录',
+        wrong_password : '两次密码不一致',
+        code: "验证码"
     },
     valid: {
         input: '请输入：',
         maxSize: '最大长度为：',
-        minSize: '最小长度为：'
+        minSize: '最小长度为：',
+        wrong_email: '邮箱格式不正确'
+    },
+    system: {
+        user_protocol: '用户协议'
     }
 
 

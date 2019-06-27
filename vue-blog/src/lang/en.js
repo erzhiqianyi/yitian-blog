@@ -8,20 +8,29 @@ export default {
         forgot_password: 'forgot password?',
         register: 'register',
         register_now: 'Register Now!',
-        motto_one: 'day，word',
-        motto_two: 'record，wondelful'
-
+        re_password: 'confirm password'
     },
     register: {
         register: 'Register',
         desc: 'resiger an accounter',
         email: 'email',
         username: 'user name',
+        protocol: 'user protocol',
+        register_loading: 'Registering',
+        login: 'login',
+        wrong_password : 'password not same',
+        code: "verify code"
     },
     valid: {
         input: 'please input: ',
         maxSize: 'max Size is: ',
-        minSize: 'min Size is: '
+        minSize: 'min Size is: ',
+        wrong_email: 'wrong email'
+    },
+    system: {
+        user_protocol: 'user protocol'
     }
+
+
 
 }
