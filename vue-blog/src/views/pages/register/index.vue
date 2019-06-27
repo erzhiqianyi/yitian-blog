@@ -107,24 +107,24 @@
                       />
                     </b-input-group>
                   </b-form-group>
-
                   <b-form-group
                     id="codeLabel"
                     label-for="code"
                     :invalid-feedback="codeInvalidFeedback"
                     :state="codeState"
                   >
-                    <b-form inline>
-                      <b-form-input
+                    <b-input-group>
+                      <b-form-input 
                         id="code"
                         type="text"
                         class="form-control"
                         :placeholder="$t('register.code')"
                         :state="codeState"
                         v-model.trim="code"
-                      />
-                      <b-button variant="primary">获取验证码</b-button>
-                    </b-form>
+                      ></b-form-input>
+                      <b-button  variant="primary" :disabled="!emailState" >获取验证码</b-button>
+                      
+                    </b-input-group>
                   </b-form-group>
                   <b-row>
                     <b-col cols="6">
@@ -132,7 +132,7 @@
                         variant="primary"
                         class="px-4"
                         @click="login"
-                        :disabled="!(usernameState && passwordState && rePasswordState) || loading"
+                        :disabled="!( emailState && usernameState && passwordState && rePasswordState) || loading"
                       >
                         <b-spinner v-show="loading" small type="grow"></b-spinner>
                         <span>{{registerState}}</span>
@@ -209,9 +209,7 @@ export default {
     },
     codeInvalidFeedback() {
       return validSize(this.code, 6, 6, this.$t("register.code"));
-    },
-
-
+    }
   },
 
   data() {

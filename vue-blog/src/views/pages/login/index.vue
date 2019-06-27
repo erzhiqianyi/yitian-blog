@@ -84,8 +84,7 @@
               <b-card-body class="text-center">
                 <div>
                   <h2>{{$t('login.register')}}</h2>
-                  <p>{{$t('login.motto_one')}}</p>
-                  <p>{{$t('login.motto_two')}}</p>
+                  <p>{{sologan}}</p>
                   <b-button variant="primary" class="active mt-3">{{$t('login.register_now')}}</b-button>
                 </div>
               </b-card-body>
@@ -129,7 +128,8 @@ export default {
       logo:
         "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
       systemName: "一天博客系统",
-      loginState: this.$t("login.login")
+      loginState: this.$t("login.login"),
+      sologan: "一天，世界，记录点滴，如此美好"
     };
   },
   methods: {
