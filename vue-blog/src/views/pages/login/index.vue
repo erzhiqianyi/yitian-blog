@@ -69,7 +69,7 @@
                         @click="login"
                         :disabled="!(usernameState && passwordState) || loading"
                       >
-                        <b-spinner v-show="loading" small type="grow" ></b-spinner>
+                        <b-spinner v-show="loading" small type="grow"></b-spinner>
                         <span>{{loginState}}</span>
                       </b-button>
                     </b-col>
@@ -85,7 +85,11 @@
                 <div>
                   <h2>{{$t('login.register')}}</h2>
                   <p>{{sologan}}</p>
-                  <b-button variant="primary" class="active mt-3"  :to="{path: 'register'}">{{$t('login.register_now')}}</b-button>
+                  <b-button
+                    variant="primary"
+                    class="active mt-3"
+                    :to="{path: 'register'}"
+                  >{{$t('login.register_now')}}</b-button>
                 </div>
               </b-card-body>
             </b-card>
@@ -99,6 +103,7 @@
 <script>
 import { validSize } from "@/utils/validate";
 import axios from "axios";
+import { loginByPassword  } from '@/api/auth'
 export default {
   name: "Login",
   computed: {
@@ -122,8 +127,8 @@ export default {
 
   data() {
     return {
-      username: "",
-      password: "",
+      username: "1235464",
+      password: "123345",
       loading: false,
       logo:
         "https://github.com/erzhiqianyi/spring-boot-vue-blog/blob/master/image/logo.png?raw=true",
@@ -139,16 +144,9 @@ export default {
         password: this.password
       };
       this.loading = true;
-      this.loginState =  this.$t("login.login_loading")
-      axios
-        .post("api/auth/login", payload)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-            this.loading = false
-            this.loginState =  this.$t("login.login")
-        });
+      this.loginState = this.$t("login.login_loading");
+      const result =   loginByPassword(payload)
+      console.log(result)
     }
   }
 };
