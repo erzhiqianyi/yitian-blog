@@ -6,9 +6,9 @@ const request = axios.create({
 })
 
 export function getBaseUrl() {
-  // 环境的切换
+  // 环境切换
   if (process.env.NODE_ENV == 'development') {
-    return "http://localhost:8081"
+    return "proxyApi"
   }
   else if (process.env.NODE_ENV == 'debug') {
     return ""

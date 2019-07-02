@@ -104,6 +104,7 @@
 import { validSize } from "@/utils/validate";
 import axios from "axios";
 import { loginByPassword  } from '@/api/auth'
+import { async } from 'q';
 export default {
   name: "Login",
   computed: {
@@ -138,14 +139,14 @@ export default {
     };
   },
   methods: {
-    login: function() {
+    async login() {
       let payload = {
         username: this.username,
         password: this.password
       };
       this.loading = true;
       this.loginState = this.$t("login.login_loading");
-      const result =   loginByPassword(payload)
+      const result =  await loginByPassword(payload)
       console.log(result)
     }
   }
