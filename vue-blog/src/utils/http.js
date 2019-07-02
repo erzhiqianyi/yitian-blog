@@ -5,8 +5,23 @@ const request = axios.create({
   timeout: 5000 // 超时时间
 })
 
+
+//请求拦截器
+request.interceptors.request.use(
+  config => {
+      //添加请求头
+    config.headers['auth'] = getToken()
+    return config
+  },
+  error => {
+    // 请求错误
+    console.log(error) // for debug
+    return Promise.reject(error)
+  }
+)
+
+// 环境切换
 export function getBaseUrl() {
-  // 环境切换
   if (process.env.NODE_ENV == 'development') {
     return "proxyApi"
   }
@@ -17,6 +32,12 @@ export function getBaseUrl() {
     return ""
   }
 }
+
+//获取token
+export function getToken() {
+  return "token"
+}
+
 
 
 export default request
