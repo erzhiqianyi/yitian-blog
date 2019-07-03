@@ -139,16 +139,22 @@ export default {
     };
   },
   methods: {
-     login : function() {
+      login : function() {
       let payload = {
         username: this.username,
         password: this.password
       };
       this.loading = true;
       this.loginState = this.$t("login.login_loading");
-      const result =   loginByPassword(payload)
-      console.log(result)
-    }
+
+      loginByPassword(payload).then(data =>{
+          this.loading = false;
+          this.loginState = this.$t("login.login");
+      }). catch(error => {
+          this.loading = false;
+          this.loginState = this.$t("login.login");
+        });
+   }
   }
 };
 </script>

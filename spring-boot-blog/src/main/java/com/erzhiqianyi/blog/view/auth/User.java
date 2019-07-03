@@ -13,4 +13,12 @@ public class User {
 
    @ApiModelProperty(SwaggerConstant.PROPERTY_USER_NAME)
    private String name;
+
+   public User() {
+   }
+
+   public User(String id, String name) {
+      this.id = id;
+      this.name = name;
+   }
 }

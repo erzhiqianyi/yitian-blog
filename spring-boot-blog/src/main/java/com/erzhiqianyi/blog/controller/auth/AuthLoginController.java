@@ -1,6 +1,7 @@
 package com.erzhiqianyi.blog.controller.auth;
 
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
+import com.erzhiqianyi.blog.view.ResponseResult;
 import com.erzhiqianyi.blog.view.auth.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,8 +24,9 @@ public class AuthLoginController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = User.class
     )
-    public Mono<User> loginByPassWord(String username, String password) {
-        return Mono.just(new User());
+    public Mono<ResponseResult<User>> loginByPassWord(String username, String password) {
+
+        return Mono.just(new ResponseResult<>(20000,"请求成功",new User("123","测试")));
     }
 
     @PostMapping("login/phone")
