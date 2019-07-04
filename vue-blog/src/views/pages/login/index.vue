@@ -101,11 +101,10 @@
 </template>
 
 <script>
-import { validSize } from "@/utils/validate";
-import axios from "axios";
-import { loginByPassword  } from '@/api/auth'
-import { async } from 'q';
-export default {
+  import {validSize} from "@/utils/validate";
+  import {loginByPassword} from '@/api/auth'
+
+  export default {
   name: "Login",
   computed: {
     usernameState() {
