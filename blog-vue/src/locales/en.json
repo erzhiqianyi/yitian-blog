@@ -1,3 +1,18 @@
 {
-  "message": "i18n"
+  "message": "i18n",
+  "register": {
+    "name": "name",
+    "email": "email",
+    "password": "password",
+    "re_password": "confirm password",
+    "code": "code",
+    "get_code": "get code",
+    "protocol": "protocol",
+    "agree_protocol": " agree protocol to register",
+    "register": "register now",
+    "login": "have account，login"
+  },
+  "system": {
+    "name": "One Day Blog "
+  }
 }

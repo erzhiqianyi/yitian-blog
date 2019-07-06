@@ -1,37 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <div>
-      <p> {{$t('message')}}</p>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button</el-button>
+        <Register/>
     </div>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Register from './views/pages/register'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Register
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body{
+    background-color: #E4E5E6
 }
 </style>
