@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import './plugins/element.js'
-import i18n from './i18n'
+import i18n from './locales'
 
 Vue.config.productionTip = false
 
