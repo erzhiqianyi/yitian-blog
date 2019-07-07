@@ -20,6 +20,12 @@
     "name_length": "user name length is between 3 and 20 ",
     "enter_email": "enter email",
     "email_length": "email length is between 3 and 30",
-    "email_format": "wrong email "
+    "email_format": "wrong email ",
+    "enter_password": "enter password",
+    "password_length": " password length is between 3 and 20",
+    "enter_re_password": "enter re password",
+    "password_not_same": "password not same!",
+    "enter_code": "enter code",
+    "code_length": " code length between 4 and 8"
   }
 }

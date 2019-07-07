@@ -20,6 +20,12 @@
     "name_length": "用户名长度在 3 到 20个字符",
     "enter_email": "请输入邮箱",
     "email_length": "邮箱长度在 3 到 30个字符",
-    "email_format": "邮箱格式错误"
+    "email_format": "邮箱格式错误",
+    "enter_password": "请输入密码",
+    "password_length": "密码长度在 3 到 20个字符",
+    "enter_re_password": "请输入确认密码",
+    "password_not_same": "两次输入密码不一致!",
+    "enter_code": "请输入验证码",
+    "code_length": "验证码长度在 4 到 8个字符"
   }
 }
