@@ -14,5 +14,12 @@
   },
   "system": {
     "name": "One Day Blog "
+  },
+  "feedback": {
+    "enter_name": "enter username",
+    "name_length": "user name length is between 3 and 20 ",
+    "enter_email": "enter email",
+    "email_length": "email length is between 3 and 30",
+    "email_format": "wrong email "
   }
 }

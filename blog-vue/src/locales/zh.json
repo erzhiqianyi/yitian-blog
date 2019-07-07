@@ -11,9 +11,15 @@
     "agree_protocol": "注册即表示您同意用户协议",
     "register": "立即注册",
     "login": "已有账号，立即登录"
-
   },
   "system": {
     "name": "一天博客系统"
+  },
+  "feedback": {
+    "enter_name": "请输入用户名",
+    "name_length": "用户名长度在 3 到 20个字符",
+    "enter_email": "请输入邮箱",
+    "email_length": "邮箱长度在 3 到 30个字符",
+    "email_format": "邮箱格式错误"
   }
 }
