@@ -23,7 +23,10 @@
                             <el-input v-model="register.code" :placeholder='$t("register.code")'></el-input>
                         </el-col>
                         <el-col :span="5" class="ml-10">
-                            <el-button type="primary" @click="getCode" :disabled="!(countDown.canClick && this.countDown.emailSate) "> {{countDown.sendCodeMsg}}</el-button>
+                            <el-button type="primary" @click="getCode"
+                                       :disabled="!(countDown.canClick && this.countDown.emailSate) ">
+                                {{countDown.sendCodeMsg}}
+                            </el-button>
                         </el-col>
                     </el-form-item>
                     <el-form-item :label='$t("register.protocol")' :required=true>
@@ -49,6 +52,7 @@
 
 <script>
     import {validEmail} from "@/utils/validator";
+    import axios from "axios";
 
     export default {
         name: "Register",
@@ -61,14 +65,14 @@
                 }
             }
 
-            let checkEmail = (rule,value,callback) =>{
-               if (validEmail(value)) {
-                   this.countDown.emailSate = true
-                   callback()
-               }else {
-                   this.countDown.emailSate = false
-                   callback(new Error(this.$t("feedback.email_format")))
-               }
+            let checkEmail = (rule, value, callback) => {
+                if (validEmail(value)) {
+                    this.countDown.emailSate = true
+                    callback()
+                } else {
+                    this.countDown.emailSate = false
+                    callback(new Error(this.$t("feedback.email_format")))
+                }
             }
 
             return {
@@ -80,7 +84,7 @@
                     code: '12345',
                     protocol: true
                 },
-                countDown:{
+                countDown: {
                     sendCodeMsg: this.$t("button.get_code"),
                     totalTime: 60,
                     canClick: true,
@@ -135,6 +139,14 @@
                     return;
                 }
 
+                axios
+                    .post("register", this.register)
+                    .then(response => {
+                        console.log("success")
+                    })
+                    .catch(error => {
+                        console.log("fail");
+                    });
             },
             getCode() {
                 if (!this.countDown.canClick) {
@@ -147,11 +159,21 @@
                     this.countDown.sendCodeMsg = this.countDown.totalTime + this.$t("button.get_code_after")
                     if (this.countDown.totalTime < 0) {
                         window.clearInterval(clock)
-                        this.countDown.sendCodeMsg =  this.$t("button.get_code")
+                        this.countDown.sendCodeMsg = this.$t("button.get_code")
                         this.countDown.totalTime = 60
                         this.countDown.canClick = true
                     }
                 }, 1000);
+
+                axios
+                    .post("code", this.register.email)
+                    .then(response => {
+                        console.log("success")
+                    })
+                    .catch(error => {
+                        console.log("fail");
+                    });
+
             }
 
         }
