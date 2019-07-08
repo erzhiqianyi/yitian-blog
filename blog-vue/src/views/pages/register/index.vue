@@ -22,8 +22,8 @@
                         <el-col :span="10">
                             <el-input v-model="register.code" :placeholder='$t("register.code")'></el-input>
                         </el-col>
-                        <el-col :span="10" class="ml-10">
-                            <el-button type="primary" @click="getCode">{{$t("button.get_code")}}</el-button>
+                        <el-col :span="5" class="ml-10">
+                            <el-button type="primary" @click="getCode" :disabled="!countDown.canClick"> {{countDown.sendCodeMsg}}</el-button>
                         </el-col>
                     </el-form-item>
                     <el-form-item :label='$t("register.protocol")' :required=true>
@@ -69,6 +69,11 @@
                     rePassword: '123456',
                     code: '12345',
                     protocol: true
+                },
+                countDown:{
+                    sendCodeMsg: this.$t("button.get_code"),
+                    totalTime: 60,
+                    canClick: true
                 },
                 rules: {
                     name: [
@@ -121,8 +126,21 @@
 
             },
             getCode() {
-
-                console.log(this.register.email)
+                if (!this.countDown.canClick) {
+                    return
+                }
+                this.countDown.canClick = false
+                this.countDown.sendCodeMsg = this.countDown.totalTime + this.$t("button.get_code_after")
+                let clock = window.setInterval(() => {
+                    this.countDown.totalTime--
+                    this.countDown.sendCodeMsg = this.countDown.totalTime + this.$t("button.get_code_after")
+                    if (this.countDown.totalTime < 0) {
+                        window.clearInterval(clock)
+                        this.countDown.sendCodeMsg =  this.$t("button.get_code")
+                        this.countDown.totalTime = 60
+                        this.countDown.canClick = true
+                    }
+                }, 1000);
             }
 
         }

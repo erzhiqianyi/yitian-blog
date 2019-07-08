@@ -30,6 +30,8 @@
   "button": {
     "register": "立即注册",
     "get_code": "获取验证码",
+    "get_code_after": "秒后重试",
     "confirm": "确定"
+
   }
 }

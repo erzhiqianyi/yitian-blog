@@ -30,6 +30,7 @@
   "button": {
     "register": "register now",
     "get_code": "get code",
+    "get_code_after": "seconds",
     "confirm": "confirm"
   }
 }
