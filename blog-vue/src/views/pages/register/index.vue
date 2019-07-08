@@ -23,7 +23,7 @@
                             <el-input v-model="register.code" :placeholder='$t("register.code")'></el-input>
                         </el-col>
                         <el-col :span="5" class="ml-10">
-                            <el-button type="primary" @click="getCode" :disabled="!countDown.canClick"> {{countDown.sendCodeMsg}}</el-button>
+                            <el-button type="primary" @click="getCode" :disabled="!(countDown.canClick && this.countDown.emailSate) "> {{countDown.sendCodeMsg}}</el-button>
                         </el-col>
                     </el-form-item>
                     <el-form-item :label='$t("register.protocol")' :required=true>
@@ -53,18 +53,28 @@
     export default {
         name: "Register",
         data() {
-            var checkRePassword = (rule, value, callback) => {
+            let checkRePassword = (rule, value, callback) => {
                 if (value !== this.register.password) {
                     callback(new Error(this.$t("feedback.password_not_same")))
                 } else {
-                    callback();
+                    callback()
                 }
+            }
+
+            let checkEmail = (rule,value,callback) =>{
+               if (validEmail(value)) {
+                   this.countDown.emailSate = true
+                   callback()
+               }else {
+                   this.countDown.emailSate = false
+                   callback(new Error(this.$t("feedback.email_format")))
+               }
             }
 
             return {
                 register: {
                     name: '1234',
-                    email: '123@123.com',
+                    email: '',
                     password: '123456',
                     rePassword: '123456',
                     code: '12345',
@@ -73,7 +83,8 @@
                 countDown:{
                     sendCodeMsg: this.$t("button.get_code"),
                     totalTime: 60,
-                    canClick: true
+                    canClick: true,
+                    emailSate: false
                 },
                 rules: {
                     name: [
@@ -83,7 +94,7 @@
                     email: [
                         {required: true, message: this.$t("feedback.enter_email"), trigger: 'blur'},
                         {min: 3, max: 30, message: this.$t("feedback.email_length"), trigger: 'blur'},
-                        {validator: validEmail, trigger: 'blur'}
+                        {validator: checkEmail, trigger: 'blur'}
                     ],
                     password: [
                         {required: true, message: this.$t("feedback.enter_password"), trigger: 'blur'},
