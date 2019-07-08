@@ -23,7 +23,7 @@
                             <el-input v-model="register.code" :placeholder='$t("register.code")'></el-input>
                         </el-col>
                         <el-col :span="10" class="ml-10">
-                            <el-button type="primary" >{{$t("register.get_code")}}</el-button>
+                            <el-button type="primary" @click="getCode">{{$t("button.get_code")}}</el-button>
                         </el-col>
                     </el-form-item>
                     <el-form-item :label='$t("register.protocol")' :required=true>
@@ -34,7 +34,7 @@
                     </el-form-item>
                     <el-form-item>
                         <el-button type="primary" @click="doRegister('register')">
-                            {{$t("register.register")}}
+                            {{$t("button.register")}}
                         </el-button>
                         <el-form-item>
                             <el-link type="primary">{{$t("register.login")}}</el-link>
@@ -112,13 +112,18 @@
                 }
                 fieldValid = this.register.protocol;
                 if (!fieldValid) {
-                    this.$alert('', '请同意用户协议', {
-                        confirmButtonText: '确定',
+                    this.$alert('', this.$t("feedback.agree_protocol"), {
+                        confirmButtonText: this.$t("button.confirm"),
                         center: true,
                     });
                     return;
                 }
+
             },
+            getCode() {
+
+                console.log(this.register.email)
+            }
 
         }
 

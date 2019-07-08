@@ -6,10 +6,8 @@
     "password": "password",
     "re_password": "confirm password",
     "code": "code",
-    "get_code": "get code",
     "protocol": "protocol",
     "agree_protocol": " agree protocol to register",
-    "register": "register now",
     "login": "have account，login"
   },
   "system": {
@@ -26,6 +24,12 @@
     "enter_re_password": "enter re password",
     "password_not_same": "password not same!",
     "enter_code": "enter code",
-    "code_length": " code length between 4 and 8"
+    "code_length": " code length between 4 and 8",
+    "agree_protocol": "please agree user protocol"
+  },
+  "button": {
+    "register": "register now",
+    "get_code": "get code",
+    "confirm": "confirm"
   }
 }
