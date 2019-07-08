@@ -9,16 +9,6 @@ export function validEmail(rule, value, callback) {
     }
 }
 
-export function checkProtocol(rule, value, callback) {
-    console.log(value)
-    if (value) {
-        callback()
-    } else {
-        callback(new Error(i18n.t('feedback.email_format')));
-    }
-}
-
-
 
 
 

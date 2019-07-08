@@ -23,17 +23,17 @@
                             <el-input v-model="register.code" :placeholder='$t("register.code")'></el-input>
                         </el-col>
                         <el-col :span="10" class="ml-10">
-                            <el-button type="primary" @click="onSubmit">{{$t("register.get_code")}}</el-button>
+                            <el-button type="primary" >{{$t("register.get_code")}}</el-button>
                         </el-col>
                     </el-form-item>
-                    <el-form-item :label='$t("register.protocol")'>
+                    <el-form-item :label='$t("register.protocol")' :required=true>
                         <el-switch v-model="register.protocol" active-color="#13ce66"></el-switch>
                         <el-form-item>
                             <el-link type="primary">{{$t("register.agree_protocol")}}</el-link>
                         </el-form-item>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="onSubmit('register')">
+                        <el-button type="primary" @click="doRegister('register')">
                             {{$t("register.register")}}
                         </el-button>
                         <el-form-item>
@@ -63,12 +63,12 @@
 
             return {
                 register: {
-                    name: '',
-                    email: '',
-                    password: '',
-                    rePassword: '',
-                    code: '',
-                    protocol: false
+                    name: '1234',
+                    email: '123@123.com',
+                    password: '123456',
+                    rePassword: '123456',
+                    code: '12345',
+                    protocol: true
                 },
                 rules: {
                     name: [
@@ -93,26 +93,33 @@
                         {required: true, message: this.$t("feedback.enter_code"), trigger: 'blur'},
                         {min: 4, max: 8, message: this.$t("feedback.code_length"), trigger: 'blur'},
                     ],
-                    protocol: [
-                        {required: true, message: this.$t("feedback.enter_code"), trigger: 'change'},
-                    ]
-
 
                 }
             }
         }
         ,
         methods: {
-            onSubmit(formName) {
+            doRegister(formName) {
+                let fieldValid = true;
                 this.$refs[formName].validate((valid) => {
                     if (!valid) {
-                        console.log("不提交")
-                        return false;
-                    } else {
-                        console.log("提交")
+                        fieldValid = false;
                     }
                 });
+
+                if (!fieldValid) {
+                    return false;
+                }
+                fieldValid = this.register.protocol;
+                if (!fieldValid) {
+                    this.$alert('', '请同意用户协议', {
+                        confirmButtonText: '确定',
+                        center: true,
+                    });
+                    return;
+                }
             },
+
         }
 
     }
