@@ -1,5 +1,6 @@
 package com.erzhiqianyi.blog.view.auth;
 
+import com.erzhiqianyi.blog.payload.EmailRegisterRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -14,11 +15,15 @@ public class User {
    @ApiModelProperty(SwaggerConstant.PROPERTY_USER_NAME)
    private String name;
 
+   @ApiModelProperty(SwaggerConstant.PROPERTY_USER_EMAIL)
+   private String email;
+
    public User() {
    }
 
-   public User(String id, String name) {
-      this.id = id;
-      this.name = name;
+   public User(EmailRegisterRequest request) {
+      this.id = request.getEmail();
+      this.name = request.getName();
+      this.email = request.getEmail();
    }
 }

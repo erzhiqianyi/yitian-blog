@@ -23,5 +23,11 @@ public interface SwaggerConstant {
 
     String PROPERTY_USER_NAME = "用户名" ;
 
+    String PROPERTY_USER_EMAIL = "邮箱";
 
+    String PROPERTY_USER_PASSWORD = "密码";
+
+    String PROPERTY_USER_RE_PASSWORD = "确认密码";
+
+    String PROPERTY_USER_CODE = "验证码";
 }
