@@ -14,7 +14,8 @@
     "element-ui": "^2.4.5",
     "i18n": "^0.8.3",
     "vue": "^2.6.10",
-    "vue-i18n": "^8.0.0"
+    "vue-i18n": "^8.0.0",
+    "vue-router": "^3.0.7"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",

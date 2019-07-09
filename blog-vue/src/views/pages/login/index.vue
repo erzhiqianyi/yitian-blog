@@ -19,8 +19,10 @@
                     </el-form-item>
 
                     <el-form-item>
-                        <el-link type="primary">{{$t("login.register")}}</el-link>
-                        <el-link type="danger" class="ml-10">{{$t("login.find_password")}}</el-link>
+                        <el-link type="primary"><router-link :to="{path:'register'}"> {{$t("login.register")}}</router-link> </el-link>
+                        <el-link type="danger"  class="ml-10">
+                            {{$t("login.find_password")}}
+                        </el-link>
                     </el-form-item>
 
 
@@ -78,6 +80,9 @@
                         console.log("fail");
                     });
             },
+            handleLink(link) {
+                console.log(link)
+            }
         }
 
     }

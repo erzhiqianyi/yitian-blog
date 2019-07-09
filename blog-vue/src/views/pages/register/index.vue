@@ -40,7 +40,7 @@
                             {{$t("button.register")}}
                         </el-button>
                         <el-form-item>
-                            <el-link type="primary">{{$t("register.login")}}</el-link>
+                            <el-link type="primary"><router-link :to="{path:'login'}">{{$t("register.login")}}</router-link></el-link>
                         </el-form-item>
                     </el-form-item>
                 </el-form>
