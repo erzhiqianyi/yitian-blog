@@ -3,7 +3,7 @@
         <div class="container">
             <div class="form">
                 <h1>{{$t("system.name")}}</h1>
-                <el-form ref="register" :model="register" status-icon :rules="rules" label-width="100px">
+                <el-form ref="register" :model="register" status-icon :rules="rules" label-width="100px"  >
                     <el-form-item :label='$t("register.name")' :required=true prop="name">
                         <el-input v-model="register.name" :placeholder='$t("register.name")'></el-input>
                     </el-form-item>
@@ -195,6 +195,7 @@
 
     .form {
         padding: 20px;
+        width: 500px;
         background-color: #ffffff;
         border-radius: 4px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)

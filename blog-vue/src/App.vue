@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <div>
-            <Register/>
             <Login/>
+            <Register/>
         </div>
 
     </div>

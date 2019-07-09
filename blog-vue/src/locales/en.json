@@ -10,6 +10,11 @@
     "agree_protocol": " agree protocol to register",
     "login": "have account，login"
   },
+  "login": {
+    "name": "username or email ",
+    "register": "register now",
+    "find_password": "find password?"
+  },
   "system": {
     "name": "One Day Blog "
   },
@@ -29,6 +34,7 @@
   },
   "button": {
     "register": "register now",
+    "login": "login",
     "get_code": "get code",
     "get_code_after": "seconds",
     "confirm": "confirm"
