@@ -3,7 +3,7 @@
         <div class="container">
             <div class="form">
                 <h1>{{$t("system.name")}}</h1>
-                <el-form ref="register" :model="register" status-icon :rules="rules" label-width="100px"  >
+                <el-form ref="register" :model="register" status-icon :rules="rules" label-width="100px">
                     <el-form-item :label='$t("register.name")' :required=true prop="name">
                         <el-input v-model="register.name" :placeholder='$t("register.name")'></el-input>
                     </el-form-item>
@@ -40,7 +40,7 @@
                             {{$t("button.register")}}
                         </el-button>
                         <el-form-item>
-                            <el-link type="primary"><router-link :to="{path:'login'}">{{$t("register.login")}}</router-link></el-link>
+                            <el-link type="primary" @click="handleLink('login')">{{$t("register.login")}}</el-link>
                         </el-form-item>
                     </el-form-item>
                 </el-form>
@@ -174,6 +174,9 @@
                         console.log("fail");
                     });
 
+            },
+            handleLink(link) {
+                this.$router.push({path: link});
             }
 
         }
