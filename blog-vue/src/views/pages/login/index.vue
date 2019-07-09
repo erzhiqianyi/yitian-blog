@@ -1,0 +1,101 @@
+<template>
+    <div class="app">
+        <div class="container">
+            <div class="form">
+                <h1>{{$t("system.name")}}</h1>
+                <el-form ref="login" :model="login" status-icon :rules="rules" label-width="120px">
+                    <el-form-item :label='$t("login.name")' :required=true prop="name">
+                        <el-input v-model="login.name" :placeholder='$t("register.name")' style="width: 220px"></el-input>
+                    </el-form-item>
+                    <el-form-item :label='$t("register.password")' :required=true prop="password">
+                        <el-input v-model="login.password" :placeholder='$t("register.password")'
+                                  type="password"></el-input>
+                    </el-form-item>
+
+                    <el-form-item>
+                        <el-button type="primary" @click="doLogin('register')">
+                            {{$t("button.register")}}
+                        </el-button>
+                        <el-form-item>
+                            <el-link type="primary">{{$t("register.login")}}</el-link>
+                        </el-form-item>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </div>
+
+    </div>
+</template>
+
+<script>
+
+    import axios from "axios";
+
+    export default {
+        name: "Login",
+        data() {
+            return {
+                login: {
+                    name: '1234',
+                    password: '123456',
+                },
+                rules: {
+                    name: [
+                        {required: true, message: this.$t("feedback.enter_name"), trigger: 'blur'},
+                        {min: 3, max: 20, message: this.$t("feedback.name_length"), trigger: 'blur'}
+                    ],
+                    password: [
+                        {required: true, message: this.$t("feedback.enter_password"), trigger: 'blur'},
+                        {min: 3, max: 20, message: this.$t("feedback.password_length"), trigger: 'blur'},
+                    ],
+                }
+            }
+        }
+        ,
+        methods: {
+            doLogin(formName) {
+                let fieldValid = true;
+                this.$refs[formName].validate((valid) => {
+                    if (!valid) {
+                        fieldValid = false;
+                    }
+                });
+
+                if (!fieldValid) {
+                    return false;
+                }
+
+                axios
+                    .post("register", this.register)
+                    .then(response => {
+                        console.log("success")
+                    })
+                    .catch(error => {
+                        console.log("fail");
+                    });
+            },
+        }
+
+    }
+</script>
+
+<style scoped>
+
+    .container {
+        margin-top: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
