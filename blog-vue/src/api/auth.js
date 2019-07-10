@@ -7,3 +7,11 @@ export function loginByPassword(data) {
         data
     })
 }
+
+export function registerByEmail(data) {
+    return request({
+        url: '/api/auth/register/email',
+        method: 'post',
+        data
+    })
+}

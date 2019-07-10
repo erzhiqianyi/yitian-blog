@@ -52,7 +52,8 @@
 
 <script>
     import {validEmail} from "@/utils/validator";
-    import axios from "axios";
+    import {registerByEmail} from '@/api/auth'
+    import {getEmailCode} from '@/api/code'
 
     export default {
         name: "Register",
@@ -78,7 +79,7 @@
             return {
                 register: {
                     name: '1234',
-                    email: '',
+                    email: '123@123.com',
                     password: '123456',
                     rePassword: '123456',
                     code: '12345',
@@ -139,14 +140,12 @@
                     return;
                 }
 
-                axios
-                    .post("register", this.register)
-                    .then(response => {
-                        console.log("success")
-                    })
-                    .catch(error => {
-                        console.log("fail");
-                    });
+                registerByEmail(this.register).then(data => {
+                    console.log("注册成功")
+                }).catch(error => {
+                    console.log("注册失败")
+                });
+
             },
             getCode() {
                 if (!this.countDown.canClick) {
@@ -165,14 +164,16 @@
                     }
                 }, 1000);
 
-                axios
-                    .post("code", this.register.email)
-                    .then(response => {
-                        console.log("success")
-                    })
-                    .catch(error => {
-                        console.log("fail");
-                    });
+                getEmailCode(this.register.email).then(data => {
+                    console.log("获取成功成功")
+                }).catch(error => {
+                    window.clearInterval(clock)
+                    this.countDown.sendCodeMsg = this.$t("button.get_code")
+                    this.countDown.totalTime = 60
+                    this.countDown.canClick = true
+                    console.log("获取失败")
+                });
+
 
             },
             handleLink(link) {

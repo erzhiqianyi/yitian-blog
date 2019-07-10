@@ -30,4 +30,10 @@ public interface SwaggerConstant {
     String PROPERTY_USER_RE_PASSWORD = "确认密码";
 
     String PROPERTY_USER_CODE = "验证码";
+
+    String PROPERTY_RESULT_CODE = "返回结果,0表示成功，其他看返回msg";
+
+    String PROPERTY_RESULT_MSG = "处理结果";
+
+    String PROPERTY_RESULT_DATA = "数据";
 }

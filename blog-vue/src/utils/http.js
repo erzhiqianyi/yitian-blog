@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {MessageBox, Message} from 'element-ui'
+import { Message} from 'element-ui'
 import i18n from '@/locales' // internationalization
 
 const request = axios.create({
@@ -42,6 +42,7 @@ request.interceptors.response.use(
     response => {
         //请求成  response.status == 200
         const res = response.data
+        //后台返回结果不为0，表示请求失败,没有业务数据
         if (res.code !== 0) {
             //请求失败，可以统一弹出提示，或自定义提示
             Message({

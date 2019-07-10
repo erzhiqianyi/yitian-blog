@@ -2,6 +2,7 @@ package com.erzhiqianyi.blog.controller.auth;
 
 import com.erzhiqianyi.blog.payload.EmailRegisterRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
+import com.erzhiqianyi.blog.view.ResponseResult;
 import com.erzhiqianyi.blog.view.auth.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,8 +26,8 @@ public class RegisterController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = User.class
     )
-    public Mono<User> registerByEmail(@RequestBody EmailRegisterRequest request) {
-        return Mono.just(new User(request));
+    public Mono<ResponseResult<User>> registerByEmail(@RequestBody EmailRegisterRequest request) {
+        return Mono.just(ResponseResult.success(new User(request)));
     }
 
 }
