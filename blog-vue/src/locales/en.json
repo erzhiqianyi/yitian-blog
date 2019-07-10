@@ -30,7 +30,8 @@
     "password_not_same": "password not same!",
     "enter_code": "enter code",
     "code_length": " code length between 4 and 8",
-    "agree_protocol": "please agree user protocol"
+    "agree_protocol": "please agree user protocol",
+    "system_error": "try later "
   },
   "button": {
     "register": "register now",

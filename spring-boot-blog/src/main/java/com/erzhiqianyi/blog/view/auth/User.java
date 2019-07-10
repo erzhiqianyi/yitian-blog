@@ -1,6 +1,7 @@
 package com.erzhiqianyi.blog.view.auth;
 
 import com.erzhiqianyi.blog.payload.EmailRegisterRequest;
+import com.erzhiqianyi.blog.payload.PasswordLoginRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,5 +26,11 @@ public class User {
       this.id = request.getEmail();
       this.name = request.getName();
       this.email = request.getEmail();
+   }
+
+   public User(PasswordLoginRequest request) {
+     this.id = request.getUsername();
+     this.name = request.getUsername();
+     this.email = request.getUsername();
    }
 }

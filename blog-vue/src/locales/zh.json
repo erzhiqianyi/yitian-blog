@@ -30,7 +30,8 @@
     "password_not_same": "两次输入密码不一致!",
     "enter_code": "请输入验证码",
     "code_length": "验证码长度在 4 到 8个字符",
-    "agree_protocol": "请同意用户协议"
+    "agree_protocol": "请同意用户协议",
+    "system_error": "服务暂时不可用，请稍后再试"
   },
   "button": {
     "register": "立即注册",

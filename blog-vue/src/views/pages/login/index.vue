@@ -4,8 +4,8 @@
             <div class="form">
                 <h1>{{$t("system.name")}}</h1>
                 <el-form ref="login" :model="login" status-icon :rules="rules" label-width="120px">
-                    <el-form-item :label='$t("login.name")' :required=true prop="name">
-                        <el-input v-model="login.name" :placeholder='$t("login.name")'></el-input>
+                    <el-form-item :label='$t("login.name")' :required=true prop="username">
+                        <el-input v-model="login.username" :placeholder='$t("login.name")'></el-input>
                     </el-form-item>
                     <el-form-item :label='$t("register.password")' :required=true prop="password">
                         <el-input v-model="login.password" :placeholder='$t("register.password")'
@@ -20,7 +20,7 @@
 
                     <el-form-item>
                         <el-link type="primary" @click="handleLink('register')">{{$t("login.register")}}</el-link>
-                        <el-link type="danger"  class="ml-10">{{$t("login.find_password")}}</el-link>
+                        <el-link type="danger" class="ml-10">{{$t("login.find_password")}}</el-link>
                     </el-form-item>
 
 
@@ -33,14 +33,14 @@
 
 <script>
 
-    import axios from "axios";
+    import {loginByPassword} from '@/api/auth'
 
     export default {
         name: "Login",
         data() {
             return {
                 login: {
-                    name: '1234',
+                    username: '1234',
                     password: '123456',
                 },
                 rules: {
@@ -69,17 +69,14 @@
                     return false;
                 }
 
-                axios
-                    .post("register", this.register)
-                    .then(response => {
-                        console.log("success")
-                    })
-                    .catch(error => {
-                        console.log("fail");
-                    });
+                loginByPassword(this.login).then(data => {
+                    console.log("登录成功")
+                }).catch(error => {
+                    console.log("登录失败")
+                });
             },
             handleLink(link) {
-                this.$router.push({ path: link });
+                this.$router.push({path: link});
             }
         }
 
