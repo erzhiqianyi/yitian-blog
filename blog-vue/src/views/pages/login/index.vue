@@ -13,7 +13,7 @@
                     </el-form-item>
 
                     <el-form-item>
-                        <el-button type="primary" @click="doLogin('login')">
+                        <el-button type="primary" @click="doLogin('login')" :disabled="!loginClick">
                             {{$t("button.login")}}
                         </el-button>
                     </el-form-item>
@@ -43,6 +43,7 @@
                     username: '1234',
                     password: '123456',
                 },
+                loginClick:true     ,
                 rules: {
                     name: [
                         {required: true, message: this.$t("feedback.enter_name"), trigger: 'blur'},
@@ -69,9 +70,11 @@
                     return false;
                 }
 
+                this.loginClick = false
                 loginByPassword(this.login).then(data => {
                     console.log("登录成功")
                 }).catch(error => {
+                    this.loginClick = true
                     console.log("登录失败")
                 });
             },

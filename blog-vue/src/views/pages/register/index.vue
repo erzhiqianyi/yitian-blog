@@ -36,7 +36,7 @@
                         </el-form-item>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="doRegister('register')">
+                        <el-button type="primary" @click="doRegister('register')" :disabled="!registerClick">
                             {{$t("button.register")}}
                         </el-button>
                         <el-form-item>
@@ -91,6 +91,7 @@
                     canClick: true,
                     emailSate: false
                 },
+                registerClick: true,
                 rules: {
                     name: [
                         {required: true, message: this.$t("feedback.enter_name"), trigger: 'blur'},
@@ -131,6 +132,7 @@
                 if (!fieldValid) {
                     return false;
                 }
+
                 fieldValid = this.register.protocol;
                 if (!fieldValid) {
                     this.$alert('', this.$t("feedback.agree_protocol"), {
@@ -140,9 +142,11 @@
                     return;
                 }
 
+                this.registerClick = false
                 registerByEmail(this.register).then(data => {
                     console.log("注册成功")
                 }).catch(error => {
+                    this.registerClick = true
                     console.log("注册失败")
                 });
 
