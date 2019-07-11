@@ -1,7 +1,7 @@
-package com.erzhiqianyi.blog.view.auth;
+package com.erzhiqianyi.blog.model.vo.auth;
 
-import com.erzhiqianyi.blog.payload.EmailRegisterRequest;
-import com.erzhiqianyi.blog.payload.PasswordLoginRequest;
+import com.erzhiqianyi.blog.model.payload.EmailRegisterRequest;
+import com.erzhiqianyi.blog.model.payload.PasswordLoginRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @ApiModel()
-public class User {
+public class UserVo {
    @ApiModelProperty(value = SwaggerConstant.PROPERTY_USER_ID)
    private String id;
 
@@ -19,16 +19,16 @@ public class User {
    @ApiModelProperty(SwaggerConstant.PROPERTY_USER_EMAIL)
    private String email;
 
-   public User() {
+   public UserVo() {
    }
 
-   public User(EmailRegisterRequest request) {
+   public UserVo(EmailRegisterRequest request) {
       this.id = request.getEmail();
       this.name = request.getName();
       this.email = request.getEmail();
    }
 
-   public User(PasswordLoginRequest request) {
+   public UserVo(PasswordLoginRequest request) {
      this.id = request.getUsername();
      this.name = request.getUsername();
      this.email = request.getUsername();

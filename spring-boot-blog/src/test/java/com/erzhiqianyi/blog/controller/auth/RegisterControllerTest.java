@@ -1,8 +1,8 @@
 package com.erzhiqianyi.blog.controller.auth;
 
 import com.erzhiqianyi.blog.BlogApplication;
-import com.erzhiqianyi.blog.payload.EmailRegisterRequest;
-import com.erzhiqianyi.blog.view.auth.User;
+import com.erzhiqianyi.blog.model.payload.EmailRegisterRequest;
+import com.erzhiqianyi.blog.model.vo.auth.UserVo;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,11 +22,11 @@ import reactor.core.publisher.Mono;
 @Log4j2
 public class RegisterControllerTest {
 
-    private String loginUrl;
+    private String registerUrl;
 
     @Before
     public void init() {
-        loginUrl = "/api/auth/register/email";
+        registerUrl = "/api/auth/register/email";
     }
 
     @Autowired
@@ -40,13 +40,13 @@ public class RegisterControllerTest {
         request.setEmail("123@123.com");
         request.setPassword("1234");
         request.setRePassword("1234");
-        FluxExchangeResult<User> result = webTestClient
+        FluxExchangeResult<UserVo> result = webTestClient
                 .post()
-                .uri(loginUrl)
+                .uri(registerUrl)
                 .body(Mono.just(request), EmailRegisterRequest.class)
                 .exchange()
-                .returnResult(User.class);
+                .returnResult(UserVo.class);
 
-        result.getResponseBody().subscribe(user -> log.info(user));
+        result.getResponseBody().subscribe(userVo -> log.info(userVo));
     }
 }

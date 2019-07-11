@@ -1,9 +1,9 @@
 package com.erzhiqianyi.blog.controller.auth;
 
-import com.erzhiqianyi.blog.payload.PasswordLoginRequest;
+import com.erzhiqianyi.blog.model.payload.PasswordLoginRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
-import com.erzhiqianyi.blog.view.ResponseResult;
-import com.erzhiqianyi.blog.view.auth.User;
+import com.erzhiqianyi.blog.model.vo.ResponseResult;
+import com.erzhiqianyi.blog.model.vo.auth.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
@@ -24,10 +24,10 @@ public class LoginController {
             value = SwaggerConstant.VALUE_LOGIN_EMAIL,
             consumes = SwaggerConstant.MEDIA_JSON,
             produces = SwaggerConstant.MEDIA_JSON,
-            response = User.class
+            response = UserVo.class
     )
-    public Mono<ResponseResult<User>> registerByEmail(@RequestBody PasswordLoginRequest request) {
-        return Mono.just(ResponseResult.success(new User(request)));
+    public Mono<ResponseResult<UserVo>> registerByEmail(@RequestBody PasswordLoginRequest request) {
+        return Mono.just(ResponseResult.success(new UserVo(request)));
     }
 
 }
