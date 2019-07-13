@@ -1,7 +1,7 @@
 package com.erzhiqianyi.blog.controller.auth;
 
 import com.erzhiqianyi.blog.BlogApplication;
-import com.erzhiqianyi.blog.model.payload.EmailRegisterRequest;
+import com.erzhiqianyi.blog.model.vo.auth.EmailRegisterRequest;
 import com.erzhiqianyi.blog.model.vo.auth.UserVo;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Before;

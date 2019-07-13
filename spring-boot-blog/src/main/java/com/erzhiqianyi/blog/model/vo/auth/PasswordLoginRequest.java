@@ -1,4 +1,4 @@
-package com.erzhiqianyi.blog.model.payload;
+package com.erzhiqianyi.blog.model.vo.auth;
 
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import io.swagger.annotations.ApiModel;

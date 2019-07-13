@@ -1,6 +1,6 @@
 package com.erzhiqianyi.blog.controller.auth;
 
-import com.erzhiqianyi.blog.model.payload.EmailRegisterRequest;
+import com.erzhiqianyi.blog.model.vo.auth.EmailRegisterRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import com.erzhiqianyi.blog.model.vo.ResponseResult;
 import com.erzhiqianyi.blog.model.vo.auth.UserVo;

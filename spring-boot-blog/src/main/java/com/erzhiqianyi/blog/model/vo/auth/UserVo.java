@@ -1,7 +1,5 @@
 package com.erzhiqianyi.blog.model.vo.auth;
 
-import com.erzhiqianyi.blog.model.payload.EmailRegisterRequest;
-import com.erzhiqianyi.blog.model.payload.PasswordLoginRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

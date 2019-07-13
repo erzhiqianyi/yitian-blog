@@ -1,6 +1,6 @@
 package com.erzhiqianyi.blog.controller.auth;
 
-import com.erzhiqianyi.blog.model.payload.PasswordLoginRequest;
+import com.erzhiqianyi.blog.model.vo.auth.PasswordLoginRequest;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import com.erzhiqianyi.blog.model.vo.ResponseResult;
 import com.erzhiqianyi.blog.model.vo.auth.UserVo;
