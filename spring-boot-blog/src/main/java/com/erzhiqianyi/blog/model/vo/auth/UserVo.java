@@ -31,4 +31,8 @@ public class UserVo {
      this.name = request.getUsername();
      this.email = request.getUsername();
    }
+
+   public static void main(String[] args) {
+      System.out.println(System.currentTimeMillis());
+   }
 }
