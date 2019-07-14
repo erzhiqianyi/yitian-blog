@@ -1,28 +1,34 @@
-package com.erzhiqianyi.blog.dao.mapper.user;
+package com.erzhiqianyi.blog.dao.reactor.user.impl;
 
 import com.erzhiqianyi.blog.BlogApplication;
 import com.erzhiqianyi.blog.dao.entity.user.UserEntity;
+import com.erzhiqianyi.blog.dao.reactor.user.UserRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static junit.framework.TestCase.assertNotNull;
+import reactor.test.StepVerifier;
 
 @SpringBootTest(classes = BlogApplication.class)
 @RunWith(SpringRunner.class)
 @Log4j2
-public class UserMapperTest {
+public class UserRepositoryImplTest {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserRepository userRepository;
 
     @Test
-    public void selectById() {
+    public void findUserById() {
         log.info("执行测试");
-        UserEntity userEntity = userMapper.selectByPrimaryKey(1);
-        assertNotNull(userEntity);
+        StepVerifier.create(
+                userRepository.findUserById(1)
+                        .map(UserEntity::getUsername)
+        )
+                .expectNext("admin")
+                .expectComplete()
+                .verify();
     }
+
 }
