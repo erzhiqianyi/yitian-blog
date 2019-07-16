@@ -9,6 +9,8 @@ public interface SwaggerConstant {
 
     String TAG_REGISTER = "用户注册接口";
 
+    String TAG_VERIFY_CODE =  "验证码接口";
+
     String VALUE_LOGIN_PASSWORD = "密码登录";
 
     String VALUE_LOGIN_PHONE = "手机验证码登录";
@@ -16,6 +18,8 @@ public interface SwaggerConstant {
     String VALUE_LOGIN_EMAIL = "邮箱验证码登录";
 
     String VALUE_LOGIN_THIRD = "第三方登录";
+
+    String VALUE_EMAIL_CODE = "获取邮箱验证码";
 
     String VALUE_REGISTER_BY_EMAIL = "通过邮箱注册";
 
@@ -36,4 +40,5 @@ public interface SwaggerConstant {
     String PROPERTY_RESULT_MSG = "处理结果";
 
     String PROPERTY_RESULT_DATA = "数据";
+
 }
