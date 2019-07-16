@@ -29,6 +29,10 @@ public class ResponseResult<T> {
         return new ResponseResult(0, null, data);
     }
 
+    public static <T> ResponseResult<T> badRequest(String msg) {
+        return new ResponseResult<>(400,msg,null);
+   }
+
 
     public int getCode() {
         return code;

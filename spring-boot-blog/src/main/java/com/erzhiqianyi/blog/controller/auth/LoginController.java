@@ -31,8 +31,7 @@ public class LoginController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = UserVo.class
     )
-    public Mono<ResponseResult<UserVo>> registerByEmail(@RequestBody @Valid PasswordLoginRequest request, Mono<BindingResult> bindingResult) {
-        log.error(bindingResult);
+    public Mono<ResponseResult<UserVo>> registerByEmail(@RequestBody @Valid PasswordLoginRequest request) {
         return Mono.just(ResponseResult.success(new UserVo(request)));
     }
 
