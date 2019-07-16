@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 @RestControllerAdvice
 public class WebExchangeBindExceptionHandler {
-    @ResponseStatus(value = HttpStatus.OK, reason = "Resource not found")
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Resource not found")
     @ExceptionHandler(WebExchangeBindException.class)
     public Mono<ResponseResult> methodArgumentNotValidException(WebExchangeBindException ex) {
         return Mono.just(ex)

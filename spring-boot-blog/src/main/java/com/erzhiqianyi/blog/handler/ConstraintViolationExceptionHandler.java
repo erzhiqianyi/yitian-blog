@@ -11,7 +11,7 @@ import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class ConstraintViolationExceptionHandler {
-    @ResponseStatus(value = HttpStatus.OK, reason = "Resource not found")
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "Resource not found")
     @ExceptionHandler(ConstraintViolationException.class)
     public Mono<ResponseResult> methodArgumentNotValidException(ConstraintViolationException ex) {
         return Mono.just(ex)
