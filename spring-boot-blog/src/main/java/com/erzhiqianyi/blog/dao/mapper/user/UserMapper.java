@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -26,18 +27,20 @@ public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into user (id, username, ",
-        "email, password, ",
-        "create_at, update_at, ",
-        "create_by, update_by)",
-        "values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, ",
-        "#{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
-        "#{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, ",
-        "#{createBy,jdbcType=INTEGER}, #{updateBy,jdbcType=INTEGER})"
+        "insert into user (username, email, ",
+        "password, create_at, ",
+        "update_at, create_by, ",
+        "update_by)",
+        "values (#{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
+        "#{password,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, ",
+        "#{updateAt,jdbcType=BIGINT}, #{createBy,jdbcType=INTEGER}, ",
+        "#{updateBy,jdbcType=INTEGER})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(UserEntity record);
 
     @InsertProvider(type=UserMapperProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(UserEntity record);
 
     @SelectProvider(type=UserMapperProvider.class, method="selectByExample")

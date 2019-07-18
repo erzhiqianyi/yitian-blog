@@ -1,8 +1,10 @@
 package com.erzhiqianyi.blog.dao.reactor.user;
 
-import com.erzhiqianyi.blog.dao.entity.user.UserEntity;
+import com.erzhiqianyi.blog.model.dto.auth.UserDto;
 import reactor.core.publisher.Mono;
 
 public interface UserRepository {
-    Mono<UserEntity> findUserById(Integer id);
+    Mono<UserDto> findUserById(Integer id);
+
+    Mono<UserDto> addUser(UserDto user);
 }

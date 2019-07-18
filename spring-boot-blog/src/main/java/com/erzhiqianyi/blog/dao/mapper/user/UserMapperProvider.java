@@ -21,10 +21,6 @@ public class UserMapperProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("user");
         
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-        
         if (record.getUsername() != null) {
             sql.VALUES("username", "#{username,jdbcType=VARCHAR}");
         }
