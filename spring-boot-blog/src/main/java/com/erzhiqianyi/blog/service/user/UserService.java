@@ -7,4 +7,6 @@ public interface UserService {
     Mono<UserDto> addUser(UserDto addDto);
 
     Mono<UserDto> login(UserDto userDto);
+
+    Mono<UserDto> deleteUser(Integer id);
 }

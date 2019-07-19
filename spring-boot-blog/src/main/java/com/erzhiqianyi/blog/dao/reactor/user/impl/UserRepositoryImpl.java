@@ -7,7 +7,6 @@ import com.erzhiqianyi.blog.model.dto.auth.UserDto;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
@@ -53,12 +52,20 @@ public class UserRepositoryImpl implements UserRepository {
                     return example;
                 })
                 .map(example -> userMapper.selectByExample(example))
-                .map(userEntities ->  userEntities.stream().findFirst())
+                .map(userEntities -> userEntities.stream().findFirst())
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(UserDto::new)
                 .subscribeOn(jdbcScheduler);
 
+    }
+
+    @Override
+    public void deleteUser(Integer id) {
+        Mono.just(id)
+                .doOnNext(userId -> userMapper.deleteByPrimaryKey(id))
+                .subscribeOn(jdbcScheduler)
+                .subscribe();
     }
 
 

@@ -9,4 +9,6 @@ public interface UserRepository {
     Mono<UserDto> addUser(UserDto user);
 
     Mono<UserDto> findUserByEmail(String email);
+
+    void deleteUser(Integer id);
 }

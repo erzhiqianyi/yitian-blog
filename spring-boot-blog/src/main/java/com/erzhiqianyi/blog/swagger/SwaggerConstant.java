@@ -11,6 +11,8 @@ public interface SwaggerConstant {
 
     String TAG_VERIFY_CODE =  "验证码接口";
 
+    String TAG_USER_MANAGER = "用户管理";
+
     String VALUE_LOGIN_PASSWORD = "密码登录";
 
     String VALUE_LOGIN_PHONE = "手机验证码登录";
@@ -22,6 +24,8 @@ public interface SwaggerConstant {
     String VALUE_EMAIL_CODE = "获取邮箱验证码";
 
     String VALUE_REGISTER_BY_EMAIL = "通过邮箱注册";
+
+    String VALUE_DELETE_USER = "删除用户" ;
 
     String PROPERTY_USER_ID ="用户id" ;
 

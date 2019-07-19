@@ -1,10 +1,12 @@
 package com.erzhiqianyi.blog.model.vo;
 
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
+@JsonInclude( JsonInclude.Include.NON_NULL)
 public class ResponseResult<T> {
 
     @ApiModelProperty(value = SwaggerConstant.PROPERTY_RESULT_CODE)

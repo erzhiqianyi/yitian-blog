@@ -23,4 +23,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findUserByEmail(userDto.getEmail())
                 .filter(user -> user.getPassword().equalsIgnoreCase(userDto.getPassword()));
     }
+
+    @Override
+    public Mono<UserDto> deleteUser(Integer id) {
+        return userRepository.findUserById(id)
+                .doOnNext(userDto -> userRepository.deleteUser(id));
+
+    }
 }

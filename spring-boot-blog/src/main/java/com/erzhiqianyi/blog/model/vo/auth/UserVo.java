@@ -2,12 +2,14 @@ package com.erzhiqianyi.blog.model.vo.auth;
 
 import com.erzhiqianyi.blog.model.dto.auth.UserDto;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
 @ApiModel()
+@JsonInclude( JsonInclude.Include.NON_NULL)
 public class UserVo {
     @ApiModelProperty(value = SwaggerConstant.PROPERTY_USER_ID)
     private String id;
