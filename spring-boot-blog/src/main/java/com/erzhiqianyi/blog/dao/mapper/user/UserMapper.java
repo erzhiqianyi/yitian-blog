@@ -30,11 +30,11 @@ public interface UserMapper {
         "insert into user (username, email, ",
         "password, create_at, ",
         "update_at, create_by, ",
-        "update_by)",
+        "update_by, status)",
         "values (#{username,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
         "#{password,jdbcType=VARCHAR}, #{createAt,jdbcType=BIGINT}, ",
         "#{updateAt,jdbcType=BIGINT}, #{createBy,jdbcType=INTEGER}, ",
-        "#{updateBy,jdbcType=INTEGER})"
+        "#{updateBy,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(UserEntity record);
@@ -52,13 +52,14 @@ public interface UserMapper {
         @Result(column="create_at", property="createAt", jdbcType=JdbcType.BIGINT),
         @Result(column="update_at", property="updateAt", jdbcType=JdbcType.BIGINT),
         @Result(column="create_by", property="createBy", jdbcType=JdbcType.INTEGER),
-        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.INTEGER)
+        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.INTEGER),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     List<UserEntity> selectByExample(UserEntityExample example);
 
     @Select({
         "select",
-        "id, username, email, password, create_at, update_at, create_by, update_by",
+        "id, username, email, password, create_at, update_at, create_by, update_by, status",
         "from user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -70,7 +71,8 @@ public interface UserMapper {
         @Result(column="create_at", property="createAt", jdbcType=JdbcType.BIGINT),
         @Result(column="update_at", property="updateAt", jdbcType=JdbcType.BIGINT),
         @Result(column="create_by", property="createBy", jdbcType=JdbcType.INTEGER),
-        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.INTEGER)
+        @Result(column="update_by", property="updateBy", jdbcType=JdbcType.INTEGER),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     UserEntity selectByPrimaryKey(Integer id);
 
@@ -91,7 +93,8 @@ public interface UserMapper {
           "create_at = #{createAt,jdbcType=BIGINT},",
           "update_at = #{updateAt,jdbcType=BIGINT},",
           "create_by = #{createBy,jdbcType=INTEGER},",
-          "update_by = #{updateBy,jdbcType=INTEGER}",
+          "update_by = #{updateBy,jdbcType=INTEGER},",
+          "status = #{status,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(UserEntity record);

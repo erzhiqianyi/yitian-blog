@@ -49,6 +49,10 @@ public class UserMapperProvider {
             sql.VALUES("update_by", "#{updateBy,jdbcType=INTEGER}");
         }
         
+        if (record.getStatus() != null) {
+            sql.VALUES("status", "#{status,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -66,6 +70,7 @@ public class UserMapperProvider {
         sql.SELECT("update_at");
         sql.SELECT("create_by");
         sql.SELECT("update_by");
+        sql.SELECT("status");
         sql.FROM("user");
         applyWhere(sql, example, false);
         
@@ -115,6 +120,10 @@ public class UserMapperProvider {
             sql.SET("update_by = #{record.updateBy,jdbcType=INTEGER}");
         }
         
+        if (record.getStatus() != null) {
+            sql.SET("status = #{record.status,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -131,6 +140,7 @@ public class UserMapperProvider {
         sql.SET("update_at = #{record.updateAt,jdbcType=BIGINT}");
         sql.SET("create_by = #{record.createBy,jdbcType=INTEGER}");
         sql.SET("update_by = #{record.updateBy,jdbcType=INTEGER}");
+        sql.SET("status = #{record.status,jdbcType=VARCHAR}");
         
         UserEntityExample example = (UserEntityExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -167,6 +177,10 @@ public class UserMapperProvider {
         
         if (record.getUpdateBy() != null) {
             sql.SET("update_by = #{updateBy,jdbcType=INTEGER}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.SET("status = #{status,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

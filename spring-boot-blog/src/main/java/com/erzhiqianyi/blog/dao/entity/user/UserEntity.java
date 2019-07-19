@@ -19,6 +19,8 @@ public class UserEntity implements Serializable {
 
     private Integer updateBy;
 
+    private String status;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -85,6 +87,14 @@ public class UserEntity implements Serializable {
         this.updateBy = updateBy;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -99,6 +109,7 @@ public class UserEntity implements Serializable {
         sb.append(", updateAt=").append(updateAt);
         sb.append(", createBy=").append(createBy);
         sb.append(", updateBy=").append(updateBy);
+        sb.append(", status=").append(status);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

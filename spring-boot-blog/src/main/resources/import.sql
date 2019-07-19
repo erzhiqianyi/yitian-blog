@@ -29,3 +29,6 @@ insert into user ( username, email, password, create_at, update_at, create_by, u
 
 -- 查询
 select id, username, email, password, create_at, update_at, create_by, update_by, index from "user" where id = '';
+
+-- 用户表添加 status 字段
+ALTER  TABLE user  ADD status varchar(20) NOT NULL COMMENT '用户状态'
