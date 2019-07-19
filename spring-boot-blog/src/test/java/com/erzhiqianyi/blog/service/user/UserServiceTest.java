@@ -24,8 +24,9 @@ public class UserServiceTest {
     @Test
     public void addUser() {
         UserDto userDto = new UserDto();
-        userService.addUser(userDto);
-
+        userDto.setName("测试");
+        userDto.setPassword("123435");
+        userDto.setEmail("erw1@we.com");
         StepVerifier.create(
                 userService.addUser(userDto)
         )

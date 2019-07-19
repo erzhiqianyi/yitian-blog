@@ -11,7 +11,7 @@
     "login": "have account，login"
   },
   "login": {
-    "name": "username or email ",
+    "email": "email",
     "register": "register now",
     "find_password": "find password?"
   },

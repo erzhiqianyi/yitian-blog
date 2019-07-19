@@ -5,4 +5,6 @@ import reactor.core.publisher.Mono;
 
 public interface UserService {
     Mono<UserDto> addUser(UserDto addDto);
+
+    Mono<UserDto> login(UserDto userDto);
 }

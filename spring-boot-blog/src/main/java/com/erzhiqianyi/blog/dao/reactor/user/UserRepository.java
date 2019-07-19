@@ -7,4 +7,6 @@ public interface UserRepository {
     Mono<UserDto> findUserById(Integer id);
 
     Mono<UserDto> addUser(UserDto user);
+
+    Mono<UserDto> findUserByEmail(String email);
 }

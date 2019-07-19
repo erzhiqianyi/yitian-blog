@@ -15,6 +15,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<UserDto> addUser(UserDto addDto) {
-        return Mono.just(addDto);
+        return userRepository.addUser(addDto);
+    }
+
+    @Override
+    public Mono<UserDto> login(UserDto userDto) {
+        return userRepository.findUserByEmail(userDto.getEmail())
+                .filter(user -> user.getPassword().equalsIgnoreCase(userDto.getPassword()));
     }
 }

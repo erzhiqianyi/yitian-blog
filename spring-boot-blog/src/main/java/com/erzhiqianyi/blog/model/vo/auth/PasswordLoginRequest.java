@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -13,10 +14,11 @@ import javax.validation.constraints.Size;
 @ApiModel()
 public class PasswordLoginRequest {
 
-    @ApiModelProperty(value = SwaggerConstant.PROPERTY_USER_NAME)
-    @NotNull(message = MsgConstant.EMPTY_USERNAME)
-    @Size(min = 3, max = 20, message = MsgConstant.USERNAME_SIZE)
-    private String username;
+    @ApiModelProperty(value = SwaggerConstant.PROPERTY_USER_EMAIL)
+    @NotNull(message = MsgConstant.EMPTY_EMAIL)
+    @Size(min = 3, max = 20, message = MsgConstant.EMAIL_SIZE)
+    @Email(message =  MsgConstant.EMAIL_WRONG_FORMAT)
+    private String email;
 
     @ApiModelProperty(value = SwaggerConstant.PROPERTY_USER_PASSWORD)
     @NotNull(message = MsgConstant.EMPTY_PASSWORD)

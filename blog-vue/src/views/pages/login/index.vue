@@ -4,8 +4,8 @@
             <div class="form">
                 <h1>{{$t("system.name")}}</h1>
                 <el-form ref="login" :model="login" status-icon :rules="rules" label-width="120px">
-                    <el-form-item :label='$t("login.name")' :required=true prop="username">
-                        <el-input v-model="login.username" :placeholder='$t("login.name")'></el-input>
+                    <el-form-item :label='$t("login.email")' :required=true prop="email">
+                        <el-input v-model="login.email" :placeholder='$t("login.email")'></el-input>
                     </el-form-item>
                     <el-form-item :label='$t("register.password")' :required=true prop="password">
                         <el-input v-model="login.password" :placeholder='$t("register.password")'
@@ -33,21 +33,31 @@
 
 <script>
 
+    import {validEmail} from "@/utils/validator";
     import {loginByPassword} from '@/api/auth'
 
     export default {
         name: "Login",
         data() {
+            let checkEmail = (rule, value, callback) => {
+                if (validEmail(value)) {
+                    callback()
+                } else {
+                    callback(new Error(this.$t("feedback.email_format")))
+                }
+            }
+
             return {
                 login: {
-                    username: '1234',
+                    email: '1234',
                     password: '123456',
                 },
-                loginClick:true     ,
+                loginClick: true,
                 rules: {
-                    name: [
-                        {required: true, message: this.$t("feedback.enter_name"), trigger: 'blur'},
-                        {min: 3, max: 20, message: this.$t("feedback.name_length"), trigger: 'blur'}
+                    email: [
+                        {required: true, message: this.$t("feedback.enter_email"), trigger: 'blur'},
+                        {min: 3, max: 20, message: this.$t("feedback.email"), trigger: 'blur'},
+                        {validator: checkEmail, trigger: 'blur'}
                     ],
                     password: [
                         {required: true, message: this.$t("feedback.enter_password"), trigger: 'blur'},

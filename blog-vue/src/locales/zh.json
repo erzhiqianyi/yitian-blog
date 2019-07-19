@@ -11,7 +11,7 @@
     "login": "已有账号，立即登录"
   },
   "login": {
-      "name": "用户名或邮箱",
+      "email": "邮箱",
       "register": "没有账号，立即注册",
       "find_password": "找回密码?"
   },
