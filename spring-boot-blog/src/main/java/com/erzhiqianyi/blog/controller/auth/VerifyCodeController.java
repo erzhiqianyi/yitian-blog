@@ -29,12 +29,12 @@ public class VerifyCodeController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = Boolean.class
     )
-    public Mono<ResponseResult<Boolean>> emailVerifyCode(
+    public Mono<Boolean> emailVerifyCode(
             @PathVariable("email")
             @Size(min = 3, max = 20, message = MsgConstant.EMAIL_SIZE)
             @Email(message = MsgConstant.EMAIL_WRONG_FORMAT)
                     String email) {
-        return Mono.just(ResponseResult.success(Boolean.TRUE));
+        return Mono.just(Boolean.TRUE);
     }
 
 }

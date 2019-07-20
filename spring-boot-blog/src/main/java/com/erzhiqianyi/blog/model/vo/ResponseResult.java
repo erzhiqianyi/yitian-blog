@@ -4,9 +4,11 @@ import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.extern.log4j.Log4j2;
 
 @ApiModel
-@JsonInclude( JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Log4j2
 public class ResponseResult<T> {
 
     @ApiModelProperty(value = SwaggerConstant.PROPERTY_RESULT_CODE)
@@ -31,9 +33,13 @@ public class ResponseResult<T> {
         return new ResponseResult(0, null, data);
     }
 
+    public static ResponseResult noData() {
+        return new ResponseResult<>(20000, "no data", null);
+    }
+
     public static <T> ResponseResult<T> badRequest(String msg) {
-        return new ResponseResult<>(400,msg,null);
-   }
+        return new ResponseResult<>(400, msg, null);
+    }
 
 
     public int getCode() {

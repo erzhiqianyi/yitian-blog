@@ -39,15 +39,14 @@ public class UserManagerController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = UserVo.class
     )
-    public Mono<ResponseResult<UserVo>> updateUserStatus(@PathVariable("id") Integer id,
+    public Mono<UserVo> updateUserStatus(@PathVariable("id") Integer id,
                                                          @PathVariable("status") UserStatusEnum status) {
         return userService.updateUserStatus(id, status)
                 .map(UserVo::new)
                 .map(userVo -> {
                     userVo.setStatus(status);
                     return userVo;
-                })
-                .map(userVo -> ResponseResult.success(userVo));
+                });
     }
 
 

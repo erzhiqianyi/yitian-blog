@@ -37,10 +37,9 @@ public class LoginController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = UserVo.class
     )
-    public Mono<ResponseResult<UserVo>> loginByEmail(@RequestBody @Valid PasswordLoginRequest request) {
+    public Mono<UserVo> loginByEmail(@RequestBody @Valid PasswordLoginRequest request) {
         return userService.login(new UserDto(request))
-                .map(UserVo::new)
-                .map(userVo -> ResponseResult.success(userVo));
+                .map(UserVo::new);
     }
 
 }

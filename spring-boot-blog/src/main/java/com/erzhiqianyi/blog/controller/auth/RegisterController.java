@@ -36,10 +36,9 @@ public class RegisterController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = UserVo.class
     )
-    public Mono<ResponseResult<UserVo>> registerByEmail(@RequestBody @Valid EmailRegisterRequest request) {
+    public Mono<UserVo> registerByEmail(@RequestBody @Valid EmailRegisterRequest request) {
         return userService.addUser(new UserDto(request))
-                .map(UserVo::new)
-                .map(userVo -> ResponseResult.success(userVo));
+                .map(UserVo::new);
     }
 
 }
