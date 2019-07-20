@@ -1,6 +1,7 @@
 package com.erzhiqianyi.blog.model.vo.auth;
 
 import com.erzhiqianyi.blog.model.dto.auth.UserDto;
+import com.erzhiqianyi.blog.model.enums.UserStatusEnum;
 import com.erzhiqianyi.blog.swagger.SwaggerConstant;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
@@ -19,6 +20,8 @@ public class UserVo {
 
     @ApiModelProperty(SwaggerConstant.PROPERTY_USER_EMAIL)
     private String email;
+
+    private UserStatusEnum status;
 
     public UserVo() {
     }

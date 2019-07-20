@@ -27,6 +27,8 @@ public interface SwaggerConstant {
 
     String VALUE_DELETE_USER = "删除用户" ;
 
+    String VALUE_EDIT_USER_STATUS = "修改用户状态" ;
+
     String PROPERTY_USER_ID ="用户id" ;
 
     String PROPERTY_USER_NAME = "用户名" ;

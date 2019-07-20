@@ -1,5 +1,6 @@
 package com.erzhiqianyi.blog.controller.user;
 
+import com.erzhiqianyi.blog.model.enums.UserStatusEnum;
 import com.erzhiqianyi.blog.model.vo.ResponseResult;
 import com.erzhiqianyi.blog.model.vo.auth.UserVo;
 import com.erzhiqianyi.blog.service.user.UserService;
@@ -31,5 +32,23 @@ public class UserManagerController {
                 .map(UserVo::new)
                 .map(userVo -> ResponseResult.success(userVo));
     }
+
+    @PutMapping("/{id}/status/{status}")
+    @ApiOperation(
+            value = SwaggerConstant.VALUE_EDIT_USER_STATUS,
+            produces = SwaggerConstant.MEDIA_JSON,
+            response = UserVo.class
+    )
+    public Mono<ResponseResult<UserVo>> updateUserStatus(@PathVariable("id") Integer id,
+                                                         @PathVariable("status") UserStatusEnum status) {
+        return userService.updateUserStatus(id, status)
+                .map(UserVo::new)
+                .map(userVo -> {
+                    userVo.setStatus(status);
+                    return userVo;
+                })
+                .map(userVo -> ResponseResult.success(userVo));
+    }
+
 
 }

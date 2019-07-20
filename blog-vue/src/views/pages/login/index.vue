@@ -49,7 +49,7 @@
 
             return {
                 login: {
-                    email: '1234',
+                    email: '123@123.com',
                     password: '123456',
                 },
                 loginClick: true,

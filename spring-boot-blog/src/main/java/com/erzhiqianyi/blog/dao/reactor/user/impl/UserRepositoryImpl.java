@@ -1,9 +1,11 @@
 package com.erzhiqianyi.blog.dao.reactor.user.impl;
 
+import com.erzhiqianyi.blog.dao.entity.user.UserEntity;
 import com.erzhiqianyi.blog.dao.entity.user.UserEntityExample;
 import com.erzhiqianyi.blog.dao.mapper.user.UserMapper;
 import com.erzhiqianyi.blog.dao.reactor.user.UserRepository;
 import com.erzhiqianyi.blog.model.dto.auth.UserDto;
+import com.erzhiqianyi.blog.model.enums.UserStatusEnum;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -68,5 +70,18 @@ public class UserRepositoryImpl implements UserRepository {
                 .subscribe();
     }
 
+    @Override
+    public void updateUserStatus(Integer userId, UserStatusEnum status) {
+        Mono.just(status)
+                .map(newStatus -> {
+                    UserEntity entity = new UserEntity();
+                    entity.setStatus(newStatus.getStatus());
+                    entity.setId(userId);
+                    return entity;
+                })
+                .doOnNext(update -> userMapper.updateByPrimaryKeySelective(update))
+                .subscribeOn(jdbcScheduler)
+                .subscribe();
+    }
 
 }
