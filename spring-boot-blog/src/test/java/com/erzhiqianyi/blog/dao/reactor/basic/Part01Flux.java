@@ -24,16 +24,16 @@ public class Part01Flux {
         return Flux.fromIterable(Arrays.asList(new String[]{"foo", "bar"}));
     }
 
-
     //  Create a Flux that emits an IllegalStateException
     Flux<String> errorFlux() {
         return Flux.error(new IllegalStateException());
     }
 
-
     //  Create a Flux that emits increasing values from 0 to 9 each 100ms
     Flux<Long> counter() {
         return Flux.interval(Duration.ofMillis(100)).take(10);
     }
-
+    Flux<Integer> range(){
+        return Flux.range(1,5);
+    }
 }
