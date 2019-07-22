@@ -16,6 +16,11 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     maximum-pool-size: 100
 
+app:
+  config:
+    jwt:
+      secret: jfkweksdjtkdk
+      expiration: 20
 logging:
   level:
     com:
