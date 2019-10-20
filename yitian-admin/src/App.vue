@@ -4,7 +4,7 @@
             <a-menu
                     theme="dark"
                     mode="horizontal"
-                    :defaultSelectedKeys="['2']"
+                    :defaultSelectedKeys="['article']"
                     :style="{ lineHeight: '64px' }"
             >
                 <a-sub-menu key="center">
@@ -36,6 +36,11 @@
                     通知
                 </a-menu-item>
 
+                <a-menu-item key="user">
+                    <a-icon type="team"/>
+                    用户
+                </a-menu-item>
+
 
                 <a-sub-menu key="system">
                     <span slot="title"><a-icon type="setting"/><span>系统</span></span>
@@ -53,9 +58,11 @@
                 <a-breadcrumb-item>文章</a-breadcrumb-item>
                 <a-breadcrumb-item>写文章</a-breadcrumb-item>
             </a-breadcrumb>
-            <div :style="{ background: '#fff', padding: '24px', minHeight: '1024px' }">Content</div>
+            <div :style="{ background: '#fff', padding: '24px', minHeight: '1000px' }">
+                <ArticleList/>
+            </div>
         </a-layout-content>
-        <a-layout-footer style="text-align: center">
+        <a-layout-footer style="text-align: center ">
             一天 ©2019 Created by 一天
         </a-layout-footer>
     </a-layout>
@@ -72,9 +79,11 @@
 
 <script>
     import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
+    import ArticleList from './views/article/ArticleList'
 
     export default {
         name: 'app',
+        components: {ArticleList},
         data() {
             return {
                 zh_CN,
