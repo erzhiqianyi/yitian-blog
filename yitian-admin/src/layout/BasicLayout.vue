@@ -3,45 +3,45 @@
         <a-layout-header>
             <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['article']" :style="{ lineHeight: '64px' }">
                 <a-sub-menu key="center">
-                    <span slot="title"><a-icon type="user"/><span>个人中心</span></span>
-                    <a-menu-item key="setting">个人资料</a-menu-item>
-                    <a-menu-item key="logout">退出</a-menu-item>
+                    <span slot="title"><a-icon type="user"/><span>{{$t('menu.user_center')}}</span></span>
+                    <a-menu-item key="setting">{{$t('menu.user_profile')}}</a-menu-item>
+                    <a-menu-item key="logout">{{$t('menu.logout')}}</a-menu-item>
                 </a-sub-menu>
 
                 <a-menu-item key="dashboard">
                     <a-icon type="dashboard"/>
-                    首页
+                    {{$t('menu.index')}}
                 </a-menu-item>
 
                 <a-sub-menu key="article">
-                    <span slot="title"><a-icon type="edit"/><span>文章</span></span>
-                    <a-menu-item key="article">所有文章</a-menu-item>
-                    <a-menu-item key="article/post">写文章</a-menu-item>
-                    <a-menu-item key="category">分类</a-menu-item>
-                    <a-menu-item key="tag">标签</a-menu-item>
+                    <span slot="title"><a-icon type="edit"/><span>{{$t('menu.article')}}</span></span>
+                    <a-menu-item key="article">{{$t('menu.articleList')}}</a-menu-item>
+                    <a-menu-item key="article/post">{{$t('menu.article_post')}}</a-menu-item>
+                    <a-menu-item key="category">{{$t('menu.category')}}</a-menu-item>
+                    <a-menu-item key="tag">{{$t('menu.tag')}}</a-menu-item>
                 </a-sub-menu>
 
                 <a-menu-item key="comment">
                     <a-icon type="appstore"/>
-                    评论
+                    {{$t('menu.comment')}}
                 </a-menu-item>
 
                 <a-menu-item key="notification">
                     <a-icon type="notification"/>
-                    通知
+                    {{$t('menu.notification')}}
                 </a-menu-item>
 
                 <a-menu-item key="user">
                     <a-icon type="team"/>
-                    用户
+                    {{$t('menu.user')}}
                 </a-menu-item>
 
 
                 <a-sub-menu key="system">
-                    <span slot="title"><a-icon type="setting"/><span>系统</span></span>
-                    <a-menu-item key="setting">博客设置</a-menu-item>
-                    <a-menu-item key="tools">小工具</a-menu-item>
-                    <a-menu-item key="about">关于</a-menu-item>
+                    <span slot="title"><a-icon type="setting"/><span>{{$t('menu.system')}}</span></span>
+                    <a-menu-item key="setting">{{$t('menu.setting')}}</a-menu-item>
+                    <a-menu-item key="tools">{{$t('menu.tools')}}</a-menu-item>
+                    <a-menu-item key="about">{{$t('menu.about')}}</a-menu-item>
                 </a-sub-menu>
 
 
@@ -49,9 +49,9 @@
         </a-layout-header>
         <a-layout-content style="padding: 0 50px">
             <a-breadcrumb style="margin: 16px 0">
-                <a-breadcrumb-item>首页</a-breadcrumb-item>
-                <a-breadcrumb-item>文章</a-breadcrumb-item>
-                <a-breadcrumb-item>写文章</a-breadcrumb-item>
+                <a-breadcrumb-item>{{$t('menu.index')}}</a-breadcrumb-item>
+                <a-breadcrumb-item>{{$t('menu.article')}}</a-breadcrumb-item>
+                <a-breadcrumb-item>{{$t('menu.article_post')}}</a-breadcrumb-item>
             </a-breadcrumb>
             <div :style="{ background: '#fff', padding: '24px', minHeight: '1000px' }">
                 <ArticleList/>

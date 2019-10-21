@@ -1,19 +1,21 @@
 <template>
-    <BasicLayout/>
+    <a-locale-provider :locale="locale">
+        <BasicLayout/>
+    </a-locale-provider>
 </template>
 <style>
 
 </style>
 
 <script>
-    import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
+    import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
     import BasicLayout from '@/layout/BasicLayout'
     export default {
         name: 'app',
         components: {BasicLayout},
         data() {
             return {
-                zh_CN,
+                locale: zhCN,
             }
         },
 

@@ -1,0 +1,21 @@
+{
+  "message": "Hello i18n !!",
+  "menu": {
+    "user_center": "user center",
+    "user_profile" :"profile",
+    "logout": "logout",
+    "index" : "index",
+    "article" : "article",
+    "articleList" : "articles",
+    "article_post": "post article",
+    "category" : "category",
+    "tag" : "tag",
+    "comment" : "comment",
+    "notification" : "notification",
+    "user" : "user",
+    "system": "system",
+    "setting": "setting",
+    "tools": "tools",
+    "about": "about"
+  }
+}

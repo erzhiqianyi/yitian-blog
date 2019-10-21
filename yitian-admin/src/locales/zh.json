@@ -1,3 +1,21 @@
 {
-  "message": "hello i18n !!"
+  "message": "你好 i18n !!",
+  "menu": {
+    "user_center": "个人中心",
+    "user_profile" :"个人资料",
+    "logout": "退出",
+    "index" : "首页",
+    "article" : "文章",
+    "articleList" : "所有文章",
+    "article_post": "写文章",
+    "category" : "分类",
+    "tag" : "标签",
+    "comment" : "评论",
+    "notification" : "通知",
+    "user" : "用户",
+    "system": "系统",
+    "setting": "博客设置",
+    "tools": "工具",
+    "about": "关于"
+  }
 }
