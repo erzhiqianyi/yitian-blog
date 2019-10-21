@@ -1,10 +1,16 @@
 <template>
-    <div id="app">
+       <a-layout id="components-layout-demo-top" class="layout">
         <a-layout-header>
-            <a-menu v-model="current" mode="horizontal" theme="dark">
+            <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['article']" :style="{ lineHeight: '64px' }">
+                <a-sub-menu key="center">
+                    <span slot="title"><a-icon type="user"/><span>个人中心</span></span>
+                    <a-menu-item key="setting">个人资料</a-menu-item>
+                    <a-menu-item key="logout">退出</a-menu-item>
+                </a-sub-menu>
+
                 <a-menu-item key="dashboard">
                     <a-icon type="dashboard"/>
-                    一天
+                    首页
                 </a-menu-item>
 
                 <a-sub-menu key="article">
@@ -25,6 +31,11 @@
                     通知
                 </a-menu-item>
 
+                <a-menu-item key="user">
+                    <a-icon type="team"/>
+                    用户
+                </a-menu-item>
+
 
                 <a-sub-menu key="system">
                     <span slot="title"><a-icon type="setting"/><span>系统</span></span>
@@ -33,11 +44,6 @@
                     <a-menu-item key="about">关于</a-menu-item>
                 </a-sub-menu>
 
-                <a-sub-menu key="center">
-                    <span slot="title"><a-icon type="user"/><span>个人中心</span></span>
-                    <a-menu-item key="setting">个人资料</a-menu-item>
-                    <a-menu-item key="logout">退出</a-menu-item>
-                </a-sub-menu>
 
             </a-menu>
         </a-layout-header>
@@ -45,17 +51,22 @@
             <a-breadcrumb style="margin: 16px 0">
                 <a-breadcrumb-item>首页</a-breadcrumb-item>
                 <a-breadcrumb-item>文章</a-breadcrumb-item>
-                <a-breadcrumb-item>所有文章</a-breadcrumb-item>
+                <a-breadcrumb-item>写文章</a-breadcrumb-item>
             </a-breadcrumb>
-            <div style="">Content</div>
+            <div :style="{ background: '#fff', padding: '24px', minHeight: '1000px' }">
+                <ArticleList/>
+            </div>
         </a-layout-content>
-        <a-layout-footer> Product Power By 一天
+        <a-layout-footer style="text-align: center ">
+            一天 ©2019 Created by 一天
         </a-layout-footer>
-    </div>
+    </a-layout>
 </template>
 <script>
+    import ArticleList from '@/views/article/ArticleList'
     export default {
         name: "BasicLayout",
+        components: {ArticleList},
         data() {
             return {
                 current: ['dashboard'],
