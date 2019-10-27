@@ -54,8 +54,7 @@
                 <a-breadcrumb-item>{{$t('menu.article_post')}}</a-breadcrumb-item>
             </a-breadcrumb>
             <div :style="{ background: '#fff', padding: '24px', minHeight: '1000px' }">
-                <ArticleEditor/>
-<!--                <ArticleList/>-->
+                <router-view/>
             </div>
         </a-layout-content>
         <a-layout-footer style="text-align: center ">
@@ -64,12 +63,9 @@
     </a-layout>
 </template>
 <script>
-    import ArticleList from '@/views/article/ArticleList'
-    import ArticleEditor from '@/views/article/ArticleEditor'
 
     export default {
         name: "BasicLayout",
-        components: {ArticleList, ArticleEditor},
         data() {
             return {
                 current: ['dashboard'],

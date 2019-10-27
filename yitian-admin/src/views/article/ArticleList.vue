@@ -5,10 +5,11 @@
                 <a-form layout="inline">
                     <a-row :gutter="48">
                         <a-col :md="6" :sm="24">
-                            <a-form-item :label='$t("article.keyword")' >
+                            <a-form-item :label='$t("article.keyword")'>
                                 <a-input v-model="queryParam.keyword"/>
                             </a-form-item>
                         </a-col>
+
                         <a-col :md="6" :sm="24">
                             <a-form-item :label='$t("article.article_status")'>
                                 <a-select v-model="queryParam.status" placeholder='$t("article.select_status")'>
@@ -19,6 +20,7 @@
                                 </a-select>
                             </a-form-item>
                         </a-col>
+
                         <a-col :md="6" :sm="24">
                             <a-form-item :label='$t("article.category")'>
                                 <a-select v-model="queryParam.categoryId" placeholder='$t("article.select_category")'>
@@ -38,7 +40,7 @@
             </div>
 
             <div style="margin-top: 20px">
-                <a-button type="primary" icon="plus">{{$t('article.write_article')}}
+                <a-button type="primary" icon="plus" @click="toArticleEditor()">{{$t('article.write_article')}}
                 </a-button>
             </div>
 
@@ -132,6 +134,11 @@
                 },
                 data,
                 columns,
+            }
+        },
+        methods: {
+            toArticleEditor() {
+                this.$router.push({path: 'article/edit'});
             }
         }
     }
