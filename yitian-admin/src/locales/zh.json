@@ -2,20 +2,39 @@
   "message": "你好 i18n !!",
   "menu": {
     "user_center": "个人中心",
-    "user_profile" :"个人资料",
+    "user_profile": "个人资料",
     "logout": "退出",
-    "index" : "首页",
-    "article" : "文章",
-    "articleList" : "所有文章",
+    "index": "首页",
+    "article": "文章",
+    "articleList": "所有文章",
     "article_post": "写文章",
-    "category" : "分类",
-    "tag" : "标签",
-    "comment" : "评论",
-    "notification" : "通知",
-    "user" : "用户",
+    "category": "分类",
+    "tag": "标签",
+    "comment": "评论",
+    "notification": "通知",
+    "user": "用户",
     "system": "系统",
     "setting": "博客设置",
     "tools": "工具",
     "about": "关于"
+  },
+  "article": {
+    "keyword": "关键词",
+    "article_status": "文章状态",
+    "select_status": "请选择文章状态",
+    "category": "分类",
+    "select_category": "请选择分类",
+    "write_article": "写文章"
+  },
+  "basic": {
+    "query": "查询",
+    "reset": "重置",
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "table": {
+     "article":{
+        "title": "标题"
+     }
   }
 }

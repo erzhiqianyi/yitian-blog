@@ -2,20 +2,35 @@
   "message": "Hello i18n !!",
   "menu": {
     "user_center": "user center",
-    "user_profile" :"profile",
+    "user_profile": "profile",
     "logout": "logout",
-    "index" : "index",
-    "article" : "article",
-    "articleList" : "articles",
+    "index": "index",
+    "article": "article",
+    "articleList": "articles",
     "article_post": "post article",
-    "category" : "category",
-    "tag" : "tag",
-    "comment" : "comment",
-    "notification" : "notification",
-    "user" : "user",
+    "category": "category",
+    "tag": "tag",
+    "comment": "comment",
+    "notification": "notification",
+    "user": "user",
     "system": "system",
     "setting": "setting",
     "tools": "tools",
     "about": "about"
+  },
+  "article": {
+    "keyword": "keyword",
+    "article_status": "article status",
+    "select_status": " please select article status",
+    "category": "category",
+    "select_category": " please select category ",
+    "write_article": " write article "
+  },
+  "basic": {
+    "query": "query",
+    "reset": "reset",
+    "edit": "edit",
+    "delete": "delete"
   }
+
 }

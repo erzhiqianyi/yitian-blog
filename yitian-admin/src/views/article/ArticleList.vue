@@ -5,13 +5,13 @@
                 <a-form layout="inline">
                     <a-row :gutter="48">
                         <a-col :md="6" :sm="24">
-                            <a-form-item label="关键词">
+                            <a-form-item :label='$t("article.keyword")' >
                                 <a-input v-model="queryParam.keyword"/>
                             </a-form-item>
                         </a-col>
                         <a-col :md="6" :sm="24">
-                            <a-form-item label="文章状态">
-                                <a-select v-model="queryParam.status" placeholder="请选择文章状态">
+                            <a-form-item :label='$t("article.article_status")'>
+                                <a-select v-model="queryParam.status" placeholder='$t("article.select_status")'>
                                     <a-select-option value="draft">草稿</a-select-option>
                                     <a-select-option value="publish">已发布</a-select-option>
                                     <a-select-option value="private">私密</a-select-option>
@@ -20,8 +20,8 @@
                             </a-form-item>
                         </a-col>
                         <a-col :md="6" :sm="24">
-                            <a-form-item label="分类目录">
-                                <a-select v-model="queryParam.categoryId" placeholder="请选择分类">
+                            <a-form-item :label='$t("article.category")'>
+                                <a-select v-model="queryParam.categoryId" placeholder='$t("article.select_category")'>
                                     <a-select-option value="Test">测试</a-select-option>
                                     <a-select-option value="Code">编程</a-select-option>
                                 </a-select>
@@ -29,8 +29,8 @@
                         </a-col>
 
                         <a-col :md="6" :sm="24"><span class="table-page-search-submitButtons">
-                            <a-button type="primary">查询</a-button>
-                            <a-button style="margin-left: 8px;">重置</a-button>
+                            <a-button type="primary">{{$t('basic.query')}}</a-button>
+                            <a-button style="margin-left: 8px;">{{$t('basic.reset')}}</a-button>
                         </span>
                         </a-col>
                     </a-row>
@@ -38,7 +38,7 @@
             </div>
 
             <div style="margin-top: 20px">
-                <a-button type="primary" icon="plus">写文章
+                <a-button type="primary" icon="plus">{{$t('article.write_article')}}
                 </a-button>
             </div>
 
@@ -51,9 +51,9 @@
                         </a-tag>
                     </span>
                     <span slot="action">
-                        <a href="javascript:;">编辑</a>
+                        <a href="javascript:;">{{$t('basic.edit')}}</a>
                         <a-divider type="vertical"/>
-                        <a href="javascript:;">删除</a>
+                        <a href="javascript:;">{{$t('basic.delete')}}</a>
                     </span>
                 </a-table>
             </div>
@@ -114,227 +114,7 @@
             hit: 1,
             comment: 1,
             tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-                {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-                {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        },
-        {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
         }
-
-
-
-
 
     ];
     export default {
@@ -347,7 +127,8 @@
                     sort: null,
                     keyword: null,
                     categoryId: null,
-                    status: null
+                    status: null,
+
                 },
                 data,
                 columns,
