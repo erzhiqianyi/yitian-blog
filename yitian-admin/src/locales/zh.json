@@ -24,7 +24,9 @@
     "select_status": "请选择文章状态",
     "category": "分类",
     "select_category": "请选择分类",
-    "write_article": "写文章"
+    "write_article": "写文章",
+    "hint_input_title": "文章标题 ",
+    "post_article": "发表"
   },
   "basic": {
     "query": "查询",

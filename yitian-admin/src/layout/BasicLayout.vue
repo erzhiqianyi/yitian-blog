@@ -1,5 +1,5 @@
 <template>
-       <a-layout id="components-layout-demo-top" class="layout">
+    <a-layout id="components-layout-demo-top" class="layout">
         <a-layout-header>
             <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['article']" :style="{ lineHeight: '64px' }">
                 <a-sub-menu key="center">
@@ -54,7 +54,8 @@
                 <a-breadcrumb-item>{{$t('menu.article_post')}}</a-breadcrumb-item>
             </a-breadcrumb>
             <div :style="{ background: '#fff', padding: '24px', minHeight: '1000px' }">
-                <ArticleList/>
+                <ArticleEditor/>
+<!--                <ArticleList/>-->
             </div>
         </a-layout-content>
         <a-layout-footer style="text-align: center ">
@@ -64,9 +65,11 @@
 </template>
 <script>
     import ArticleList from '@/views/article/ArticleList'
+    import ArticleEditor from '@/views/article/ArticleEditor'
+
     export default {
         name: "BasicLayout",
-        components: {ArticleList},
+        components: {ArticleList, ArticleEditor},
         data() {
             return {
                 current: ['dashboard'],

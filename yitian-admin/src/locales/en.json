@@ -24,7 +24,11 @@
     "select_status": " please select article status",
     "category": "category",
     "select_category": " please select category ",
-    "write_article": " write article "
+    "write_article": " write article ",
+    "hint_input_title": "article title ",
+    "post_article": "post article"
+
+
   },
   "basic": {
     "query": "query",
