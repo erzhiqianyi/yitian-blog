@@ -1,47 +1,50 @@
 <template>
     <a-layout id="components-layout-demo-top" class="layout">
         <a-layout-header>
-            <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['article']" :style="{ lineHeight: '64px' }">
+            <a-menu theme="dark" mode="horizontal"
+                    :defaultSelectedKeys="['article']"
+                    :style="{ lineHeight: '64px' }"
+                    @click="handleClick">
                 <a-sub-menu key="center">
                     <span slot="title"><a-icon type="user"/><span>{{$t('menu.user_center')}}</span></span>
-                    <a-menu-item key="setting">{{$t('menu.user_profile')}}</a-menu-item>
-                    <a-menu-item key="logout">{{$t('menu.logout')}}</a-menu-item>
+                    <a-menu-item key="/user/profile">{{$t('menu.user_profile')}}</a-menu-item>
+                    <a-menu-item key="/logout">{{$t('menu.logout')}}</a-menu-item>
                 </a-sub-menu>
 
-                <a-menu-item key="dashboard">
+                <a-menu-item key="/dashboard">
                     <a-icon type="dashboard"/>
                     {{$t('menu.index')}}
                 </a-menu-item>
 
-                <a-sub-menu key="article">
+                <a-sub-menu key="/article">
                     <span slot="title"><a-icon type="edit"/><span>{{$t('menu.article')}}</span></span>
-                    <a-menu-item key="article">{{$t('menu.articleList')}}</a-menu-item>
-                    <a-menu-item key="article/post">{{$t('menu.article_post')}}</a-menu-item>
-                    <a-menu-item key="category">{{$t('menu.category')}}</a-menu-item>
-                    <a-menu-item key="tag">{{$t('menu.tag')}}</a-menu-item>
+                    <a-menu-item key="/article">{{$t('menu.articleList')}}</a-menu-item>
+                    <a-menu-item key="/article/edit">{{$t('menu.article_post')}}</a-menu-item>
+                    <a-menu-item key="/article/category">{{$t('menu.category')}}</a-menu-item>
+                    <a-menu-item key="/article/tag">{{$t('menu.tag')}}</a-menu-item>
                 </a-sub-menu>
 
-                <a-menu-item key="comment">
+                <a-menu-item key="/article/comment">
                     <a-icon type="appstore"/>
                     {{$t('menu.comment')}}
                 </a-menu-item>
 
-                <a-menu-item key="notification">
+                <a-menu-item key="/notification">
                     <a-icon type="notification"/>
                     {{$t('menu.notification')}}
                 </a-menu-item>
 
-                <a-menu-item key="user">
+                <a-menu-item key="/user">
                     <a-icon type="team"/>
                     {{$t('menu.user')}}
                 </a-menu-item>
 
 
-                <a-sub-menu key="system">
+                <a-sub-menu key="/system">
                     <span slot="title"><a-icon type="setting"/><span>{{$t('menu.system')}}</span></span>
-                    <a-menu-item key="setting">{{$t('menu.setting')}}</a-menu-item>
-                    <a-menu-item key="tools">{{$t('menu.tools')}}</a-menu-item>
-                    <a-menu-item key="about">{{$t('menu.about')}}</a-menu-item>
+                    <a-menu-item key="/system/setting">{{$t('menu.setting')}}</a-menu-item>
+                    <a-menu-item key="/tools">{{$t('menu.tools')}}</a-menu-item>
+                    <a-menu-item key="/about">{{$t('menu.about')}}</a-menu-item>
                 </a-sub-menu>
 
 
@@ -63,7 +66,6 @@
     </a-layout>
 </template>
 <script>
-
     export default {
         name: "BasicLayout",
         data() {
@@ -71,6 +73,11 @@
                 current: ['dashboard'],
             };
         },
+        methods: {
+            handleClick(e) {
+                this.$router.push({path: e.key});
+            },
+        }
     };
 </script>
 
