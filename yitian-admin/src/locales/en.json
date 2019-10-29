@@ -27,14 +27,34 @@
     "write_article": " write article ",
     "hint_input_title": "article title ",
     "post_article": "post article"
-
-
   },
   "basic": {
     "query": "query",
     "reset": "reset",
     "edit": "edit",
     "delete": "delete"
+  },
+  "system": {
+    "name": "One Day"
+  },
+  "login": {
+    "label_user_name": "Username",
+    "label_password": "Password",
+    "remember": "Remember me",
+    "forgot": "Forgot password",
+    "login": "Log in",
+    "register": "Register now!"
+  },
+  "register": {
+    "label_email": "eEmail",
+    "label_password": "Password",
+    "label_confirm_password" : "Confirm password",
+    "label_nickname" : "Nickname",
+    "label_captcha" : "Captcha",
+    "get_captcha" : "get captcha",
+    "hint_read" : "I have read the",
+    "agreement" : "agreement",
+    "register" : "register",
+    "login" : "login"
   }
-
 }

@@ -1,15 +1,29 @@
 <template>
-    <div>
-        <router-view/>
+    <div class="blank">
+        <a-layout>
+            <a-layout-content>
+                <div>
+                    <router-view/>
+                </div>
+            </a-layout-content>
+        </a-layout>
     </div>
 </template>
-
 <script>
     export default {
-        name: "BlankLayout"
-    }
+        name: "BasicLayout",
+        data() {
+            return {};
+        },
+        methods: {}
+    };
 </script>
 
-<style scoped>
+<style>
+    .blank{
+        background: #F0F2F5;
+        height: 100%;
+    }
+
 
 </style>
