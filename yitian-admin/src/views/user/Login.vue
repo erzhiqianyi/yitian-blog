@@ -21,7 +21,8 @@
                     <a-checkbox>{{$t('checkbox.login.remember')}}</a-checkbox>
                     <router-link class="login-form-forgot" to="/forgot">{{$t('link.login.forgot')}}</router-link>
                     <a-button type="primary" html-type="submit" class="login-form-button"
-                              :disabled="hasErrors(form.getFieldsError())">{{$t('button.login.login')}}
+                              :disabled="(hasErrors(form.getFieldsError()) || !loginCanClick)">
+                        {{$t('button.login.login')}}
                     </a-button>
                     <router-link to="/register">{{$t('link.login.register')}}</router-link>
                 </a-form-item>
@@ -32,7 +33,8 @@
 
 <script>
     import {emailRule, passwordRule, hasErrors} from '@/utils/formRule'
-    import axios from 'axios'
+    import {loginByPassword} from '@/api/auth'
+
     export default {
         name: "Login",
         data() {
@@ -41,6 +43,7 @@
                 emailRule,
                 passwordRule,
                 form: this.$form.createForm(this, {name: 'login'}),
+                loginCanClick: true
             };
         },
         mounted() {
@@ -51,23 +54,24 @@
         },
         methods: {
             handleLogin(e) {
+                console.log("登录")
                 e.preventDefault();
                 this.form.validateFields((err, values) => {
                     if (!err) {
+                        this.loginCanClick = false;
                         this.login(values);
                     }
                 });
             }
             ,
             login(values) {
-                axios
-                    .post('login', values)
-                    .then(response => {
-                        console.log("success")
-                    })
-                    .catch(error => {
-                        console.log("fail");
-                    });
+                loginByPassword(values).then(data => {
+                    this.loginCanClick = true;
+
+                }).catch(error => {
+                    this.loginCanClick = true;
+                });
+
             }
         }
     };

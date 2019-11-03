@@ -91,5 +91,8 @@
   "modal": {
     "alert": "alert",
     "agree": "please read"
+  },
+  "message": {
+    "system_error":"service error "
   }
 }
