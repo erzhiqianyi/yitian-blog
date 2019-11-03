@@ -1,5 +1,5 @@
 {
-  "message": "Hello i18n !!",
+  "message": "你好 i18n !!",
   "menu": {
     "user_center": "user center",
     "user_profile": "profile",
@@ -28,33 +28,68 @@
     "hint_input_title": "article title ",
     "post_article": "post article"
   },
-  "basic": {
-    "query": "query",
-    "reset": "reset",
-    "edit": "edit",
-    "delete": "delete"
-  },
   "system": {
     "name": "One Day"
   },
-  "login": {
-    "label_user_name": "Username",
-    "label_password": "Password",
-    "remember": "Remember me",
-    "forgot": "Forgot password",
-    "login": "Log in",
-    "register": "Register now!"
+  "rule": {
+    "email_required": "please input email",
+    "email_length": "email length must between 3 and 50",
+    "email_format": "wrong email",
+    "password_required": "please input password",
+    "password_length": "password length must between 8 and 30",
+    "confirm_password_required": "please input  confirm password",
+    "confirm_password_length": "confirm password length must between 8 and 30",
+    "confirm_password_wrong": "Inconsistent password",
+    "nickname_required": "please input nickname",
+    "nickname_length": "nickname length must between 2 and 20",
+    "register_captcha_required": "please input captcha",
+    "register_captcha_length": "captcha length is 6 ",
+    "register_agree": "please read user agreement "
   },
-  "register": {
-    "label_email": "eEmail",
-    "label_password": "Password",
-    "label_confirm_password" : "Confirm password",
-    "label_nickname" : "Nickname",
-    "label_captcha" : "Captcha",
-    "get_captcha" : "get captcha",
-    "hint_read" : "I have read the",
-    "agreement" : "agreement",
-    "register" : "register",
-    "login" : "login"
+  "form": {
+    "login": {
+      "email": "email",
+      "password": "password"
+    },
+    "register": {
+      "email": "email",
+      "password": "password",
+      "confirm_password": "confirm password",
+      "nickname": "nickname",
+      "captcha": "captcha"
+    }
+  },
+  "button": {
+    "login": {
+      "login": "login"
+    },
+    "register": {
+      "get_captcha": "get captcha",
+      "register": "register",
+      "get_captcha_waiting": " seconds"
+    }
+  },
+  "checkbox": {
+    "login": {
+      "remember": "Remember me"
+    },
+    "register": {
+      "read_agreement": "I have read",
+      "register": "注册"
+    }
+  },
+  "link": {
+    "login": {
+      "forgot": "Forgot password",
+      "register": "Register now!"
+    },
+    "register": {
+      "agreement": " user agreement",
+      "login": "Have account ,login"
+    }
+  },
+  "modal": {
+    "alert": "alert",
+    "agree": "please read"
   }
 }

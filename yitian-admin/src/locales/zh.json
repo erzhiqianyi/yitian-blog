@@ -28,38 +28,67 @@
     "hint_input_title": "文章标题 ",
     "post_article": "发表"
   },
-  "basic": {
-    "query": "查询",
-    "reset": "重置",
-    "edit": "编辑",
-    "delete": "删除"
-  },
-  "table": {
-    "article": {
-      "title": "标题"
-    }
-  },
   "system": {
     "name": "一天"
   },
-  "login": {
-    "hint_user_name": "用户名",
-    "hint_password": "密码",
-    "remember": "记住我",
-    "forgot": "忘记密码",
-    "login": "登录",
-    "register": "立即注册!"
+  "rule": {
+    "email_required": "请输入邮箱",
+    "email_length": "邮箱长度为3到50",
+    "email_format": "邮箱格式不正确",
+    "password_required": "请输入密码",
+    "password_length": "密码长度8到30",
+    "confirm_password_required": "请输入确认密码",
+    "confirm_password_length": "确认密码长度为8到30",
+    "confirm_password_wrong": "密码不一致",
+    "nickname_required" : "请输入昵称",
+    "nickname_length": "昵称长度为2到20",
+    "register_captcha_required": "请输入验证码",
+    "register_captcha_length": "验证码长度为6",
+    "register_agree": "请先阅读用户协议"
   },
-  "register": {
-    "label_email": "邮箱",
-    "label_password": "密码",
-    "label_confirm_password" : "确认密码",
-    "label_nickname" : "昵称",
-    "label_captcha" : "验证码",
-    "get_captcha" : "获取验证码",
-    "hint_read" : "我已阅读",
-    "agreement" : "协议",
-    "register" : "注册",
-    "login" : "已有账号，立即登录"
+  "form": {
+    "login": {
+      "email": "邮箱",
+      "password": "密码"
+    },
+    "register": {
+      "email": "邮箱",
+      "password": "密码",
+      "confirm_password": "确认密码",
+      "nickname": "昵称",
+      "captcha": "验证码"
+    }
+  },
+  "button": {
+    "login": {
+      "login": "登录"
+    },
+    "register": {
+      "get_captcha": "获取验证码",
+      "register": "注册",
+      "get_captcha_waiting": "  秒后重试"
+    }
+  },
+  "checkbox": {
+    "login": {
+      "remember": "记住我"
+    },
+    "register": {
+      "read_agreement": "我已阅读"
+    }
+  },
+  "link": {
+    "login": {
+      "forgot": "忘记密码",
+      "register": "立即注册"
+    },
+    "register": {
+      "agreement": "用户协议",
+      "login": "已有账号，取登录"
+    }
+  },
+  "modal": {
+    "alert": "温馨提示",
+    "agree": "请先阅读"
   }
 }
