@@ -16,6 +16,7 @@ import UserCenter from '@/views/user/UserCenter'
 import Login from '@/views/user/Login'
 import Register from '@/views/user/Register'
 import Setting from '@/views/system/Setting'
+import Installation from '@/views/system/Installation'
 import Tools from '@/views/system/Tools'
 import About from '@/views/system/About'
 
@@ -202,6 +203,18 @@ export default new Router({
                     name: 'Register',
                     path: '',
                     component: Register
+                }
+            ]
+        },
+        //安装向导路由
+        {
+            path: '/install',
+            component: BlankLayout,
+            children: [
+                {
+                    name: 'Install',
+                    path: '',
+                    component: Installation
                 }
             ]
         },

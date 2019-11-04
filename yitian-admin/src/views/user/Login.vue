@@ -67,7 +67,6 @@
             login(values) {
                 loginByPassword(values).then(data => {
                     this.loginCanClick = true;
-
                 }).catch(error => {
                     this.loginCanClick = true;
                 });
