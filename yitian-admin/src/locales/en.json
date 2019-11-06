@@ -57,6 +57,15 @@
       "confirm_password": "confirm password",
       "nickname": "nickname",
       "captcha": "captcha"
+    },
+    "install": {
+      "email": "email",
+      "password": "password",
+      "confirm_password": "confirm password",
+      "nickname": "nickname",
+      "captcha": "captcha",
+      "domain": "domain",
+      "system_name": "blog name"
     }
   },
   "button": {
@@ -67,6 +76,11 @@
       "get_captcha": "get captcha",
       "register": "register",
       "get_captcha_waiting": " seconds"
+    },
+    "install": {
+      "next": "next",
+      "install": "install",
+      "previous": "previous"
     }
   },
   "checkbox": {
@@ -93,6 +107,18 @@
     "agree": "please read"
   },
   "message": {
-    "system_error":"service error "
+    "system_error": "service error "
+  },
+  "h1": {
+    "install": {
+      "title": "Yitian Install Steps"
+    }
+  },
+  "step": {
+    "install": {
+      "title_manager": "manager info",
+      "site_info": "site_info",
+      "confirm": "confirm blog config"
+    }
   }
 }

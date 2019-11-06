@@ -1,71 +1,76 @@
 <template>
     <div class="container">
-        <div class="register-form">
-            <h1>{{$t("system.name")}}</h1>
-            <a-form id="register" :form="form" @submit="handleRegister">
-                <a-form-item>
-                    <a-input :placeholder='$t("form.register.email")'
-                             v-decorator="['email',{ rules: emailRule}]"
-                    >
-                        <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)"/>
-                    </a-input>
-                </a-form-item>
-                <a-form-item>
-                    <a-input :placeholder='$t("form.register.nickname")'
-                             v-decorator="['nickname',{ rules: nicknameRule }]"
-                    >
-                        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)"/>
-                    </a-input>
-                </a-form-item>
-                <a-form-item>
-                    <a-input :placeholder='$t("form.register.password")'
-                             v-decorator="['password',{ rules: passwordRule}]"
-                             type="password"
-                    >
-                        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)"/>
-                    </a-input>
-                </a-form-item>
-                <a-form-item>
-                    <a-input :placeholder='$t("form.register.confirm_password")'
-                             v-decorator="['confirmPassword',{ rules: confirmPasswordRule}]"
-                             type="password"
-                    >
-                        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)"/>
-                    </a-input>
-                </a-form-item>
-                <a-form-item>
-                    <a-row :gutter="8">
-                        <a-col :span="12">
-                            <a-input :placeholder='$t("form.register.captcha")'
-                                     v-decorator="['captcha',{ rules: registerCaptchaRule}]"
-                            />
-                        </a-col>
-                        <a-col :span="12">
-                            <a-button :disabled="fieldError(form,'email') || !countDown.canClick "
-                                      @click="handleGetCaptcha">
-                                {{countDown.get_captcha}}
+        <a-row type="flex" justify="center" align="middle">
+            <a-col :xl="8" :md="12" :sm="20" :xs="24">
+                <div class="register-form">
+                    <h1>{{$t("system.name")}}</h1>
+                    <a-form id="register" :form="form" @submit="handleRegister">
+                        <a-form-item>
+                            <a-input :placeholder='$t("form.register.email")'
+                                     v-decorator="['email',{ rules: emailRule}]"
+                            >
+                                <a-icon slot="prefix" type="mail" class="icon"/>
+                            </a-input>
+                        </a-form-item>
+                        <a-form-item>
+                            <a-input :placeholder='$t("form.register.nickname")'
+                                     v-decorator="['nickname',{ rules: nicknameRule }]"
+                            >
+                                <a-icon slot="prefix" type="user"  class="icon"/>
+                            </a-input>
+                        </a-form-item>
+                        <a-form-item>
+                            <a-input :placeholder='$t("form.register.password")'
+                                     v-decorator="['password',{ rules: passwordRule}]"
+                                     type="password"
+                            >
+                                <a-icon slot="prefix" type="lock"  class="icon"/>
+                            </a-input>
+                        </a-form-item>
+                        <a-form-item>
+                            <a-input :placeholder='$t("form.register.confirm_password")'
+                                     v-decorator="['confirmPassword',{ rules: confirmPasswordRule}]"
+                                     type="password"
+                            >
+                                <a-icon slot="prefix" type="lock" class="icon"/>
+                            </a-input>
+                        </a-form-item>
+                        <a-form-item>
+                            <a-row :gutter="8">
+                                <a-col :span="12">
+                                    <a-input :placeholder='$t("form.register.captcha")'
+                                             v-decorator="['captcha',{ rules: registerCaptchaRule}]"
+                                    />
+                                </a-col>
+                                <a-col :span="12">
+                                    <a-button :disabled="fieldError(form,'email') || !countDown.canClick "
+                                              @click="handleGetCaptcha">
+                                        {{countDown.get_captcha}}
+                                    </a-button>
+                                </a-col>
+                            </a-row>
+                        </a-form-item>
+                        <a-form-item>
+                            <a-checkbox
+                                    v-decorator="['agree',{ rules: checkBoxRule}]">
+                                {{$t('checkbox.register.read_agreement')}}
+                                <a href="">
+                                    {{$t('link.register.agreement')}}
+                                </a>
+                            </a-checkbox>
+                        </a-form-item>
+                        <a-form-item>
+                            <a-button type="primary" html-type="submit" class="register-form-button"
+                                      :disabled="hasErrors(form.getFieldsError())">
+                                {{$t('button.register.register')}}
                             </a-button>
-                        </a-col>
-                    </a-row>
-                </a-form-item>
-                <a-form-item>
-                    <a-checkbox
-                            v-decorator="['agree',{ rules: checkBoxRule}]">
-                        {{$t('checkbox.register.read_agreement')}}
-                        <a href="">
-                            {{$t('link.register.agreement')}}
-                        </a>
-                    </a-checkbox>
-                </a-form-item>
-                <a-form-item>
-                    <a-button type="primary" html-type="submit" class="register-form-button"
-                              :disabled="hasErrors(form.getFieldsError())">
-                        {{$t('button.register.register')}}
-                    </a-button>
-                    <router-link to="/login">{{$t('link.register.login')}}</router-link>
-                </a-form-item>
-            </a-form>
-        </div>
+                            <router-link to="/login">{{$t('link.register.login')}}</router-link>
+                        </a-form-item>
+                    </a-form>
+                </div>
+            </a-col>
+        </a-row>
+
         <a-modal :title='$t("modal.alert")' v-model="visible" @ok="closeConfirmAgreement">
             <p>
                 <span>{{$t('modal.agree')}}</span>
@@ -75,6 +80,7 @@
             </p>
         </a-modal>
     </div>
+
 </template>
 
 <script>
@@ -173,7 +179,7 @@
                 this.getCaptcha(clock)
 
             },
-            getCaptcha(clock){
+            getCaptcha(clock) {
                 axios
                     .post('code', this.form.getFieldValue("email"))
                     .then(response => {
@@ -195,22 +201,10 @@
 </script>
 <style>
 
-    #register .register-form {
-        max-width: 500px;
-        min-width: 200px;
-    }
-
     #register .register-form-button {
         width: 100%;
     }
 
-    .container {
-        margin: 10px 0 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-    }
 
     .register-form {
         padding: 50px;
@@ -222,6 +216,9 @@
 
     h1 {
         text-align: center;
-        font-size: 3rem;
+        font-size: 2rem;
+    }
+    .icon{
+        color: rgba(0,0,0,.25)
     }
 </style>
