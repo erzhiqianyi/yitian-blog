@@ -35,12 +35,26 @@ export var checkBoxRule = [
     {required: true, message: i18n.t("rule.register_agree")}
 ]
 
+
+export var domainRule = [
+    {required: true, message: i18n.t("rule.domain_required")}
+]
+
+export var systemNameRule = [
+    {required: true, message: i18n.t("rule.system_name_required")}
+]
 export function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
 }
 
 export function fieldError(form,field) {
-    return form.getFieldError(field)
+    var error  = form.getFieldError(field)
+    if(error){
+        return true
+    }else{
+       return false;
+    }
 }
+
 
 

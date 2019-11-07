@@ -44,7 +44,9 @@
     "nickname_length": "请输入昵称(2-20位)",
     "register_captcha_required": "请输入验证码",
     "register_captcha_length": "验证码长度为6",
-    "register_agree": "请先阅读用户协议"
+    "register_agree": "请先阅读用户协议",
+    "domain_required": "请填写域名",
+    "system_name_required": "请填写博客名字"
   },
   "form": {
     "login": {
@@ -61,11 +63,10 @@
     "install": {
       "email": "邮箱",
       "password": "密码",
-      "confirm_password": "确认密码",
       "nickname": "昵称",
       "captcha": "验证码",
       "domain": "域名",
-      "system_name": "博客名称"
+      "system_name": "博客名字"
     }
   },
   "button": {
@@ -119,5 +120,10 @@
       "site_info": "博客信息",
       "confirm": "信息确认"
     }
+  },
+  "tip": {
+    "install": "博客安装中",
+    "login": "登录中",
+    "register": "注册中"
   }
 }

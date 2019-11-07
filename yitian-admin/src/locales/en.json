@@ -44,7 +44,9 @@
     "nickname_length": "please input nickname(2 - 20)",
     "register_captcha_required": "please input captcha(6)",
     "register_captcha_length": "captcha length is 6 ",
-    "register_agree": "please read user agreement "
+    "register_agree": "please read user agreement ",
+    "domain_required": "please enter domain ",
+    "system_name_required": "please enter blog name"
   },
   "form": {
     "login": {
@@ -61,7 +63,6 @@
     "install": {
       "email": "email",
       "password": "password",
-      "confirm_password": "confirm password",
       "nickname": "nickname",
       "captcha": "captcha",
       "domain": "domain",
@@ -120,5 +121,10 @@
       "site_info": "site_info",
       "confirm": "confirm blog config"
     }
+  },
+  "tip": {
+    "install": "installing",
+    "login": "login...",
+    "register": "register..."
   }
 }

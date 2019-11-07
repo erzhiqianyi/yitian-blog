@@ -3,70 +3,72 @@
         <a-row type="flex" justify="center" align="middle">
             <a-col :xl="8" :md="12" :sm="20" :xs="24">
                 <div class="register-form">
-                    <h1>{{$t("system.name")}}</h1>
-                    <a-form id="register" :form="form" @submit="handleRegister">
-                        <a-form-item>
-                            <a-input :placeholder='$t("form.register.email")'
-                                     v-decorator="['email',{ rules: emailRule}]"
-                            >
-                                <a-icon slot="prefix" type="mail" class="icon"/>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-input :placeholder='$t("form.register.nickname")'
-                                     v-decorator="['nickname',{ rules: nicknameRule }]"
-                            >
-                                <a-icon slot="prefix" type="user"  class="icon"/>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-input :placeholder='$t("form.register.password")'
-                                     v-decorator="['password',{ rules: passwordRule}]"
-                                     type="password"
-                            >
-                                <a-icon slot="prefix" type="lock"  class="icon"/>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-input :placeholder='$t("form.register.confirm_password")'
-                                     v-decorator="['confirmPassword',{ rules: confirmPasswordRule}]"
-                                     type="password"
-                            >
-                                <a-icon slot="prefix" type="lock" class="icon"/>
-                            </a-input>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-row :gutter="8">
-                                <a-col :span="12">
-                                    <a-input :placeholder='$t("form.register.captcha")'
-                                             v-decorator="['captcha',{ rules: registerCaptchaRule}]"
-                                    />
-                                </a-col>
-                                <a-col :span="12">
-                                    <a-button :disabled="fieldError(form,'email') || !countDown.canClick "
-                                              @click="handleGetCaptcha">
-                                        {{countDown.get_captcha}}
-                                    </a-button>
-                                </a-col>
-                            </a-row>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-checkbox
-                                    v-decorator="['agree',{ rules: checkBoxRule}]">
-                                {{$t('checkbox.register.read_agreement')}}
-                                <a href="">
-                                    {{$t('link.register.agreement')}}
-                                </a>
-                            </a-checkbox>
-                        </a-form-item>
-                        <a-form-item>
-                            <a-button type="primary" html-type="submit" class="register-form-button"
-                                      :disabled="hasErrors(form.getFieldsError())">
-                                {{$t('button.register.register')}}
-                            </a-button>
-                            <router-link to="/login">{{$t('link.register.login')}}</router-link>
-                        </a-form-item>
-                    </a-form>
+                    <a-spin :spinning="spinning" :tip='$t("tip.register")'>
+                        <h1>{{$t("system.name")}}</h1>
+                        <a-form id="register" :form="form" @submit="handleRegister">
+                            <a-form-item>
+                                <a-input :placeholder='$t("form.register.email")'
+                                         v-decorator="['email',{ rules: emailRule}]"
+                                >
+                                    <a-icon slot="prefix" type="mail" class="icon"/>
+                                </a-input>
+                            </a-form-item>
+                            <a-form-item>
+                                <a-input :placeholder='$t("form.register.nickname")'
+                                         v-decorator="['nickname',{ rules: nicknameRule }]"
+                                >
+                                    <a-icon slot="prefix" type="user" class="icon"/>
+                                </a-input>
+                            </a-form-item>
+                            <a-form-item>
+                                <a-input :placeholder='$t("form.register.password")'
+                                         v-decorator="['password',{ rules: passwordRule}]"
+                                         type="password"
+                                >
+                                    <a-icon slot="prefix" type="lock" class="icon"/>
+                                </a-input>
+                            </a-form-item>
+                            <a-form-item>
+                                <a-input :placeholder='$t("form.register.confirm_password")'
+                                         v-decorator="['confirmPassword',{ rules: confirmPasswordRule}]"
+                                         type="password"
+                                >
+                                    <a-icon slot="prefix" type="lock" class="icon"/>
+                                </a-input>
+                            </a-form-item>
+                            <a-form-item>
+                                <a-row :gutter="8">
+                                    <a-col :span="12">
+                                        <a-input :placeholder='$t("form.register.captcha")'
+                                                 v-decorator="['captcha',{ rules: registerCaptchaRule}]"
+                                        />
+                                    </a-col>
+                                    <a-col :span="12">
+                                        <a-button :disabled="fieldError(form,'email') || !countDown.canClick "
+                                                  @click="handleGetCaptcha">
+                                            {{countDown.get_captcha}}
+                                        </a-button>
+                                    </a-col>
+                                </a-row>
+                            </a-form-item>
+                            <a-form-item>
+                                <a-checkbox
+                                        v-decorator="['agree',{ rules: checkBoxRule}]">
+                                    {{$t('checkbox.register.read_agreement')}}
+                                    <a href="">
+                                        {{$t('link.register.agreement')}}
+                                    </a>
+                                </a-checkbox>
+                            </a-form-item>
+                            <a-form-item>
+                                <a-button type="primary" html-type="submit" class="register-form-button"
+                                          :disabled="hasErrors(form.getFieldsError()) || !registerCanClick ">
+                                    {{$t('button.register.register')}}
+                                </a-button>
+                                <router-link to="/login">{{$t('link.register.login')}}</router-link>
+                            </a-form-item>
+                        </a-form>
+                    </a-spin>
                 </div>
             </a-col>
         </a-row>
@@ -90,6 +92,10 @@
         emailRule, passwordRule, confirmPasswordRule, registerCaptchaRule,
         checkBoxRule, nicknameRule, hasErrors, fieldError
     } from '@/utils/formRule'
+
+    import {getRegisterVerifyCode} from '@/api/email'
+    import {registerByEmail} from '@/api/auth'
+
 
     import axios from 'axios'
 
@@ -119,7 +125,9 @@
                     totalTime: 10,
                     canClick: true
                 },
-                visible: false
+                visible: false,
+                spinning: false,
+                registerCanClick: true
 
             };
         },
@@ -138,19 +146,20 @@
                         return
                     }
                     if (!err) {
+                        this.spinning = true
+                        this.registerCanClick = false
                         this.register(values)
                     }
                 });
             },
             register(values) {
-                axios
-                    .post('register', values)
-                    .then(response => {
-                        console.log("success")
-                    })
-                    .catch(error => {
-                        console.log("fail");
-                    });
+                registerByEmail(values).then(data => {
+                    this.spinning = false
+                    this.registerCanClick = true
+                }).catch(error => {
+                    this.spinning = false
+                    this.registerCanClick = true
+                });
 
             },
             showConfirmAgreement() {
@@ -180,19 +189,18 @@
 
             },
             getCaptcha(clock) {
-                axios
-                    .post('code', this.form.getFieldValue("email"))
-                    .then(response => {
-                        console.log("success")
-                    })
-                    .catch(error => {
-                        window.clearInterval(clock)
-                        console.log("fail");
-                        this.countDown.get_captcha = i18n.t("button.register.get_captcha");
-                        this.countDown.totalTime = 10
-                        this.countDown.canClick = true
+                var param = {
+                    "email": this.form.getFieldValue("email")
+                }
+                getRegisterVerifyCode(param).then(data => {
+                    console.log(data)
+                }).catch(error => {
+                    window.clearInterval(clock)
+                    this.countDown.get_captcha = i18n.t("button.register.get_captcha");
+                    this.countDown.totalTime = 10
+                    this.countDown.canClick = true
 
-                    });
+                });
 
             }
         }
@@ -218,7 +226,8 @@
         text-align: center;
         font-size: 2rem;
     }
-    .icon{
-        color: rgba(0,0,0,.25)
+
+    .icon {
+        color: rgba(0, 0, 0, .25)
     }
 </style>
