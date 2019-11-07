@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { message, notification } from 'ant-design-vue'
+import { message } from 'ant-design-vue'
 import i18n from '@/locales' // internationalization
 
 const request = axios.create({

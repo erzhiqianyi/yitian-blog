@@ -184,7 +184,9 @@
             },
             verifyInstall() {
                 installed().then(data => {
-                    console.log(data)
+                    if (data.name){
+                        this.$router.push({ name: 'Login' })
+                    }
                 }).catch(error => {
                     this.$router.push({ name: 'Login' })
                 });
