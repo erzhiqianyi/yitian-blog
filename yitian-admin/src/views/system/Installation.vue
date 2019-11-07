@@ -110,7 +110,7 @@
         emailRule, passwordRule, nicknameRule, hasErrors, fieldError, domainRule, systemNameRule
     } from '@/utils/formRule'
 
-    import {install} from '@/api/system'
+    import {install, installed} from '@/api/system'
 
     export default {
         name: "Installation",
@@ -130,10 +130,13 @@
                 spinning: false,
             };
         },
+        created() {
+            this.verifyInstall()
+        },
         mounted() {
             this.$nextTick(() => {
                 //加载页面禁用button
-                this.form.validateFields();
+                this.form.validateFields()
             });
         },
 
@@ -178,6 +181,13 @@
                     this.installDisabled = false
                 });
 
+            },
+            verifyInstall() {
+                installed().then(data => {
+                    console.log(data)
+                }).catch(error => {
+                    this.$router.push({ name: 'Login' })
+                });
             }
         },
     }
