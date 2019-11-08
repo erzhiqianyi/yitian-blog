@@ -1,6 +1,7 @@
 package com.erzhiqianyi.yitian;
 
 import com.erzhiqianyi.yitian.common.advice.ApiResponseWrapper;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.web.reactive.accept.RequestedContentTypeResolver;
 import javax.xml.ws.ResponseWrapper;
 
 @SpringBootApplication
+@MapperScan({"com.erzhiqianyi.yitan.**.mapper"})
 public class YitianApplication {
 
 	@Autowired
