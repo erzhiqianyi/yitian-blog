@@ -22,7 +22,7 @@ export var confirmPasswordRule = [
 
 export var nicknameRule = [
     {required: true, message: i18n.t("rule.nickname_required")},
-    {max: 20, message: i18n.t("rule.nickname_length")},
+    {max: 30, message: i18n.t("rule.nickname_length")},
     {min: 2, message: i18n.t("rule.nickname_length")},
 ]
 
@@ -37,11 +37,15 @@ export var checkBoxRule = [
 
 
 export var domainRule = [
-    {required: true, message: i18n.t("rule.domain_required")}
+    {required: true, message: i18n.t("rule.domain_required")},
+    {max: 50, message: i18n.t("rule.domain_length")},
+    {min: 2, message: i18n.t("rule.domain_length")},
 ]
 
 export var systemNameRule = [
-    {required: true, message: i18n.t("rule.system_name_required")}
+    {required: true, message: i18n.t("rule.system_name_required")},
+    {max: 50, message: i18n.t("rule.system_name_length")},
+    {min: 1, message: i18n.t("rule.system_name_length")},
 ]
 export function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);

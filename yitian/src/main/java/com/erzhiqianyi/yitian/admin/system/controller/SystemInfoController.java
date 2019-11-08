@@ -1,16 +1,15 @@
 package com.erzhiqianyi.yitian.admin.system.controller;
 
-import ch.qos.logback.core.util.SystemInfo;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
+import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallParam;
 import com.erzhiqianyi.yitian.swagger.SwaggerConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/admin/system")
@@ -25,7 +24,7 @@ public class SystemInfoController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = String.class
     )
-    public Mono<SystemInfoVo> installSystem() {
+    public Mono<SystemInfoVo> installSystem(@RequestBody @Valid SystemInstallParam param) {
         return Mono.just(new SystemInfoVo("www.erzhiianyi.com","二之前一的博客"));
     }
 
