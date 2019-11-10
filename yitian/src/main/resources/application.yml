@@ -16,3 +16,9 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     maximum-pool-size: 100
 
+logging:
+  level:
+    com:
+      erzhiqianyi:
+        yitian: debug
+

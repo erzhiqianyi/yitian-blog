@@ -4,7 +4,7 @@ import i18n from '@/locales' // internationalization
 
 const request = axios.create({
     baseURL: getBaseUrl(),//根据环境获取基础url
-    timeout: 5000 // 超时时间
+    timeout: 5000 // 超时时间,5秒超时
 })
 
 
