@@ -83,7 +83,8 @@
     "install": {
       "next": "下一步",
       "install": "安装",
-      "previous": "上一步"
+      "previous": "上一步",
+      "login": "去登录"
     }
   },
   "checkbox": {
@@ -106,7 +107,8 @@
   },
   "modal": {
     "alert": "温馨提示",
-    "agree": "请先阅读"
+    "agree": "请先阅读",
+    "install_msg": "系统初始化成功，开始用一天愉快的写博客吧!"
   },
   "message": {
     "system_error": "服务暂时不可用，请稍后再试"
@@ -124,6 +126,7 @@
     }
   },
   "tip": {
+    "init": "初始化中",
     "install": "博客安装中",
     "login": "登录中",
     "register": "注册中"

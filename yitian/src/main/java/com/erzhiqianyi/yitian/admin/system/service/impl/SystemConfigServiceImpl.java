@@ -29,26 +29,23 @@ public class SystemConfigServiceImpl implements SystemConfigService {
     @Override
     synchronized public Mono<SystemInfoDto> installSystem(SystemInstallDto dto) {
         return verifyInstall()
-                .flatMap(item -> {
-                    if (!item.getInstalled()) {
-                        return Mono.defer(() ->
-                                Mono.zip
-                                        (systemConfigRepository.batchAddConfig(dto.toSystemConfig())
-                                                        .then(verifyInstall()),
-                                                administratorService.addAdministrator(new AdministratorDto(dto)))
-                                        .map(tuple2 -> {
-                                            if (tuple2.getT1().getInstalled() && null != tuple2.getT2().getId()) {
-                                                return tuple2.getT1();
-                                            } else {
-                                                SystemInfoDto result = new SystemInfoDto();
-                                                return result;
-                                            }
-                                        }))
-                                ;
-                    } else {
-                        return Mono.just(item);
+                .zipWith(administratorService.checkEmailExists(dto.getEmail()))
+                .flatMap(tuple2 -> {
+                    if (tuple2.getT1().getInstalled()) {
+                        return Mono.just(tuple2.getT1());
                     }
-                });
+                    if (tuple2.getT2()) {
+                        throw new IllegalStateException("用户已经存在，请检查数据。");
+                    }
+                    return Mono.defer(() ->
+                            administratorService.addAdministrator(new AdministratorDto(dto))
+                                    .then(systemConfigRepository.batchAddConfig(dto.toSystemConfig())
+                                            .doOnError(error -> log.error(error))
+                                            .then(verifyInstall()))
+                    );
+                })
+                .doOnNext(item -> log.info(item))
+                ;
     }
 
 

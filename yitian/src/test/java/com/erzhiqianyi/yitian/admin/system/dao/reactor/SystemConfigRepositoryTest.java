@@ -1,37 +1,32 @@
 package com.erzhiqianyi.yitian.admin.system.dao.reactor;
 
 import com.erzhiqianyi.yitian.YitianApplication;
-import com.erzhiqianyi.yitian.admin.system.dao.entity.AdministratorEntity;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
 @Log4j2
-class SystemConfigRepositoryTest {
+public class SystemConfigRepositoryTest {
 
     @Autowired
     private SystemConfigRepository repository;
 
     @Test
-    void findByCode() {
+    public void findByCode() {
         String code = SystemConfigEnum.SYSTEM_INFO.getCode();
         StepVerifier.create(
                 repository.findByCode(code)
@@ -44,7 +39,7 @@ class SystemConfigRepositoryTest {
     }
 
     @Test
-    void addConfig() {
+    public void addConfig() {
         SystemConfigEntity entity = new SystemConfigEntity();
         entity.setName(SystemConfigEnum.INSTALL_TIME.getRemark());
         entity.setCode(SystemConfigEnum.INSTALL_TIME.getCode());
@@ -66,7 +61,7 @@ class SystemConfigRepositoryTest {
     }
 
     @Test
-    void findByParent() {
+    public void findByParent() {
         String parent = SystemConfigEnum.SYSTEM_INFO.getCode();
 
         StepVerifier.create(
@@ -82,7 +77,7 @@ class SystemConfigRepositoryTest {
     }
 
     @Test
-    void batchAddConfig() {
+    public void batchAddConfig() {
         List<SystemConfigEntity> configEntities = new ArrayList<>(3);
         SystemConfigEntity systemInfo = new SystemConfigEntity(SystemConfigEnum.SYSTEM_INFO,
                 SystemConfigEnum.SYSTEM_INFO.getRemark(), SystemConfigEnum.SYSTEM_INFO);
@@ -100,14 +95,13 @@ class SystemConfigRepositoryTest {
                 repository.batchAddConfig(configEntities)
                         .map(SystemConfigEntity::getCode)
                         .sort()
-                        .flatMap(code ->Flux.from(repository.findByCode(code)))
+                        .flatMap(code -> Flux.from(repository.findByCode(code)))
                         .map(item -> item.getValue())
                         .sort(Comparator.comparing(String::length))
         )
-                .expectNext(systemInfo.getValue(),  systemName.getValue(),installTime.getValue(), domain.getValue())
+                .expectNext(systemInfo.getValue(), systemName.getValue(), installTime.getValue(), domain.getValue())
                 .expectComplete()
                 .verify();//验证之前什么都不会执行，如果不执行verify(),不会连接数据库去查询数据。
-
 
 
     }

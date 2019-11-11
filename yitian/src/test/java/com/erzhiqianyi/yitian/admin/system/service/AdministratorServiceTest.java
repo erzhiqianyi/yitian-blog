@@ -1,7 +1,6 @@
 package com.erzhiqianyi.yitian.admin.system.service;
 
 import com.erzhiqianyi.yitian.YitianApplication;
-import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInfoDto;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,25 +14,32 @@ import reactor.test.StepVerifier;
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
 @Log4j2
-public class SystemConfigServiceTest {
+public class AdministratorServiceTest {
 
     @Autowired
-    private SystemConfigService systemConfigService;
+    private AdministratorService administratorService;
+
 
     @Test
-    public void install() {
-
+    public void addAdministrator() {
     }
 
     @Test
-    public void verifyInstall() {
+    public void checkEmailExists() {
         StepVerifier.create(
-                systemConfigService.verifyInstall()
-                        .map(SystemInfoDto::getInstalled)
+                administratorService.checkEmailExists("23432")
+        )
+                .expectNext(false)
+                .expectComplete()
+                .verify();//验证之前什么都不会执行，如果不执行verify(),不会连接数据库去查询数据。
+
+        StepVerifier.create(
+                administratorService.checkEmailExists("erzhiqianyi@gmail.com")
         )
                 .expectNext(true)
                 .expectComplete()
                 .verify();//验证之前什么都不会执行，如果不执行verify(),不会连接数据库去查询数据。
+
 
     }
 }

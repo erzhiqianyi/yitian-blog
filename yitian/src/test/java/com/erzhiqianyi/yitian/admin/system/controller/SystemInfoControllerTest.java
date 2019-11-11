@@ -5,7 +5,7 @@ import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallParam;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -15,28 +15,25 @@ import org.springframework.test.web.reactive.server.FluxExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
 @AutoConfigureWebTestClient
 @Log4j2
-class SystemInfoControllerTest {
+public class SystemInfoControllerTest {
 
-    private String url ;
+    private String url;
 
     @Before
-    public void init(){
-       url = "/api/admin/system/install" ;
+    public void init() {
+        url = "/api/admin/system/install";
     }
 
     @Autowired
     private WebTestClient webTestClient;
 
     @Test
-    void installSystem() {
+    public void installSystem() {
         SystemInstallParam param = new SystemInstallParam();
         param.setNickname("二之前一");
         param.setEmail("erzhiqianyi@gmail.com");
@@ -46,14 +43,14 @@ class SystemInfoControllerTest {
         FluxExchangeResult<SystemInfoVo> result = webTestClient
                 .post()
                 .uri(url)
-                .body(Mono.just(param),SystemInstallParam.class)
+                .body(Mono.just(param), SystemInstallParam.class)
                 .exchange()
                 .returnResult(SystemInfoVo.class);
-        result.getResponseBody().subscribe(userVo -> log.info(userVo));
+        result.getResponseBody().subscribe(systemInfo -> log.info(systemInfo));
 
     }
 
     @Test
-    void verifyInstall() {
+    public void verifyInstall() {
     }
 }

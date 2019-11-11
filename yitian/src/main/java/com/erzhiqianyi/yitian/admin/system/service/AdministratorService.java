@@ -5,4 +5,7 @@ import reactor.core.publisher.Mono;
 
 public interface AdministratorService {
     Mono<AdministratorDto> addAdministrator(AdministratorDto administratorDto);
+
+
+    Mono<Boolean> checkEmailExists(String email);
 }

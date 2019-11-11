@@ -83,7 +83,8 @@
     "install": {
       "next": "next",
       "install": "install",
-      "previous": "previous"
+      "previous": "previous",
+      "install_msg": "system install success,let's write blog!"
     }
   },
   "checkbox": {
@@ -125,6 +126,7 @@
     }
   },
   "tip": {
+    "init": "init",
     "install": "installing",
     "login": "login...",
     "register": "register..."

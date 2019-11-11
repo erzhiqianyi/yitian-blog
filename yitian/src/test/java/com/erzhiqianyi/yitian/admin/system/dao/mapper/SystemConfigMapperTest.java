@@ -1,36 +1,36 @@
 package com.erzhiqianyi.yitian.admin.system.dao.mapper;
 
+
 import com.erzhiqianyi.yitian.YitianApplication;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
-import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
 import lombok.extern.log4j.Log4j2;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.text.html.Option;
-import java.nio.file.OpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
 @Log4j2
-class SystemConfigMapperTest {
+public class SystemConfigMapperTest {
 
     @Autowired
     private SystemConfigMapper systemConfigMapper;
 
     @Test
-    void insert() {
+    public void insert() {
         SystemConfigEntity entity = new SystemConfigEntity();
         entity.setName(SystemConfigEnum.SYSTEM_INFO.getRemark());
         entity.setCode(SystemConfigEnum.SYSTEM_INFO.getCode());
@@ -66,7 +66,7 @@ class SystemConfigMapperTest {
     }
 
     @Test
-    void batchInsert() {
+    public void batchInsert() {
         List<SystemConfigEntity> configEntities = new ArrayList<>(3);
         SystemConfigEntity systemInfo = new SystemConfigEntity(SystemConfigEnum.SYSTEM_INFO,
                 SystemConfigEnum.SYSTEM_INFO.getRemark(), SystemConfigEnum.SYSTEM_INFO);

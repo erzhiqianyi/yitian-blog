@@ -3,7 +3,7 @@
         <a-row type="flex" justify="center" align="middle">
             <a-col :xl="8" :md="12" :sm="20" :xs="24">
                 <div class="install-form">
-                    <a-spin :spinning="spinning" :tip='$t("tip.install")'>
+                    <a-spin :spinning="spinning" :tip="spinningMsg">
                         <h1>{{$t('h1.install.title')}}</h1>
                         <div class="steps-form">
                             <a-steps :current="current">
@@ -98,9 +98,18 @@
                     </a-spin>
 
                 </div>
-
             </a-col>
         </a-row>
+
+        <a-modal :title='$t("modal.alert")' v-model="visible" >
+            <p>
+                <span>{{$t('modal.install_msg')}}</span>
+           </p>
+            <template slot="footer">
+                <a-button  @click="goToLogin">{{$t('button.install.login')}}</a-button>
+            </template>
+        </a-modal>
+
     </div>
 </template>
 
@@ -111,6 +120,7 @@
     } from '@/utils/formRule'
 
     import {install, installed} from '@/api/system'
+    import i18n from '@/locales' // internationalization
 
     export default {
         name: "Installation",
@@ -127,7 +137,9 @@
                 fieldError,
                 form: this.$form.createForm(this, {name: 'install'}),
                 installDisabled: false,
-                spinning: false,
+                spinning: true,
+                visible:false,
+                spinningMsg: i18n.t("tip.init")
             };
         },
         created() {
@@ -165,6 +177,7 @@
                 e.preventDefault();
                 this.form.validateFields((err, values) => {
                     if (!err) {
+                        this.spinningMsg = i18n.t("tip.install")
                         this.spinning = true
                         this.installDisabled = true
                         this.install(values)
@@ -176,6 +189,9 @@
                 install(values).then(data => {
                     this.spinning = false
                     this.installDisabled = false
+                    if (data.installed) {
+                        this.visible = true
+                    }
                 }).catch(error => {
                     this.spinning = false
                     this.installDisabled = false
@@ -184,12 +200,18 @@
             },
             verifyInstall() {
                 installed().then(data => {
-                    if (data.installed){
-                        this.$router.push({ name: 'Login' })
+                    if (data.installed) {
+                        this.goToLogin()
+                    }else {
+                        this.spinning = false
                     }
                 }).catch(error => {
-                    this.$router.push({ name: 'Login' })
+                    this.$router.push({name: 'Login'})
                 });
+            },
+            goToLogin(){
+                this.visible = false
+                this.$router.push({name: 'Login'})
             }
         },
     }
