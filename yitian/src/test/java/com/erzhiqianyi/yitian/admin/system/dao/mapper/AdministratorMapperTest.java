@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -17,18 +18,19 @@ import static org.junit.Assert.*;
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
 @Log4j2
-class AdministratorMapperTest {
+public class AdministratorMapperTest {
 
     @Autowired
     private AdministratorMapper mapper;
 
     @Test
-    void insert() {
+    public void insert() {
         AdministratorEntity administratorEntity = new AdministratorEntity();
         administratorEntity.setEmail("erzhiqianyi@gmail.com");
         administratorEntity.setNickname("二之前一");
         administratorEntity.setUsername("erzhiqianyi");
         administratorEntity.setPassword("12345678");
+        administratorEntity.setUuid(UUID.randomUUID().toString());
         administratorEntity.setCreateAt(System.currentTimeMillis());
         administratorEntity.setUpdateAt(System.currentTimeMillis());
         administratorEntity.setCreateBy(0l);
@@ -42,7 +44,7 @@ class AdministratorMapperTest {
     }
 
     @Test
-    void selectByEmail() {
+    public void selectByEmail() {
         String email = "erzhiqianyi@gmail.com";
         Optional<AdministratorEntity> optional = mapper.selectByEmail(email);
         assertTrue(optional.isPresent());

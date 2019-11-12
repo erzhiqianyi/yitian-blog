@@ -28,7 +28,7 @@ public class SystemInfoController {
             value = "初始化系统",
             consumes = SwaggerConstant.MEDIA_JSON,
             produces = SwaggerConstant.MEDIA_JSON,
-            response = String.class
+            response = SystemInfoVo.class
     )
     public Mono<SystemInfoVo> installSystem(@RequestBody @Valid SystemInstallParam param) {
         return systemConfigService.installSystem(new SystemInstallDto(param))
@@ -40,7 +40,7 @@ public class SystemInfoController {
             value = "验证系统是否已经初始化",
             consumes = SwaggerConstant.MEDIA_JSON,
             produces = SwaggerConstant.MEDIA_JSON,
-            response = String.class
+            response = SystemInfoVo.class
     )
     public Mono<SystemInfoVo> verifyInstall() {
         return systemConfigService.verifyInstall()

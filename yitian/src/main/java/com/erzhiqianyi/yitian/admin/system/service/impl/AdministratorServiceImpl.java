@@ -29,6 +29,7 @@ public class AdministratorServiceImpl implements AdministratorService {
                                 .doOnNext(item -> log.info(item))
                                 .map(item -> {
                                     administratorDto.setId(item.getId());
+                                    administratorDto.setUuid(item.getUuid());
                                     return administratorDto;
                                 });
                     }

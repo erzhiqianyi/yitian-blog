@@ -12,12 +12,12 @@ public interface AdministratorMapper {
             " insert into ",
             "  administrator ",
             " ( ",
-            " email, nickname, username, password ,  ",
+            " email, nickname, username, password , uuid ,  ",
             " create_at, update_at, create_by, update_by",
             ") ",
             " values ",
             " ( ",
-            " #{email} , ", "#{nickname} , ", "#{username} , #{password} , ",
+            " #{email} , ", "#{nickname} , ", "#{username} , #{password} , #{uuid} , ",
             " #{createAt} , ", "#{updateAt} , ", "#{createBy} , ", "#{updateBy}",
             " ) "
     })
@@ -26,7 +26,7 @@ public interface AdministratorMapper {
 
     @Select({
             " select ",
-            " id, email, nickname, username, password ",
+            " id, email, nickname, username, password ,uuid ",
             " from administrator ",
             " where",
             " email = #{email} "
@@ -37,6 +37,7 @@ public interface AdministratorMapper {
             @Result(column = "nickname", property = "nickname"),
             @Result(column = "username", property = "username"),
             @Result(column = "password", property = "password"),
+            @Result(column = "uuid", property = "uuid"),
     })
     Optional<AdministratorEntity> selectByEmail(String email);
 }
