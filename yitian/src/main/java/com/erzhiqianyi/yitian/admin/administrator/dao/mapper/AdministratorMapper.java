@@ -1,6 +1,6 @@
-package com.erzhiqianyi.yitian.admin.system.dao.mapper;
+package com.erzhiqianyi.yitian.admin.administrator.dao.mapper;
 
-import com.erzhiqianyi.yitian.admin.system.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
 import org.apache.ibatis.annotations.*;
 
 import java.util.Optional;

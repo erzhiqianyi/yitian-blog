@@ -1,7 +1,7 @@
-package com.erzhiqianyi.yitian.admin.system.model.dto;
+package com.erzhiqianyi.yitian.admin.administrator.model.dto;
 
-import com.erzhiqianyi.yitian.admin.system.dao.entity.AdministratorEntity;
-import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
+import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInstallDto;
 import lombok.Data;
 
 import java.util.UUID;

@@ -1,7 +1,8 @@
-package com.erzhiqianyi.yitian.admin.system.dao.mapper;
+package com.erzhiqianyi.yitian.admin.administrator.dao.mapper;
 
 import com.erzhiqianyi.yitian.YitianApplication;
-import com.erzhiqianyi.yitian.admin.system.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.administrator.dao.mapper.AdministratorMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;

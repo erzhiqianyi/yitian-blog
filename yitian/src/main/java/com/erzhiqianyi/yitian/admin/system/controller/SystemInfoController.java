@@ -2,7 +2,7 @@ package com.erzhiqianyi.yitian.admin.system.controller;
 
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInstallDto;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
-import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallParam;
+import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallRequest;
 import com.erzhiqianyi.yitian.admin.system.service.SystemConfigService;
 import com.erzhiqianyi.yitian.swagger.SwaggerConstant;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class SystemInfoController {
             produces = SwaggerConstant.MEDIA_JSON,
             response = SystemInfoVo.class
     )
-    public Mono<SystemInfoVo> installSystem(@RequestBody @Valid SystemInstallParam param) {
+    public Mono<SystemInfoVo> installSystem(@RequestBody @Valid SystemInstallRequest param) {
         return systemConfigService.installSystem(new SystemInstallDto(param))
                 .map(SystemInfoVo::new);
     }

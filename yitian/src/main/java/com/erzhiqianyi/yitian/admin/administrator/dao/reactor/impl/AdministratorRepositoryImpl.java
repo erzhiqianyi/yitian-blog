@@ -1,8 +1,8 @@
-package com.erzhiqianyi.yitian.admin.system.dao.reactor.impl;
+package com.erzhiqianyi.yitian.admin.administrator.dao.reactor.impl;
 
-import com.erzhiqianyi.yitian.admin.system.dao.entity.AdministratorEntity;
-import com.erzhiqianyi.yitian.admin.system.dao.mapper.AdministratorMapper;
-import com.erzhiqianyi.yitian.admin.system.dao.reactor.AdministratorRepository;
+import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.administrator.dao.mapper.AdministratorMapper;
+import com.erzhiqianyi.yitian.admin.administrator.dao.reactor.AdministratorRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;

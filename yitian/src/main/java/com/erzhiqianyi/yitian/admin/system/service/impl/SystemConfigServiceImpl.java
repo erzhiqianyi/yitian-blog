@@ -1,11 +1,11 @@
 package com.erzhiqianyi.yitian.admin.system.service.impl;
 
 import com.erzhiqianyi.yitian.admin.system.dao.reactor.SystemConfigRepository;
-import com.erzhiqianyi.yitian.admin.system.model.dto.AdministratorDto;
+import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInfoDto;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInstallDto;
 import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
-import com.erzhiqianyi.yitian.admin.system.service.AdministratorService;
+import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
 import com.erzhiqianyi.yitian.admin.system.service.SystemConfigService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

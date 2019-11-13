@@ -16,6 +16,15 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     maximum-pool-size: 100
 
+app:
+  password:
+    encoder:
+      secret: 123456789
+      iteration: 32
+      length: 256
+      algorithm: PBKDF2WithHmacSHA512
+  jwt:
+    secret: 123456789
 logging:
   level:
     com:

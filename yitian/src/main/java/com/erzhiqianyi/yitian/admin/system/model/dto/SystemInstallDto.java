@@ -2,7 +2,7 @@ package com.erzhiqianyi.yitian.admin.system.model.dto;
 
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
-import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallParam;
+import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallRequest;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class SystemInstallDto {
 
     private String systemName;
 
-    public SystemInstallDto(SystemInstallParam param) {
+    public SystemInstallDto(SystemInstallRequest param) {
         this.email = param.getEmail();
         this.nickname = param.getNickname();
         this.password = param.getPassword();

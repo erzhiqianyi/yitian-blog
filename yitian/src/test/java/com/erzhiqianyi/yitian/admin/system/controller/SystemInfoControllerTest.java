@@ -2,7 +2,7 @@ package com.erzhiqianyi.yitian.admin.system.controller;
 
 import com.erzhiqianyi.yitian.YitianApplication;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
-import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallParam;
+import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallRequest;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class SystemInfoControllerTest {
 
     @Test
     public void installSystem() {
-        SystemInstallParam param = new SystemInstallParam();
+        SystemInstallRequest param = new SystemInstallRequest();
         param.setNickname("二之前一");
         param.setEmail("erzhiqianyi@gmail.com");
         param.setPassword("12345678");
@@ -43,7 +43,7 @@ public class SystemInfoControllerTest {
         FluxExchangeResult<SystemInfoVo> result = webTestClient
                 .post()
                 .uri(url)
-                .body(Mono.just(param), SystemInstallParam.class)
+                .body(Mono.just(param), SystemInstallRequest.class)
                 .exchange()
                 .returnResult(SystemInfoVo.class);
         result.getResponseBody().subscribe(systemInfo -> log.info(systemInfo));

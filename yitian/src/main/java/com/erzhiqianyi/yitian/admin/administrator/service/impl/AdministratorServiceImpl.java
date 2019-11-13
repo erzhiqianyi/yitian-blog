@@ -1,10 +1,9 @@
-package com.erzhiqianyi.yitian.admin.system.service.impl;
+package com.erzhiqianyi.yitian.admin.administrator.service.impl;
 
-import com.erzhiqianyi.yitian.admin.system.dao.reactor.AdministratorRepository;
-import com.erzhiqianyi.yitian.admin.system.model.dto.AdministratorDto;
-import com.erzhiqianyi.yitian.admin.system.service.AdministratorService;
+import com.erzhiqianyi.yitian.admin.administrator.dao.reactor.AdministratorRepository;
+import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
+import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.jmx.export.metadata.ManagedNotification;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 

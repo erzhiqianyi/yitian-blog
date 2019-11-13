@@ -1,6 +1,6 @@
-package com.erzhiqianyi.yitian.admin.system.service;
+package com.erzhiqianyi.yitian.admin.administrator.service;
 
-import com.erzhiqianyi.yitian.admin.system.model.dto.AdministratorDto;
+import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
 import reactor.core.publisher.Mono;
 
 public interface AdministratorService {

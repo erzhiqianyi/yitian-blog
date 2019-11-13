@@ -1,4 +1,4 @@
-package com.erzhiqianyi.yitian.admin.system.dao.entity;
+package com.erzhiqianyi.yitian.admin.administrator.dao.entity;
 
 
 import lombok.Data;

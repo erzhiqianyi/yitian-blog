@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 
 @Data
 @ApiModel()
-public class SystemInstallParam {
+public class SystemInstallRequest {
 
    @NotNull(message = "邮箱不能为空")
    @Size(min = 3, max = 50, message = "邮箱长度为3-50")
