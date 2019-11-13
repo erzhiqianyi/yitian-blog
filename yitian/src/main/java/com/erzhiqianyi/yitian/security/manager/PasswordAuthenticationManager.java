@@ -10,8 +10,6 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class PasswordAuthenticationManager implements ReactiveAuthenticationManager {
-
-
     @Value("${app.jwt.secret}")
     private String secret;
 

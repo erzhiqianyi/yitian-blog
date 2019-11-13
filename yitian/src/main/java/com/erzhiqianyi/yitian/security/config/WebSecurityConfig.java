@@ -3,6 +3,7 @@ package com.erzhiqianyi.yitian.security.config;
 import com.erzhiqianyi.yitian.security.manager.PasswordAuthenticationManager;
 import com.erzhiqianyi.yitian.security.manager.SecurityContextRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -13,9 +14,14 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 public class WebSecurityConfig {
+
+    @Value("#{'${app.api.permit}'.split(',')}")
+    private List<String>  permitAllApis;
 
     private PasswordAuthenticationManager authenticationManager;
 
@@ -27,18 +33,19 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityWebFilterChain securitygWebFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        String[]  permitArr = permitAllApis.toArray(new String[permitAllApis.size()]);
         return http
                 .exceptionHandling()
-//                .authenticationEntryPoint((swe, e) -> {
-//                    return Mono.fromRunnable(() -> {
-//                        swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
-//                    });
-//                }).accessDeniedHandler((swe, e) -> {
-//                    return Mono.fromRunnable(() -> {
-//                        swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
-//                    });
-//                })
+                .authenticationEntryPoint((swe, e) -> {
+                    return Mono.fromRunnable(() -> {
+                        swe.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                    });
+                }).accessDeniedHandler((swe, e) -> {
+                    return Mono.fromRunnable(() -> {
+                        swe.getResponse().setStatusCode(HttpStatus.FORBIDDEN);
+                    });
+                })
                 .and()
                 .csrf().disable()
                 .formLogin().disable()
@@ -47,7 +54,8 @@ public class WebSecurityConfig {
                 .securityContextRepository(securityContextRepository)
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
-                .pathMatchers("/*","/swagger*").permitAll()
+                .pathMatchers(permitArr)
+                .permitAll()
                 .anyExchange().authenticated()
                 .and().build();
     }

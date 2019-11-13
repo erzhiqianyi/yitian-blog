@@ -3,6 +3,7 @@ package com.erzhiqianyi.yitian.admin.administrator.service.impl;
 import com.erzhiqianyi.yitian.admin.administrator.dao.reactor.AdministratorRepository;
 import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
 import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
+import com.erzhiqianyi.yitian.security.model.bo.PasswordAuthUser;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -42,5 +43,13 @@ public class AdministratorServiceImpl implements AdministratorService {
         return repository.findByEmail(email)
                 .map(item -> true)
                 .defaultIfEmpty(false);
+    }
+
+    @Override
+    public Mono<PasswordAuthUser> loadByEmail(String email) {
+        return repository.findByEmail(email)
+                .map(administratorEntity -> new PasswordAuthUser(administratorEntity.getUuid(),
+                        administratorEntity.getPassword(), true, null
+                ));
     }
 }

@@ -1,6 +1,7 @@
 package com.erzhiqianyi.yitian.admin.system.controller;
 
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInstallDto;
+import com.erzhiqianyi.yitian.admin.system.model.vo.SystemConfigVo;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallRequest;
 import com.erzhiqianyi.yitian.admin.system.service.SystemConfigService;
@@ -46,4 +47,16 @@ public class SystemInfoController {
         return systemConfigService.verifyInstall()
                 .map(SystemInfoVo::new);
     }
+
+    @GetMapping("config/{code}")
+    @ApiOperation(
+            value = "查看系统配置",
+            consumes = SwaggerConstant.MEDIA_JSON,
+            produces = SwaggerConstant.MEDIA_JSON,
+            response = SystemConfigVo.class
+    )
+    public Mono<SystemConfigVo> getSystemConfig(@PathVariable("code") String code){
+       return Mono.just(new SystemConfigVo(code));
+    }
+
 }
