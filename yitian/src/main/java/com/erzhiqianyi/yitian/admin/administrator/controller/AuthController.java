@@ -2,7 +2,9 @@ package com.erzhiqianyi.yitian.admin.administrator.controller;
 
 
 import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
-import com.erzhiqianyi.yitian.security.model.vo.AuthResponseVo;
+import com.erzhiqianyi.yitian.admin.administrator.service.AuthService;
+import com.erzhiqianyi.yitian.security.model.bo.AuthResponse;
+import com.erzhiqianyi.yitian.security.model.dto.PasswordAuthDto;
 import com.erzhiqianyi.yitian.security.model.vo.PasswordAuthRequest;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,15 +20,15 @@ import javax.validation.Valid;
 @Api(tags = "登录")
 public class AuthController {
 
-    private AdministratorService administratorService;
+    private AuthService authService;
 
-    public AuthController(AdministratorService administratorService) {
-        this.administratorService = administratorService;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
     @RequestMapping(value = "/login/password", method = RequestMethod.POST)
-    public Mono<AuthResponseVo> login(@RequestBody @Valid PasswordAuthRequest request) {
-        return Mono.empty();
+    public Mono<AuthResponse> login(@RequestBody @Valid PasswordAuthRequest request) {
+        return authService.loginByPassword(new PasswordAuthDto(request.getEmail(),request.getPassword()));
     }
 
 }

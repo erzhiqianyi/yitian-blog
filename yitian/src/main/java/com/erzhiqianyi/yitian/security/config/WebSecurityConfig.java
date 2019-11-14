@@ -20,8 +20,9 @@ import java.util.List;
 @EnableReactiveMethodSecurity
 public class WebSecurityConfig {
 
-    @Value("#{'${app.api.permit}'.split(',')}")
-    private List<String>  permitAllApis;
+    @Value("${app.auth.permit}")
+    private String permitAllApis;
+
 
     private PasswordAuthenticationManager authenticationManager;
 
@@ -34,7 +35,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
-        String[]  permitArr = permitAllApis.toArray(new String[permitAllApis.size()]);
+
         return http
                 .exceptionHandling()
                 .authenticationEntryPoint((swe, e) -> {
@@ -54,7 +55,7 @@ public class WebSecurityConfig {
                 .securityContextRepository(securityContextRepository)
                 .authorizeExchange()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
-                .pathMatchers(permitArr)
+                .pathMatchers(permitAllApis.replace(" ","").split(","))
                 .permitAll()
                 .anyExchange().authenticated()
                 .and().build();

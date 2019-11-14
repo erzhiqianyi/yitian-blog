@@ -25,8 +25,16 @@ app:
       algorithm: PBKDF2WithHmacSHA512
   jwt:
     secret: 123456789
-  api:
-    permit: /swagger-ui.html,/webjars/**,/swagger-resources/**,/v2/api-docs,/api/admin/auth/**,/api/admin/system/install,/api/admin/system/installed
+    expiration: 2
+  auth:
+    permit:
+      /swagger-ui.html,
+      /webjars/**,
+      /swagger-resources/**,
+      /v2/api-docs,
+      /api/admin/auth/**,
+      /api/admin/system/install,
+      /api/admin/system/installed
 logging:
   level:
     com:

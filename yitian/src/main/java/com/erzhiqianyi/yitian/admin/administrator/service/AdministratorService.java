@@ -10,5 +10,6 @@ public interface AdministratorService {
     Mono<Boolean> checkEmailExists(String email);
 
     Mono<PasswordAuthUser> loadByEmail(String email);
+
 }
 

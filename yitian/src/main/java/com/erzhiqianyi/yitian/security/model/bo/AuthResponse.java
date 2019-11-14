@@ -1,6 +1,7 @@
-package com.erzhiqianyi.yitian.security.model.vo;
+package com.erzhiqianyi.yitian.security.model.bo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,11 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AuthResponseVo {
+public class AuthResponse {
 
     private String token;
 
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Instant expirationAt;
 
 

@@ -1,5 +1,7 @@
 package com.erzhiqianyi.yitian.security.manager;
 
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,6 +14,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
+@Log4j2
 public class SecurityContextRepository implements ServerSecurityContextRepository {
 
     private PasswordAuthenticationManager authenticationManager;
@@ -29,6 +32,7 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
     public Mono<SecurityContext> load(ServerWebExchange serverWebExchange) {
         ServerHttpRequest request = serverWebExchange.getRequest();
         String authHeader = request.getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
+        log.info("获取认证头 " + authHeader);
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String authToken = authHeader.substring(7);
