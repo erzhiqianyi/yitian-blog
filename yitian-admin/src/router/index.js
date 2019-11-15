@@ -34,7 +34,11 @@ export default new Router({
                 {
                     name: 'Home',
                     path: '',
-                    component: DashBoard
+                    component: DashBoard,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -46,19 +50,27 @@ export default new Router({
                 {
                     name: 'ArticleList', //路由名字
                     path: '',
-                    component: ArticleList //映射组件
+                    component: ArticleList,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 },
             ]
         },
         //发表文章路由
         {
-            path: '/article/edit', //路由路径
+            path: '/article/edit',
             component: BasicLayout,
             children: [
                 {
-                    name: 'ArticleEditor', //路由名字
+                    name: 'ArticleEditor',
                     path: '',
-                    component: ArticleEditor //映射组件
+                    component: ArticleEditor,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ],
         },
@@ -70,7 +82,11 @@ export default new Router({
                 {
                     name: 'ArticleCategoryList',
                     path: '',
-                    component: ArticleCategoryList
+                    component: ArticleCategoryList,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -82,7 +98,11 @@ export default new Router({
                 {
                     name: 'ArticleTagList',
                     path: '',
-                    component: ArticleTagList
+                    component: ArticleTagList,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -94,7 +114,11 @@ export default new Router({
                 {
                     name: 'ArticleComment',
                     path: '',
-                    component: ArticleComment
+                    component: ArticleComment,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -106,7 +130,11 @@ export default new Router({
                 {
                     name: 'DashBoard',
                     path: '',
-                    component: DashBoard
+                    component: DashBoard,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -118,7 +146,11 @@ export default new Router({
                 {
                     name: 'Notification',
                     path: '',
-                    component: Notification
+                    component: Notification,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -130,7 +162,11 @@ export default new Router({
                 {
                     name: 'UserList',
                     path: '',
-                    component: UserList
+                    component: UserList,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -154,7 +190,11 @@ export default new Router({
                 {
                     name: 'Tools',
                     path: '',
-                    component: Tools
+                    component: Tools,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ],
         },
@@ -166,7 +206,11 @@ export default new Router({
                 {
                     name: 'About',
                     path: '',
-                    component: About
+                    component: About,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -178,7 +222,11 @@ export default new Router({
                 {
                     name: 'UserCenter',
                     path: '',
-                    component: UserCenter
+                    component: UserCenter,
+                    meta: {
+                        requireAuth: true
+                    }
+
                 }
             ]
         },
@@ -190,8 +238,11 @@ export default new Router({
                 {
                     name: 'Login',
                     path: '',
-                    component: Login
-                }
+                    component: Login,
+                    meta: {
+                        requireAuth: false
+                    }
+                },
             ]
         },
         //注册路由
@@ -202,7 +253,11 @@ export default new Router({
                 {
                     name: 'Register',
                     path: '',
-                    component: Register
+                    component: Register,
+                    meta: {
+                        requireAuth: false
+                    }
+
                 }
             ]
         },
@@ -214,7 +269,11 @@ export default new Router({
                 {
                     name: 'Install',
                     path: '',
-                    component: Installation
+                    component: Installation,
+                    meta: {
+                        requireAuth: false
+                    }
+
                 }
             ]
         },

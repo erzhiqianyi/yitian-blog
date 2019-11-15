@@ -52,7 +52,7 @@
                 passwordRule,
                 form: this.$form.createForm(this, {name: 'login'}),
                 loginCanClick: true,
-                spinning:false
+                spinning: false
             };
         },
         mounted() {
@@ -77,6 +77,12 @@
                 loginByPassword(values).then(data => {
                     this.spinning = false
                     this.loginCanClick = true
+                    this.$store.commit("setToken", data);
+                    if (this.$route.query.redirect) {
+                        this.$router.replace(this.$route.query.redirect)
+                    } else {
+                        this.$router.replace({name: 'Home'})
+                    }
                 }).catch(error => {
                     this.spinning = false
                     this.loginCanClick = true
