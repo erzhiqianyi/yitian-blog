@@ -45,6 +45,7 @@
                     <a-menu-item key="/system/setting">{{$t('menu.setting')}}</a-menu-item>
                     <a-menu-item key="/tools">{{$t('menu.tools')}}</a-menu-item>
                     <a-menu-item key="/about">{{$t('menu.about')}}</a-menu-item>
+                    <a-menu-item key="/log">{{$t('menu.log')}}</a-menu-item>
                 </a-sub-menu>
 
 
@@ -53,8 +54,6 @@
         <a-layout-content style="padding: 0 50px">
             <a-breadcrumb style="margin: 16px 0">
                 <a-breadcrumb-item>{{$t('menu.index')}}</a-breadcrumb-item>
-                <a-breadcrumb-item>{{$t('menu.article')}}</a-breadcrumb-item>
-                <a-breadcrumb-item>{{$t('menu.article_post')}}</a-breadcrumb-item>
             </a-breadcrumb>
             <div :style="{ background: '#fff', padding: '24px', minHeight: '1000px' }">
                 <router-view/>

@@ -19,6 +19,7 @@ import Setting from '@/views/system/Setting'
 import Installation from '@/views/system/Installation'
 import Tools from '@/views/system/Tools'
 import About from '@/views/system/About'
+import Log from '@/views/system/Log'
 
 //使用Router
 Vue.use(Router)
@@ -207,6 +208,22 @@ export default new Router({
                     name: 'About',
                     path: '',
                     component: About,
+                    meta: {
+                        requireAuth: true
+                    }
+
+                }
+            ]
+        },
+        //日志路由
+        {
+            path: '/log',
+            component: BasicLayout,
+            children: [
+                {
+                    name: 'Log',
+                    path: '',
+                    component: Log,
                     meta: {
                         requireAuth: true
                     }

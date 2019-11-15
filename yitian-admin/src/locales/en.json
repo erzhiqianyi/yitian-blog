@@ -16,7 +16,8 @@
     "system": "system",
     "setting": "setting",
     "tools": "tools",
-    "about": "about"
+    "about": "about",
+    "log": "log"
   },
   "article": {
     "keyword": "keyword",
@@ -27,6 +28,13 @@
     "write_article": " write article ",
     "hint_input_title": "article title ",
     "post_article": "post article"
+  },
+  "log": {
+    "keyword": "keyword",
+    "type": "type",
+    "query": "query log",
+    "reset": "reset",
+    "view_type": "view type"
   },
   "system": {
     "name": "One Day"

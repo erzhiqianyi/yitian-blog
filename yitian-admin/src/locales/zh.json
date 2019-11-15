@@ -16,7 +16,8 @@
     "system": "系统",
     "setting": "博客设置",
     "tools": "工具",
-    "about": "关于"
+    "about": "关于",
+    "log": "日志"
   },
   "article": {
     "keyword": "关键词",
@@ -27,6 +28,13 @@
     "write_article": "写文章",
     "hint_input_title": "文章标题 ",
     "post_article": "发表"
+  },
+  "log": {
+    "keyword": "关键词",
+    "type": "日志类型",
+    "query": "查找日志",
+    "reset": "重置",
+    "view_type": "查看形式"
   },
   "system": {
     "name": "一天"
