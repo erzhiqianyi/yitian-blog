@@ -1,6 +1,7 @@
 package com.erzhiqianyi.yitian.admin.administrator.model.dto;
 
 import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.system.model.dto.SystemConfigDto;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInstallDto;
 import lombok.Data;
 
@@ -15,25 +16,27 @@ public class AdministratorDto {
     private String password;
     private String uuid;
     private Long createBy;
+    private Long createAt;
 
     public AdministratorDto(SystemInstallDto installDto) {
         this.email = installDto.getEmail();
         this.nickname = installDto.getNickname();
         this.password = installDto.getPassword();
         this.createBy = 0l;
+        this.createAt = System.currentTimeMillis();
     }
 
     public AdministratorEntity toAddEntity() {
         AdministratorEntity entity = new AdministratorEntity();
-        entity.setEmail(this.email);
-        entity.setNickname(this.nickname);
-        entity.setUsername(this.getUsername());
-        entity.setPassword(this.getPassword());
+        entity.setEmail(email);
+        entity.setNickname(nickname);
+        entity.setUsername(username);
+        entity.setPassword(password);
         entity.setUuid(UUID.randomUUID().toString());
-        entity.setCreateBy(this.createBy);
-        entity.setUpdateBy(this.createBy);
-        entity.setCreateAt(System.currentTimeMillis());
-        entity.setUpdateAt(System.currentTimeMillis());
+        entity.setCreateBy(createBy);
+        entity.setUpdateBy(createBy);
+        entity.setCreateAt(createAt);
+        entity.setUpdateAt(createAt);
         return entity;
     }
 

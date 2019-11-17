@@ -9,7 +9,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,14 +45,6 @@ public class SystemConfigRepositoryImpl implements SystemConfigRepository {
     public Flux<SystemConfigEntity> findByParent(String parent) {
         Flux<SystemConfigEntity> defer = Flux.defer(() -> Flux.fromIterable(configMapper.selectByParent(parent)));
         return defer.subscribeOn(jdbcScheduler);
-    }
-
-    @Override
-    public Flux<SystemConfigEntity> batchAddConfig(List<SystemConfigEntity> entities) {
-        return Flux.defer(() -> {
-            configMapper.batchInsert(entities);
-            return Flux.fromIterable(entities);
-        }).subscribeOn(jdbcScheduler);
     }
 
 

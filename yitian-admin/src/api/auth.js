@@ -1,10 +1,8 @@
 import request from '@/utils/http'
 
-const baseUrl = "api/admin"
-
 export function loginByPassword(data) {
     return request({
-        url: `${baseUrl}/auth/login/password`,
+        url: `api/admin/auth/login/password`,
         method: 'post',
         data
     })
@@ -12,7 +10,7 @@ export function loginByPassword(data) {
 
 export function registerByEmail(data) {
     return request({
-        url: `${baseUrl}/auth/register/email`,
+        url: `api/admin/auth/register/email`,
         method: 'post',
         data
     })

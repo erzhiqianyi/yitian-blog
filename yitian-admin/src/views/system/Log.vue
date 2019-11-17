@@ -31,24 +31,10 @@
                 </a-form>
             </div>
 
-            <div style="margin-top: 20px">
-                
-            </div>
-
             <div style="margin: 30px ;text-align: center">
 
                 <a-table :columns="columns" :dataSource="data" :bordered="true" :pagination="{pageSize: 10}">
-                    <span slot="tags" slot-scope="tags">
-                        <a-tag v-for="tag in tags"
-                               :color="tag==='loser' ? 'volcano' : (tag.length > 5 ? 'geekblue' : 'green')" :key="tag">
-                            {{tag.toUpperCase()}}
-                        </a-tag>
-                    </span>
-                    <span slot="action">
-                        <a href="javascript:;">{{$t('basic.edit')}}</a>
-                        <a-divider type="vertical"/>
-                        <a href="javascript:;">{{$t('basic.delete')}}</a>
-                    </span>
+
                 </a-table>
             </div>
         </a-card>
@@ -60,55 +46,47 @@
 <script>
     const columns = [
         {
-            title: '标题',
-            dataIndex: 'title',
-            key: 'title',
+            title: '时间',
+            dataIndex: 'time',
+            key: 'time',
+            width: '20%',
+        },
+        {
+            title: '类型',
+            dataIndex: 'type',
+            key: 'type',
+            width: '20%',
+        },
+        {
+            title: '操作人',
+            dataIndex: 'operator',
+            key: 'operator',
+            width: '20%',
         },
         {
             title: '状态',
             dataIndex: 'status',
             key: 'status',
-        },
-        {
-            title: '分类',
-            dataIndex: 'category',
-            key: 'category',
+            width: '10%',
         },
 
         {
-            title: '标签',
-            key: 'tags',
-            dataIndex: 'tags',
-            scopedSlots: {customRender: 'tags'},
-        },
-        {
-            title: '访问',
-            dataIndex: 'hit',
-            key: 'hit',
-        },
-        {
-            title: '评论',
-            dataIndex: 'comment',
-            key: 'comment',
+            title: '说明',
+            dataIndex: 'remark',
+            key: 'remark',
+            width: '30%',
         },
 
-        {
-            title: '操作',
-            key: 'action',
-            scopedSlots: {customRender: 'action'},
-        },
-    ];
+   ];
 
     const data = [
         {
-            key: '1',
-            title: 'Hello 一天',
-            status: '草稿',
-            category: '编程',
-            hit: 1,
-            comment: 1,
-            tags: ['博客', '测试'],
-        }
+            time: '2019-11-16 08:11:11',
+            type: '博客初始化',
+            operator:"系统管理员",
+            status: "成功",
+            remark: '系统初始化',
+       }
 
     ];
     export default {

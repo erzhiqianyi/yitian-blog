@@ -76,33 +76,4 @@ public class SystemConfigRepositoryTest {
 
     }
 
-    @Test
-    public void batchAddConfig() {
-        List<SystemConfigEntity> configEntities = new ArrayList<>(3);
-        SystemConfigEntity systemInfo = new SystemConfigEntity(SystemConfigEnum.SYSTEM_INFO,
-                SystemConfigEnum.SYSTEM_INFO.getRemark(), SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity installTime = new SystemConfigEntity(SystemConfigEnum.INSTALL_TIME,
-                String.valueOf(System.currentTimeMillis()), SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity domain = new SystemConfigEntity(SystemConfigEnum.DOMAIN,
-                "www.erzhiqianyi.com", SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity systemName = new SystemConfigEntity(SystemConfigEnum.SYSTEM_NAME,
-                "二之前一的博客", SystemConfigEnum.SYSTEM_INFO);
-        configEntities.add(systemInfo);
-        configEntities.add(installTime);
-        configEntities.add(domain);
-        configEntities.add(systemName);
-        StepVerifier.create(
-                repository.batchAddConfig(configEntities)
-                        .map(SystemConfigEntity::getCode)
-                        .sort()
-                        .flatMap(code -> Flux.from(repository.findByCode(code)))
-                        .map(item -> item.getValue())
-                        .sort(Comparator.comparing(String::length))
-        )
-                .expectNext(systemInfo.getValue(), systemName.getValue(), installTime.getValue(), domain.getValue())
-                .expectComplete()
-                .verify();//验证之前什么都不会执行，如果不执行verify(),不会连接数据库去查询数据。
-
-
-    }
 }

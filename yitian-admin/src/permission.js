@@ -2,6 +2,7 @@ import router from "./router"
 import store from "./store";
 
 router.beforeEach((to, from, next) => {
+    console.log(to.fullPath)
     if (to.meta.requireAuth) {
         //判断是否已经登录，如果已经登录，直接next()
         let now = new Date()
@@ -17,7 +18,6 @@ router.beforeEach((to, from, next) => {
                 }
             })
         }
-
     } else {
         next()
     }

@@ -65,29 +65,5 @@ public class SystemConfigMapperTest {
         entities.forEach(System.out::println);
     }
 
-    @Test
-    public void batchInsert() {
-        List<SystemConfigEntity> configEntities = new ArrayList<>(3);
-        SystemConfigEntity systemInfo = new SystemConfigEntity(SystemConfigEnum.SYSTEM_INFO,
-                SystemConfigEnum.SYSTEM_INFO.getRemark(), SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity installTime = new SystemConfigEntity(SystemConfigEnum.INSTALL_TIME,
-                String.valueOf(System.currentTimeMillis()), SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity domain = new SystemConfigEntity(SystemConfigEnum.DOMAIN,
-                "www.erzhiqianyi.com", SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity systemName = new SystemConfigEntity(SystemConfigEnum.SYSTEM_NAME,
-                "二之前一的博客", SystemConfigEnum.SYSTEM_INFO);
-        configEntities.add(systemInfo);
-        configEntities.add(installTime);
-        configEntities.add(domain);
-        configEntities.add(systemName);
-        systemConfigMapper.batchInsert(configEntities);
-        Stream.of(SystemConfigEnum.SYSTEM_INFO, SystemConfigEnum.SYSTEM_NAME, SystemConfigEnum.INSTALL_TIME,
-                SystemConfigEnum.DOMAIN)
-                .map(SystemConfigEnum::getCode)
-                .forEach(item -> {
-                    Optional<SystemConfigEntity> optional = systemConfigMapper.selectByCode(item);
-                    assertTrue(optional.isPresent());
-                });
 
-    }
 }

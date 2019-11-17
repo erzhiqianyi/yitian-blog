@@ -1,7 +1,6 @@
 package com.erzhiqianyi.yitian.admin.system.model.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
@@ -26,5 +25,7 @@ public class SystemInfoDto {
     public SystemInfoDto() {
         this.installed = false;
     }
+
+
 }
 

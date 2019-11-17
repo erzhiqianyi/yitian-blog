@@ -42,6 +42,20 @@ CREATE TABLE `administrator` (
   KEY `uuid_index` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='管理人员';
 
+-- 系统日志
+drop table if exists system_log;
+CREATE TABLE `system_log` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) NOT NULL  COMMENT '类型',
+  `status` varchar(50) NOT NULL COMMENT '状态',
+  `key_word` varchar(100) DEFAULT NULL COMMENT '关键词',
+  `remark` varchar(500) DEFAULT NULL COMMENT '操作说明',
+  `create_at` bigint(13) NOT NULL,
+  `create_by` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='系统日志';
+
+
 
 -- 插入系统配置数据
 insert into system_config ( name, code, value, parent,create_at, update_at, create_by, update_by)
@@ -55,5 +69,9 @@ insert into administrator ( email, nickname, username, password,uuid, create_at,
 values ('erzhiqiianyi@gmail.com','二之前一','erzhiqianyi','123456789','234jksdfsdk',1573204513496,1573204513496,0,0);
 
 -- 根据email查询管理员
-select id, email, nickname, username, password from administrator where email = 'erzhiqianyi@gmail.com'
+select id, email, nickname, username, password from administrator where email = 'erzhiqianyi@gmail.com';
 
+-- 插入日志
+insert into system_log (type, remark, status, key_word ,create_at, create_by) values ('ARTICLE','Test','SUCCESS','ARTICLE',1573204513496,1573204513496)
+-- 分页查询日志
+select id, type, status, key_word, remark, create_at, create_by from system_log limit 0 ,10

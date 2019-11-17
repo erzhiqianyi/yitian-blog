@@ -41,3 +41,7 @@ logging:
       erzhiqianyi:
         yitian: debug
 
+
+mybatis:
+  configuration:
+    default-enum-type-handler: com.erzhiqianyi.yitian.common.handler.mybatis.AutoGenericEnumTypeHandler

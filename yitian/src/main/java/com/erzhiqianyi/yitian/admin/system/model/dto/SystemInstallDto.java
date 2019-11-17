@@ -29,16 +29,17 @@ public class SystemInstallDto {
         this.systemName = param.getSystemName();
     }
 
-    public List<SystemConfigEntity> toSystemConfig() {
-        List<SystemConfigEntity> configEntities = new ArrayList<>(3);
-        SystemConfigEntity systemInfo = new SystemConfigEntity(SystemConfigEnum.SYSTEM_INFO,
-                SystemConfigEnum.SYSTEM_INFO.getRemark(), SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity installTime = new SystemConfigEntity(SystemConfigEnum.INSTALL_TIME,
-                String.valueOf(System.currentTimeMillis()), SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity domain = new SystemConfigEntity(SystemConfigEnum.DOMAIN,
-                this.domain, SystemConfigEnum.SYSTEM_INFO);
-        SystemConfigEntity systemName = new SystemConfigEntity(SystemConfigEnum.SYSTEM_NAME,
-                this.systemName, SystemConfigEnum.SYSTEM_INFO);
+
+    public List<SystemConfigDto> toSystemConfig(Long createBy) {
+        List<SystemConfigDto> configEntities = new ArrayList<>(3);
+        SystemConfigDto systemInfo = new SystemConfigDto(SystemConfigEnum.SYSTEM_INFO,
+                SystemConfigEnum.SYSTEM_INFO.getRemark(), SystemConfigEnum.SYSTEM_INFO,createBy);
+        SystemConfigDto installTime = new SystemConfigDto(SystemConfigEnum.INSTALL_TIME,
+                String.valueOf(System.currentTimeMillis()), SystemConfigEnum.SYSTEM_INFO,createBy);
+        SystemConfigDto domain = new SystemConfigDto(SystemConfigEnum.DOMAIN,
+                this.domain, SystemConfigEnum.SYSTEM_INFO,createBy);
+        SystemConfigDto systemName = new SystemConfigDto(SystemConfigEnum.SYSTEM_NAME,
+                this.systemName, SystemConfigEnum.SYSTEM_INFO,createBy);
         configEntities.add(systemInfo);
         configEntities.add(installTime);
         configEntities.add(domain);

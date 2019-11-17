@@ -1,10 +1,8 @@
 import request from '@/utils/http'
 
-const baseUrl = "api/admin"
-
 export function install(data) {
     return request({
-        url: `${baseUrl}/system/install`,
+        url: `api/admin/system/install`,
         method: 'post',
         data
     })
@@ -12,7 +10,7 @@ export function install(data) {
 
 export function installed() {
     return request({
-        url: `${baseUrl}/system/installed`,
+        url: `api/admin/system/installed`,
         method: 'get',
     })
 }
