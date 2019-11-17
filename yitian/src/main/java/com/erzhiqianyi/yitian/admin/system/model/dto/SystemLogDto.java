@@ -34,6 +34,7 @@ public class SystemLogDto {
         this.keyWord = type.code();
     }
 
+
     public static SystemLogDto addAdministratorLog(AdministratorDto item, LogStatus status) {
         SystemLogDto dto = new SystemLogDto();
         dto.setType(LogType.ADD_ADMINISTRATOR);
@@ -83,4 +84,14 @@ public class SystemLogDto {
         log.setRemark(remark);
         return log;
     }
+
+    public SystemLogDto(SystemLogEntity entity) {
+        this.id = entity.getId();
+        this.type = entity.getType();
+        this.status = entity.getStatus();
+        this.createAt = entity.getCreateAt();
+        this.createBy = entity.getCreateBy();
+        this.remark = entity.getRemark();
+    }
+
 }

@@ -27,8 +27,9 @@ public interface SystemLogMapper {
             " id, type, status, remark, create_at, create_by ",
             " from ",
             " system_log ",
-            " limit #{index}, #{size}",
-            }
+            " limit #{ index }, #{size} ",
+
+    }
     )
     @Results({
             @Result(column = "id", property = "id", id = true),
@@ -38,4 +39,13 @@ public interface SystemLogMapper {
             @Result(column = "create_by", property = "createBy"),
     })
     List<SystemLogEntity> selectByPage(int index, int size);
+
+
+    @Select({
+            " select ",
+            " count(*) ",
+            " from ",
+            " system_log "
+    })
+    Integer count();
 }

@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.Instant;
 import java.time.temporal.TemporalUnit;
@@ -12,6 +13,7 @@ import java.util.*;
 import static java.time.temporal.ChronoField.INSTANT_SECONDS;
 
 @Getter
+@ToString
 public class AuthTokenBo {
 
     //用户id

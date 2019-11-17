@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
 import i18n from '@/locales' // internationalization
+import store from "@/store";
 
 const request = axios.create({
     baseURL: getBaseUrl(),//根据环境获取基础url
@@ -12,7 +13,7 @@ const request = axios.create({
 request.interceptors.request.use(
     config => {
         //添加请求头
-        config.headers['auth'] = getToken()
+        config.headers['Authorization'] = getToken()
         return config
     },
     error => {
@@ -52,6 +53,7 @@ request.interceptors.response.use(
     },
     error => {
         //请求错误，弹出提示
+        console.log(error)
         message.error(i18n.t('message.system_error'))
         return Promise.reject(error)
     }
@@ -70,7 +72,8 @@ export function getBaseUrl() {
 
 //获取token
 export function getToken() {
-    return "token"
+
+    return "Bearer " +store.state.token.token
 }
 
 export default request

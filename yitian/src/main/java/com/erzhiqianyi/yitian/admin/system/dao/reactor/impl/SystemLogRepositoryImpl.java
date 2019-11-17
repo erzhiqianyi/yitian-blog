@@ -30,8 +30,13 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
     }
 
     @Override
-    public Flux<SystemLogEntity> findSystemLogByPage(int index, int size) {
-        return Flux.defer(() -> Flux.fromIterable(logMapper.selectByPage(index, size)))
-                .subscribeOn(jdbcScheduler);
+    public Flux<SystemLogEntity> findSystemLogByPage(int index, int size ) {
+        return Flux.defer(() -> Flux.fromIterable(logMapper.selectByPage(index, size))
+                .subscribeOn(jdbcScheduler));
+    }
+
+    @Override
+    public Mono<Integer> count() {
+        return Mono.defer(() -> Mono.just(logMapper.count())).subscribeOn(jdbcScheduler);
     }
 }

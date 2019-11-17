@@ -3,11 +3,9 @@ package com.erzhiqianyi.yitian.common.model.vo;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.extern.log4j.Log4j2;
 
 @ApiModel
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Log4j2
 public class ApiResponseVo<T> {
     @ApiModelProperty(value = "业务编码")
     private int code;

@@ -46,7 +46,7 @@ public class SystemLogRepositoryTest {
     @Test
     public void findSystemLogByPage() {
         StepVerifier.create(
-                repository.findSystemLogByPage(0,10)
+                repository.findSystemLogByPage(1,10)
                         .doOnNext(item -> {
                             assertNotNull(item.getId());
                             assertNotNull( item.getType());

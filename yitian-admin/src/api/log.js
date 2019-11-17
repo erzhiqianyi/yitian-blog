@@ -4,6 +4,7 @@ export function logList(data) {
     return request({
         url: `api/admin/system/log`,
         method: 'get',
-        data
+        params: data
+
     })
 }

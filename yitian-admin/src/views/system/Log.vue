@@ -6,13 +6,13 @@
                     <a-row :gutter="48">
                         <a-col :md="6" :sm="24">
                             <a-form-item :label='$t("log.keyword")'>
-                                <a-input v-model="queryParam.keyword"/>
+                                <a-input/>
                             </a-form-item>
                         </a-col>
 
                         <a-col :md="6" :sm="24">
                             <a-form-item :label='$t("log.type")'>
-                                <a-select v-model="queryParam.status" placeholder='$t("article.select_status")'>
+                                <a-select placeholder='$t("article.select_status")'>
                                     <a-select-option value="draft">系统配置</a-select-option>
                                     <a-select-option value="publish">文章</a-select-option>
                                     <a-select-option value="publish">评论</a-select-option>
@@ -32,9 +32,22 @@
             </div>
 
             <div style="margin: 30px ;text-align: center">
-
-                <a-table :columns="columns" :dataSource="data" :bordered="true" :pagination="{pageSize: 10}">
-
+                <a-table
+                        :columns="columns"
+                        :dataSource="data"
+                        :bordered="true"
+                        :pagination="pagination"
+                        :loading="loading"
+                        @change="handleTableChange"
+                >
+                   <span slot="type" slot-scope="type">
+                           {{types[type]}}
+                   </span>
+                   <span slot="status" slot-scope="status">
+                            <a-tag :color="status === 'SUCCESS' ? 'green' : 'volcano' ">
+                              {{statusType[status]}}
+                            </a-tag>
+                   </span>
                 </a-table>
             </div>
         </a-card>
@@ -44,29 +57,35 @@
 </template>
 
 <script>
+
+    import {logList} from '@/api/log'
+
     const columns = [
         {
             title: '时间',
-            dataIndex: 'time',
-            key: 'time',
+            dataIndex: 'createAt',
+            key: 'createAt',
             width: '20%',
+            sorter: true,
         },
         {
             title: '类型',
             dataIndex: 'type',
             key: 'type',
             width: '20%',
+            scopedSlots: {customRender: 'type'},
         },
         {
             title: '操作人',
-            dataIndex: 'operator',
-            key: 'operator',
+            dataIndex: 'createBy',
+            key: 'createBy',
             width: '20%',
         },
         {
             title: '状态',
             dataIndex: 'status',
             key: 'status',
+            scopedSlots: {customRender: 'status'},
             width: '10%',
         },
 
@@ -77,38 +96,68 @@
             width: '30%',
         },
 
-   ];
+    ]
 
-    const data = [
-        {
-            time: '2019-11-16 08:11:11',
-            type: '博客初始化',
-            operator:"系统管理员",
-            status: "成功",
-            remark: '系统初始化',
-       }
+    const types = {
+        LOGIN: "登录",
+        SYSTEM_INITIALIZATION: "系统初始化",
+        ADD_ADMINISTRATOR: "添加管理员",
+        ADD_SYSTEM_CONFIG: "添加系统配置",
+    }
 
-    ];
+    const statusType = {
+        SUCCESS: "成功",
+        FAIL: "失败"
+    }
+
     export default {
         name: "Log",
+        mounted() {
+            this.fetch({
+                size: 10,
+                pase: 1
+            });
+        },
         data() {
             return {
-                queryParam: {
-                    page: 0,
-                    size: 10,
-                    sort: null,
-                    keyword: null,
-                    categoryId: null,
-                    status: null,
-
-                },
-                data,
+                data: [],
+                pagination: {},
+                loading: false,
                 columns,
+                types,
+                statusType
             }
         },
         methods: {
-            toArticleEditor() {
-                this.$router.push({path: 'article/edit'});
+            handleTableChange(pagination, filters, sorter) {
+                const pager = {...this.pagination};
+                pager.current = pagination.current;
+                this.pagination = pager;
+                this.fetch({
+                    size: pagination.pageSize,
+                    page: pagination.current,
+                    sortField: sorter.field,
+                    sortOrder: sorter.order,
+                    ...filters,
+                });
+            },
+            fetch(params = {}) {
+                console.log("请去参数")
+                console.log(params)
+                this.loading = true
+                logList(params).then(data => {
+                    this.loading = false
+                    this.data = data.results
+                    const pagination = {...this.pagination};
+                    pagination.total = data.total;
+                    this.loading = false;
+                    this.data = data.results;
+                    this.pagination = pagination;
+                }).catch(error => {
+                    this.loading = false
+                    console.log("错误")
+                });
+
             }
         }
     }

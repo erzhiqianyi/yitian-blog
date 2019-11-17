@@ -7,7 +7,7 @@ router.beforeEach((to, from, next) => {
         //判断是否已经登录，如果已经登录，直接next()
         let now = new Date()
         let expire = Date.parse(store.state.token.expire)
-        let login = store.state.token && expire > now
+        let login = store.state.token.token && expire > now
         if (login) {
             next()
         } else {

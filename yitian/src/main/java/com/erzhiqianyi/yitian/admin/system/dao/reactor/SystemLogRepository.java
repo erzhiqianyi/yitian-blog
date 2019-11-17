@@ -8,4 +8,6 @@ public interface SystemLogRepository {
     Mono<SystemLogEntity> addSystemLog(SystemLogEntity entity);
 
     Flux<SystemLogEntity> findSystemLogByPage(int index, int size);
+
+    Mono<Integer> count();
 }

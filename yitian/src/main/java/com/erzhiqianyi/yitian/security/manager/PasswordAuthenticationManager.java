@@ -23,17 +23,19 @@ public class PasswordAuthenticationManager implements ReactiveAuthenticationMana
         AuthTokenBo tokenBo = null;
         try {
             tokenBo = new AuthTokenBo(authToken, secret);
+
         } catch (Exception e) {
             log.error(e);
             return Mono.empty();
         }
-
+        log.info(tokenBo);
         if (null != tokenBo) {
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                     tokenBo.getUuid(),
                     null,
                     null
             );
+            log.info("认证信息 " + auth);
             return Mono.just(auth);
 
         } else {

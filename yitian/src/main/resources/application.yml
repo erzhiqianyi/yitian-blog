@@ -34,7 +34,9 @@ app:
       /v2/api-docs,
       /api/admin/auth/**,
       /api/admin/system/install,
-      /api/admin/system/installed
+      /api/admin/system/installed,
+      /api/admin/system/log/**
+
 logging:
   level:
     com:
