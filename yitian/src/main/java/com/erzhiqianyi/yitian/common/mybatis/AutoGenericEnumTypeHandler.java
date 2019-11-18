@@ -1,4 +1,4 @@
-package com.erzhiqianyi.yitian.common.handler.mybatis;
+package com.erzhiqianyi.yitian.common.mybatis;
 
 import com.erzhiqianyi.yitian.common.model.enums.BaseEnum;
 import org.apache.ibatis.type.BaseTypeHandler;

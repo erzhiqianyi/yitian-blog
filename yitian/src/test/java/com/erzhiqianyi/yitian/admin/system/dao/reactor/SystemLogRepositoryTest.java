@@ -5,6 +5,7 @@ import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
+import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,8 +46,11 @@ public class SystemLogRepositoryTest {
 
     @Test
     public void findSystemLogByPage() {
+        SystemLogQuery query = new SystemLogQuery();
+        query.setSize(10);
+        query.setPage(1);
         StepVerifier.create(
-                repository.findSystemLogByPage(1,10)
+                repository.findSystemLogByPage(query)
                         .doOnNext(item -> {
                             assertNotNull(item.getId());
                             assertNotNull( item.getType());

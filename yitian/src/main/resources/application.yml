@@ -35,6 +35,7 @@ app:
       /api/admin/auth/**,
       /api/admin/system/install,
       /api/admin/system/installed,
+      /api/admin/system/log,
 
 logging:
   level:
@@ -45,4 +46,4 @@ logging:
 
 mybatis:
   configuration:
-    default-enum-type-handler: com.erzhiqianyi.yitian.common.handler.mybatis.AutoGenericEnumTypeHandler
+    default-enum-type-handler: com.erzhiqianyi.yitian.common.mybatis.AutoGenericEnumTypeHandler

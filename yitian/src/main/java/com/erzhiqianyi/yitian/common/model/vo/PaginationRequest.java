@@ -1,34 +1,26 @@
 package com.erzhiqianyi.yitian.common.model.vo;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.ToString;
 
-@ApiModel
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
+@ApiModel
+@ToString()
 public class PaginationRequest {
 
-    @ApiModelProperty(value = "每页大小")
-    private Integer size;
+    @ApiModelProperty(value = "每页数量")
+    protected Integer size;
 
     @ApiModelProperty(value = "当前页")
-    private Integer page;
+    protected Integer page;
 
-    private String sortField;
+    @ApiModelProperty(value = "排序字段")
+    protected String sortField;
 
-    private String sortOrder;
+    @ApiModelProperty(value = "排序方式")
+    protected String sortOrder;
 
-    public Integer start() {
-        if (null == page){
-           page = 1;
-        }
 
-        if (null == size){
-            size = 10;
-        }
-
-        return (page - 1) * size;
-    }
 }

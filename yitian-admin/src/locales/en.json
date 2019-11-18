@@ -32,6 +32,7 @@
   "log": {
     "keyword": "keyword",
     "type": "type",
+    "status": "status",
     "query": "query log",
     "reset": "reset",
     "view_type": "view type"
@@ -138,5 +139,14 @@
     "install": "installing",
     "login": "login...",
     "register": "register..."
+  },
+  "table": {
+    "log": {
+      "time": "time",
+      "type": "type",
+      "createBy": "crateBy",
+      "status": "status",
+      "remark": "remark"
+    }
   }
 }

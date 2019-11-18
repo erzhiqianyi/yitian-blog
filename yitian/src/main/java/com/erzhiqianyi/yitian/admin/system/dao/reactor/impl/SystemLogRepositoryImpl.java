@@ -3,6 +3,7 @@ package com.erzhiqianyi.yitian.admin.system.dao.reactor.impl;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
 import com.erzhiqianyi.yitian.admin.system.dao.mapper.SystemLogMapper;
 import com.erzhiqianyi.yitian.admin.system.dao.reactor.SystemLogRepository;
+import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -30,13 +31,13 @@ public class SystemLogRepositoryImpl implements SystemLogRepository {
     }
 
     @Override
-    public Flux<SystemLogEntity> findSystemLogByPage(int index, int size ) {
-        return Flux.defer(() -> Flux.fromIterable(logMapper.selectByPage(index, size))
+    public Flux<SystemLogEntity> findSystemLogByPage(SystemLogQuery query) {
+        return Flux.defer(() -> Flux.fromIterable(logMapper.selectByPage(query))
                 .subscribeOn(jdbcScheduler));
     }
 
     @Override
-    public Mono<Integer> count() {
-        return Mono.defer(() -> Mono.just(logMapper.count())).subscribeOn(jdbcScheduler);
+    public Mono<Integer> count(SystemLogQuery query) {
+        return Mono.defer(() -> Mono.just(logMapper.count(query))).subscribeOn(jdbcScheduler);
     }
 }

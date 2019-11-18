@@ -32,6 +32,7 @@
   "log": {
     "keyword": "关键词",
     "type": "日志类型",
+    "status": "状态",
     "query": "查找日志",
     "reset": "重置",
     "view_type": "查看形式"
@@ -138,5 +139,14 @@
     "install": "博客安装中",
     "login": "登录中",
     "register": "注册中"
+  },
+  "table":{
+    "log": {
+      "time": "时间",
+      "type": "类型",
+      "createBy": "操作人",
+      "status": "状态",
+      "remark": "说明"
+    }
   }
 }

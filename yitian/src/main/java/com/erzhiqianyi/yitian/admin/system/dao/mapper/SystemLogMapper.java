@@ -1,6 +1,7 @@
 package com.erzhiqianyi.yitian.admin.system.dao.mapper;
 
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
+import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,9 +27,7 @@ public interface SystemLogMapper {
     @Select({" select ",
             " id, type, status, remark, create_at, create_by ",
             " from ",
-            " system_log ",
-            " limit #{ index }, #{size} ",
-
+            " system_log "
     }
     )
     @Results({
@@ -38,7 +37,7 @@ public interface SystemLogMapper {
             @Result(column = "create_at", property = "createAt"),
             @Result(column = "create_by", property = "createBy"),
     })
-    List<SystemLogEntity> selectByPage(int index, int size);
+    List<SystemLogEntity> selectByPage(SystemLogQuery query);
 
 
     @Select({
@@ -46,6 +45,7 @@ public interface SystemLogMapper {
             " count(*) ",
             " from ",
             " system_log "
+
     })
-    Integer count();
+    Integer count(SystemLogQuery query);
 }

@@ -4,6 +4,8 @@ import com.erzhiqianyi.yitian.YitianApplication;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
+import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
+import com.erzhiqianyi.yitian.common.mybatis.SortOrder;
 import lombok.extern.log4j.Log4j2;
 
 import org.junit.Test;
@@ -20,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
 @Log4j2
-public class SystemLogEntityMapperTest {
+public class SystemLogMapperTest {
 
     @Autowired
     private SystemLogMapper systemLogMapper;
@@ -40,13 +42,17 @@ public class SystemLogEntityMapperTest {
 
     @Test
     public void selectByPage() {
-        List<SystemLogEntity> logs = systemLogMapper.selectByPage(0,10);
+        SystemLogQuery  query = new SystemLogQuery();
+        query.setPage(1);
+        query.setSize(10);
+        query.setSortField("id");
+        query.setSortOrder(SortOrder.ASC);
+        List<SystemLogEntity> logs = systemLogMapper.selectByPage(query);
         assertNotNull(logs);
         logs.forEach(item -> {
             assertNotNull(item.getId());
             assertNotNull(item.getType());
             assertNotNull(item.getStatus());
-            assertNotNull(item.getRemark());
             assertNotNull(item.getCreateAt());
             assertNotNull(item.getCreateBy());
 
