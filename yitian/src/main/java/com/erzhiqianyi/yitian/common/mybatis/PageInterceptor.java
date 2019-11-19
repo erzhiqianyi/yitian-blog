@@ -42,6 +42,7 @@ public class PageInterceptor implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
         // 获取StatementHandler , 默认是RoutingStatementHandler
         StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
+
         //获取statementHandler包装类
         MetaObject MetaObjectHandler = SystemMetaObject.forObject(statementHandler);
 
@@ -56,29 +57,20 @@ public class PageInterceptor implements Interceptor {
             MetaObjectHandler = SystemMetaObject.forObject(obj);
         }
 
-        //获取连接对象
-        //Connection connection = (Connection) invocation.getArgs()[0];
-
-
-        //object.getValue("delegate");  获取StatementHandler的实现类
-
         //获取查询接口映射的相关信息
         MappedStatement mappedStatement = (MappedStatement) MetaObjectHandler.getValue("delegate.mappedStatement");
         String mapId = mappedStatement.getId();
 
-        //statementHandler.getBoundSql().getParameterObject();
-
         //拦截以.ByPage结尾的请求，分页功能的统一实现
-        if (mapId.matches(".+ByPage$")) {
+        if(mapId.endsWith("ByPage")){
             //获取进行数据库操作时管理参数的handler
             ParameterHandler parameterHandler = (ParameterHandler) MetaObjectHandler.getValue("delegate.parameterHandler");
-            //获取请求时的参数
 
+            //获取请求时的参数,
             Object param = parameterHandler.getParameterObject();
-
             String sortField = null;
-
             String sortOrder = null;
+            //所有分页请求参数都要继承PaginationQuery，方便读取分页数据
             if (param instanceof PaginationQuery) {
                 PaginationQuery paginationQuery = (PaginationQuery) param;
                 currentPage = null == paginationQuery.getPage() ? 1 : paginationQuery.getPage();
@@ -90,27 +82,27 @@ public class PageInterceptor implements Interceptor {
                 currentPage = 1;
             }
 
+            //获取原始sql语句
             String sql = (String) MetaObjectHandler.getValue("delegate.boundSql.sql");
-            //也可以通过statementHandler直接获取
-            //sql = statementHandler.getBoundSql().getSql();
 
-            //构建分页功能的sql语句
+            //根据数据库类型添加分页功能
             String limitSql = null;
             sql = sql.trim();
             switch (dbType) {
                 case MYSQL:
+                    //有排序字段，排序，暂时一次只能针对一个字段排序
                     if (null != sortField) {
                         limitSql = sql + " order by " + sortField + " " + sortOrder
                                 + " limit " + (currentPage - 1) * pageSize + "," + pageSize;
                     } else {
+                        //没有排序字段
                         limitSql = sql + " limit " + (currentPage - 1) * pageSize + "," + pageSize;
                     }
                     break;
             }
-            //将构建完成的分页sql语句赋值个体'delegate.boundSql.sql'，偷天换日
+            //替换原有sql语句
             MetaObjectHandler.setValue("delegate.boundSql.sql", limitSql);
         }
-
         return invocation.proceed();
     }
 

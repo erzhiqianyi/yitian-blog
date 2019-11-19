@@ -41,7 +41,6 @@ public interface SystemLogMapper {
     @SelectProvider(type = SystemLogProvider.class, method = "count")
     Integer count(SystemLogQuery query);
 
-    @Log4j2
     class SystemLogProvider {
         public String selectByPage(SystemLogQuery query) {
             SQL sql = new SQL();
