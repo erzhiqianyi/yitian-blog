@@ -2,9 +2,9 @@ package com.erzhiqianyi.yitian.admin.system.dao.mapper;
 
 import com.erzhiqianyi.yitian.YitianApplication;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
+import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import com.erzhiqianyi.yitian.common.mybatis.SortOrder;
 import lombok.extern.log4j.Log4j2;
 
@@ -14,10 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = YitianApplication.class)
 @RunWith(SpringRunner.class)
@@ -42,12 +42,14 @@ public class SystemLogMapperTest {
 
     @Test
     public void selectByPage() {
-        SystemLogQuery  query = new SystemLogQuery();
+        SystemLogQuery query = new SystemLogQuery();
         query.setPage(1);
         query.setSize(10);
         query.setSortField("id");
         query.setSortOrder(SortOrder.ASC);
-        query.setKeyWord("DOMAIN");
+//        query.setKeyWord("DOMAIN");
+        query.setLogType(Arrays.asList(LogType.values()));
+        query.setStatus(Arrays.asList(LogStatus.values()));
         List<SystemLogEntity> logs = systemLogMapper.selectByPage(query);
         assertNotNull(logs);
         logs.forEach(item -> {
@@ -58,6 +60,15 @@ public class SystemLogMapperTest {
             assertNotNull(item.getCreateBy());
 
         });
-        assertTrue(logs.size() > 0 );
+        assertTrue(logs.size() > 0);
+    }
+
+    @Test
+    public void count() {
+        SystemLogQuery query = new SystemLogQuery();
+        query.setLogType(Arrays.asList(LogType.values()));
+        query.setStatus(Arrays.asList(LogStatus.values()));
+        int count = systemLogMapper.count(query);
+        assertEquals(1,count);
     }
 }

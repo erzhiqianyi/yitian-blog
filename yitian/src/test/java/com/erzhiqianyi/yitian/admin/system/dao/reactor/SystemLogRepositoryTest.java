@@ -1,11 +1,10 @@
 package com.erzhiqianyi.yitian.admin.system.dao.reactor;
 
 import com.erzhiqianyi.yitian.YitianApplication;
-import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
+import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 

@@ -1,7 +1,9 @@
 package com.erzhiqianyi.yitian.admin.system.dao.mapper;
 
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
+import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
+
+import lombok.extern.log4j.Log4j2;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -36,26 +38,30 @@ public interface SystemLogMapper {
     List<SystemLogEntity> selectByPage(SystemLogQuery query);
 
 
-    @Select({
-            " select ",
-            " count(*) ",
-            " from ",
-            " system_log "
-
-    })
+    @SelectProvider(type = SystemLogProvider.class, method = "count")
     Integer count(SystemLogQuery query);
 
+    @Log4j2
     class SystemLogProvider {
         public String selectByPage(SystemLogQuery query) {
             SQL sql = new SQL();
-            sql.SELECT("id");
-            sql.SELECT("type");
-            sql.SELECT("status");
-            sql.SELECT("remark");
-            sql.SELECT("create_at");
-            sql.SELECT("create_by");
-            sql.FROM("system_log ");
-            if (query.empty()){
+            sql.SELECT("id")
+                    .SELECT("type")
+                    .SELECT("status")
+                    .SELECT("remark")
+                    .SELECT("create_at")
+                    .SELECT("create_by")
+                    .FROM("system_log");
+            if (!query.isEmpty()) {
+                sql.WHERE(query.where());
+            }
+            return sql.toString();
+        }
+
+        public String count(SystemLogQuery query) {
+            SQL sql = new SQL();
+            sql.SELECT("count(*)").FROM("system_log");
+            if (!query.isEmpty()) {
                 sql.WHERE(query.where());
             }
             return sql.toString();

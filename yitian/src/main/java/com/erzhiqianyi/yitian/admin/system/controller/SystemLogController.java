@@ -1,6 +1,5 @@
 package com.erzhiqianyi.yitian.admin.system.controller;
 
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInfoVo;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemLogRequest;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemLogVo;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -38,12 +39,13 @@ public class SystemLogController {
     )
     public Mono<PageVo<SystemLogVo>> getSystemLog(SystemLogRequest request) {
         log.info(request);
-        return systemLogService.getSystemLog(request.toQuery())
+        return systemLogService.getSystemLog(request)
                 .map(pageDto -> {
-                    PageVo<SystemLogVo> page =  new PageVo<>();
+                    PageVo<SystemLogVo> page = new PageVo<>();
                     page.setTotal(pageDto.getTotal());
-                    page.setResults(pageDto.getResults().stream().map(SystemLogVo::new)
-                            .collect(Collectors.toList()));
+                    List<SystemLogVo> vo = null != pageDto.getResults() ? pageDto.getResults().stream().map(SystemLogVo::new)
+                            .collect(Collectors.toList()) : Collections.emptyList();
+                    page.setResults(vo);
                     return page;
                 });
     }

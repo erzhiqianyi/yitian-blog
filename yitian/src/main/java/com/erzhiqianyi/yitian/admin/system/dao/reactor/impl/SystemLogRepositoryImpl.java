@@ -2,8 +2,8 @@ package com.erzhiqianyi.yitian.admin.system.dao.reactor.impl;
 
 import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
 import com.erzhiqianyi.yitian.admin.system.dao.mapper.SystemLogMapper;
+import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.dao.reactor.SystemLogRepository;
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

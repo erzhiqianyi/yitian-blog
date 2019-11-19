@@ -1,8 +1,9 @@
 package com.erzhiqianyi.yitian.admin.system.service.impl;
 
+import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.dao.reactor.SystemLogRepository;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemLogDto;
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
+import com.erzhiqianyi.yitian.admin.system.model.vo.SystemLogRequest;
 import com.erzhiqianyi.yitian.admin.system.service.SystemLogService;
 import com.erzhiqianyi.yitian.common.model.dto.PageDto;
 import lombok.extern.log4j.Log4j2;
@@ -30,7 +31,8 @@ public class SystemLogServiceImpl implements SystemLogService {
     }
 
     @Override
-    public Mono<PageDto<SystemLogDto>> getSystemLog(SystemLogQuery query) {
+    public Mono<PageDto<SystemLogDto>> getSystemLog(SystemLogRequest request) {
+        SystemLogQuery query = request.toQuery();
         return repository.count(query)
                 .flatMap(count -> {
                     PageDto<SystemLogDto> pageDto = new PageDto<>();

@@ -1,8 +1,8 @@
 package com.erzhiqianyi.yitian.admin.system.model.vo;
 
+import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
-import com.erzhiqianyi.yitian.admin.system.model.po.SystemLogQuery;
 import com.erzhiqianyi.yitian.common.model.vo.PaginationRequest;
 import com.erzhiqianyi.yitian.common.mybatis.SortOrder;
 import io.swagger.annotations.ApiModel;
@@ -41,6 +41,9 @@ public class SystemLogRequest extends PaginationRequest {
         }else {
             query.setSortField("create_at");
         }
+        query.setKeyWord(keyWord);
+        query.setLogType(type);
+        query.setStatus(status);
         return query;
 
     }
