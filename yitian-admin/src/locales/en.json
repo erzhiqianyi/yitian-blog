@@ -148,5 +148,17 @@
       "status": "status",
       "remark": "remark"
     }
+  },
+  "filter": {
+    "log": {
+      "type": {
+        "login": "login",
+        "system_initialization": "init system",
+        "add_administrator": "add_administrator",
+        "add_system_config": "add system config",
+        "post_article": "post article",
+        "edit_article": "edit article"
+      }
+    }
   }
 }

@@ -21,7 +21,7 @@ public class SystemLogRequest extends PaginationRequest {
     private String keyWord;
 
     @ApiModelProperty(value = "日志类型")
-    private LogType logType;
+    private List<LogType> type;
 
     @ApiModelProperty(value = "状态")
     private List<LogStatus> status;
@@ -31,8 +31,6 @@ public class SystemLogRequest extends PaginationRequest {
         query.setPage(getPage());
         query.setSize(getSize());
         query.setKeyWord(keyWord);
-        query.setLogType(logType);
-//        query.setStatus(status);
         query.setSortOrder(SortOrder.get(getSortOrder()));
         if (null != query.getSortField()) {
             switch (query.getSortField()) {

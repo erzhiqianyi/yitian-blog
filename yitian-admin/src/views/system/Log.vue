@@ -4,30 +4,13 @@
             <div>
                 <a-form layout="inline">
                     <a-row :gutter="48">
-                        <a-col :md="6" :sm="24">
+                        <a-col :md="12" :sm="24">
                             <a-form-item :label='$t("log.keyword")'>
                                 <a-input v-model="param.keyWord"/>
                             </a-form-item>
                         </a-col>
 
-                        <a-col :md="6" :sm="24">
-                            <a-form-item :label='$t("log.type")'>
-                                <a-select placeholder='$t("article.select_status")' v-model="param.logType"
-                                          :options="log_type">
-                                </a-select>
-                            </a-form-item>
-                        </a-col>
-
-                        <a-col :md="6" :sm="24">
-                            <a-form-item :label='$t("log.status")'>
-                                <a-select placeholder='$t("article.select_status")' v-model="param.status"
-                                          :options="log_status">
-                                </a-select>
-                            </a-form-item>
-                        </a-col>
-
-
-                        <a-col :md="6" :sm="24"><span class="table-page-search-submitButtons">
+                        <a-col :md="12" :sm="24"><span class="table-page-search-submitButtons">
                             <a-button type="primary" @click="query">{{$t('log.query')}}</a-button>
                             <a-button style="margin-left: 8px;" @click="reset">{{$t('log.reset')}}</a-button>
                         </span>
@@ -49,7 +32,7 @@
                            {{log_enum.types[type]}}
                    </span>
                     <span slot="status" slot-scope="status">
-                            <a-tag :color="status === 'SUCCESS' ? 'green' : 'volcano' " >
+                            <a-tag :color="status === 'SUCCESS' ? 'green' : 'volcano' ">
                                 {{log_enum.status[status]}}
                             </a-tag>
                    </span>
@@ -87,8 +70,6 @@
                 log_enum,
                 param: {
                     keyWord: null,
-                    logType: "",
-                    status: ""
                 }
             }
         },
@@ -97,20 +78,16 @@
                 const pager = {...this.pagination};
                 pager.current = pagination.current;
                 this.pagination = pager;
-                console.log("过滤器 ")
-                console.log(filters)
-
-
                 this.fetch({
                     size: pagination.pageSize,
                     page: pagination.current,
                     sortField: sorter.field,
                     sortOrder: sorter.order,
+                    keyWord: this.param.keyWord,
                     ...filters,
                 });
             },
             fetch(params = {}) {
-                console.log(params)
                 this.loading = true
                 logList(params).then(data => {
                     this.loading = false
@@ -120,20 +97,19 @@
                     this.loading = false;
                     this.data = data.results;
                     this.pagination = pagination;
-                    console.log(this.pagination.size)
                 }).catch(error => {
                     this.loading = false
-                    console.log("错误")
                 });
 
             },
             reset() {
                 this.param.keyWord = null
-                this.param.logType = null
-                this.param.status = null
+                this.fetch({
+                    size: 10,
+                    page: 1
+                });
             },
             query() {
-                console.log(this.param.logType)
                 this.pagination.current = 1
                 this.fetch({
                     size: 10,

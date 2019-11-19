@@ -148,5 +148,19 @@
       "status": "状态",
       "remark": "说明"
     }
+  },
+  "filter": {
+    "log": {
+      "type": {
+        "login": "登录" ,
+        "system_initialization": "系统初始化",
+        "add_administrator": "添加系统用户",
+        "add_system_config": "添加系统配置",
+        "post_article": "发布文章",
+        "edit_article": "编辑文章"
+
+      }
+    }
   }
+
 }

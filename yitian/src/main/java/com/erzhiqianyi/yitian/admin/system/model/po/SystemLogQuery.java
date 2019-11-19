@@ -5,15 +5,29 @@ import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
 import com.erzhiqianyi.yitian.common.mybatis.PaginationQuery;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class SystemLogQuery extends PaginationQuery {
 
     private String keyWord;
 
-    private LogType logType;
+    private List<LogType> logType;
 
-    private LogStatus status;
+    private List<LogStatus> status;
 
 
+    public boolean empty() {
+        return null != keyWord
+                || (null != logType && !logType.isEmpty())
+                || (null != status && !status.isEmpty());
+    }
 
+
+    public String where() {
+        if (null != keyWord){
+            return " key_word = #{keyWord}";
+        }
+        return null;
+    }
 }

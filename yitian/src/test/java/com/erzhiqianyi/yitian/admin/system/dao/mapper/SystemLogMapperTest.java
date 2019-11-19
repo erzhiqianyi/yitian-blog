@@ -47,6 +47,7 @@ public class SystemLogMapperTest {
         query.setSize(10);
         query.setSortField("id");
         query.setSortOrder(SortOrder.ASC);
+        query.setKeyWord("DOMAIN");
         List<SystemLogEntity> logs = systemLogMapper.selectByPage(query);
         assertNotNull(logs);
         logs.forEach(item -> {

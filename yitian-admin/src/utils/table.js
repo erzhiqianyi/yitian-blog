@@ -56,7 +56,34 @@ export var log_column = [
         key: 'type',
         width: '20%',
         scopedSlots: {customRender: 'type'},
-        filters: [{ text: '登录', value: 'LOGIN' }, { text: '失败', value: 'FAIL' }],
+        filters: [
+            {
+                value: "LOGIN",
+                text:  i18n.t("filter.log.type.login")
+            },
+            {
+                value: "SYSTEM_INITIALIZATION",
+                text: i18n.t("filter.log.type.system_initialization")
+            },
+            {
+                value: "ADD_ADMINISTRATOR",
+                text: i18n.t("filter.log.type.add_administrator")
+            },
+            {
+                value: "ADD_SYSTEM_CONFIG",
+                text: i18n.t("filter.log.type.add_system_config")
+            },
+            {
+                value: "POST_ARTICLE",
+                text: i18n.t("filter.log.type.post_article")
+            },
+            {
+                value: "EDIT_ARTICLE",
+                text: i18n.t("filter.log.type.edit_article")
+            },
+
+        ],
+
     },
     {
         title: i18n.t("table.log.createBy"),
@@ -69,7 +96,10 @@ export var log_column = [
         dataIndex: 'status',
         key: 'status',
         scopedSlots: {customRender: 'status'},
-        filters: [{ text: '成功', value: 'SUCCESS' }, { text: '失败', value: 'FAIL' }],
+        filters: [
+            {text: '成功', value: 'SUCCESS'},
+            {text: '失败', value: 'FAIL'}
+        ],
         width: '10%',
     },
 
