@@ -16,6 +16,10 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     maximum-pool-size: 100
 
+server:
+  port: 8088
+
+
 app:
   password:
     encoder:
