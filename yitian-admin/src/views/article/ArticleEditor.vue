@@ -12,7 +12,7 @@
 
 <script>
 
-    import MarkdownEditor from "../../components/markdown";
+    import MarkdownEditor  from '@/components/markdown' // internationalization
 
     export default {
         name: "ArticleEditor",

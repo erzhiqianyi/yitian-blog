@@ -69,7 +69,7 @@ export default new Router({
                     path: '',
                     component: ArticleEditor,
                     meta: {
-                        requireAuth: false
+                        requireAuth: true
                     }
 
                 }
