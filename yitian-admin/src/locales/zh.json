@@ -27,7 +27,8 @@
     "select_category": "请选择分类",
     "write_article": "写文章",
     "hint_input_title": "文章标题 ",
-    "post_article": "发表"
+    "post_article": "发表",
+    "article_setting": "文章设置"
   },
   "log": {
     "keyword": "关键词",
@@ -94,6 +95,9 @@
       "install": "安装",
       "previous": "上一步",
       "login": "去登录"
+    },
+    "article": {
+      "publish" : "发布"
     }
   },
   "checkbox": {

@@ -27,7 +27,8 @@
     "select_category": " please select category ",
     "write_article": " write article ",
     "hint_input_title": "article title ",
-    "post_article": "post article"
+    "post_article": "post article",
+    "article_setting": "article setting"
   },
   "log": {
     "keyword": "keyword",
@@ -94,6 +95,9 @@
       "install": "install",
       "previous": "previous",
       "install_msg": "system install success,let's write blog!"
+    },
+    "article": {
+      "publish": "publish"
     }
   },
   "checkbox": {
