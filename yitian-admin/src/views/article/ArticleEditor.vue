@@ -40,7 +40,8 @@
                                 </a-row>
                                 <a-row>
                                     <a-col>
-                                        <a-form-item label="是否置顶：">
+                                        <a-form-item >
+                                            <span>是否置顶</span>
                                             <a-switch checkedChildren="是" unCheckedChildren="否"/>
                                         </a-form-item>
                                     </a-col>
@@ -48,16 +49,35 @@
 
                                 <a-row>
                                     <a-col>
-                                        <a-form-item label="开启评论：">
+                                        <a-form-item>
+                                            <span>开启评论</span>
                                             <a-switch defaultChecked checkedChildren="开" unCheckedChildren="关"/>
                                         </a-form-item>
                                     </a-col>
                                     <a-col>
-                                        <a-form-item label="审核评论：">
+                                        <a-form-item>
+                                            <span>审核评论</span>
                                             <a-switch checkedChildren="是" unCheckedChildren="否"/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
+
+                                <a-row>
+                                    <a-col>
+                                        <a-form-item label="发布时间：">
+                                            <a-select
+                                                    labelInValue
+                                                    :defaultValue="{ key: 'lucy' }"
+                                                    style="width: 120px"
+                                                    @change="handleChange"
+                                            >
+                                                <a-select-option value="jack">Jack (100)</a-select-option>
+                                                <a-select-option value="lucy">Lucy (101)</a-select-option>
+                                            </a-select>
+                                        </a-form-item>
+                                    </a-col>
+                                </a-row>
+
                             </div>
 
                             <a-divider/>
@@ -120,5 +140,11 @@
     .m-8 {
         margin-right: 8px;
     }
+    span{
+        margin-right: 20px;
+    }
 
+    .ant-row{
+        padding-bottom: 1px;
+    }
 </style>
