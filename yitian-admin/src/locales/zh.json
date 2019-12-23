@@ -28,7 +28,15 @@
     "write_article": "写文章",
     "hint_input_title": "文章标题 ",
     "post_article": "发表",
-    "article_setting": "文章设置"
+    "article_setting": "文章设置",
+    "article_link": "文章链接",
+    "hint_input_link": "请输入文章链接",
+    "password": "访问密码",
+    "hint_input_password": "访问密码，为空则不需要",
+    "recommend": "是否置顶",
+    "comment": "开启评论",
+    "check_comment": "审核评论",
+    "publish_time": "发表时间"
   },
   "log": {
     "keyword": "关键词",
@@ -97,7 +105,7 @@
       "login": "去登录"
     },
     "article": {
-      "publish" : "发布"
+      "publish": "发布"
     }
   },
   "checkbox": {
@@ -144,7 +152,7 @@
     "login": "登录中",
     "register": "注册中"
   },
-  "table":{
+  "table": {
     "log": {
       "time": "时间",
       "type": "类型",
@@ -156,15 +164,19 @@
   "filter": {
     "log": {
       "type": {
-        "login": "登录" ,
+        "login": "登录",
         "system_initialization": "系统初始化",
         "add_administrator": "添加系统用户",
         "add_system_config": "添加系统配置",
         "post_article": "发布文章",
         "edit_article": "编辑文章"
-
       }
     }
+  },
+  "basic": {
+    "Y": "是",
+    "N": "否",
+    "open": "开",
+    "close": "关"
   }
-
 }

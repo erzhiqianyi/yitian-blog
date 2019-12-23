@@ -28,7 +28,15 @@
     "write_article": " write article ",
     "hint_input_title": "article title ",
     "post_article": "post article",
-    "article_setting": "article setting"
+    "article_setting": "article setting",
+    "article": "article link",
+    "hint_input_link": "please input article link",
+    "password": "password",
+    "hint_input_password": "password",
+    "recommend": "recommend",
+    "comment": "comment",
+    "check_comment": "check comment",
+    "publish_time": "publish time"
   },
   "log": {
     "keyword": "keyword",
@@ -164,5 +172,11 @@
         "edit_article": "edit article"
       }
     }
+  },
+  "basic": {
+    "Y": "YES",
+    "N": "NO",
+    "open": "开",
+    "close": "关"
   }
 }

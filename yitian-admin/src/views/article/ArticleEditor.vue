@@ -26,23 +26,24 @@
                             <div>
                                 <a-row>
                                     <a-col>
-                                        <a-form-item label="文章链接">
-                                            <a-input placeholder="请输入文章链接"/>
+                                        <a-form-item :label='$t("article.article_link")'>
+                                            <a-input :placeholder='$t("article.hint_input_link")'/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
                                 <a-row>
                                     <a-col>
-                                        <a-form-item label="访问密码">
-                                            <a-input placeholder="请输入文章链接"/>
+                                        <a-form-item :label='$t("article.password")'>
+                                            <a-input :placeholder='$t("article.hint_input_password")'/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
                                 <a-row>
                                     <a-col>
-                                        <a-form-item >
-                                            <span>是否置顶</span>
-                                            <a-switch checkedChildren="是" unCheckedChildren="否"/>
+                                        <a-form-item>
+                                            <span>{{$t('article.recommend')}}</span>
+                                            <a-switch :checkedChildren='$t("basic.Y")'
+                                                      :unCheckedChildren='$t("basic.N")'/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -50,37 +51,51 @@
                                 <a-row>
                                     <a-col>
                                         <a-form-item>
-                                            <span>开启评论</span>
-                                            <a-switch defaultChecked checkedChildren="开" unCheckedChildren="关"/>
+                                            <span>{{$t('article.comment')}}</span>
+                                            <a-switch defaultChecked
+                                                      :checkedChildren='$t("basic.open")'
+                                                      :unCheckedChildren='$t("basic.close")'
+                                            />
                                         </a-form-item>
                                     </a-col>
                                     <a-col>
                                         <a-form-item>
-                                            <span>审核评论</span>
-                                            <a-switch checkedChildren="是" unCheckedChildren="否"/>
+                                            <span>{{$t('article.check_comment')}}</span>
+                                            <a-switch :checkedChildren='$t("basic.Y")'
+                                                      :unCheckedChildren='$t("basic.N")'/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
 
                                 <a-row>
                                     <a-col>
-                                        <a-form-item label="发布时间：">
-                                            <a-select
-                                                    labelInValue
-                                                    :defaultValue="{ key: 'lucy' }"
-                                                    style="width: 120px"
-                                                    @change="handleChange"
-                                            >
-                                                <a-select-option value="jack">Jack (100)</a-select-option>
-                                                <a-select-option value="lucy">Lucy (101)</a-select-option>
+                                        <a-form-item :label='$t("article.publish_time")'>
+                                            <a-select labelInValue :defaultValue="{ key: 'instance' }">
+                                                <a-select-option value="instance">立即发布</a-select-option>
+                                                <a-select-option value="time">定时发布</a-select-option>
                                             </a-select>
                                         </a-form-item>
+                                        <a-form-item>
+                                            <a-date-picker show-time format="YYYY-MM-DD HH:mm:ss"/>
+                                        </a-form-item>
+                                    </a-col>
+                                </a-row>
+
+                                <a-row>
+                                    <a-col>
+                                        <a-form-item label="标签">
+                                            <a-select mode="tags" style="width: 100%" placeholder="Tags Mode">
+                                                <a-select-option v-for="i in 25" :key="(i + 9).toString(36) + i"
+                                                >{{(i + 9).toString(36) + i}}
+                                                </a-select-option>
+                                            </a-select>
+                                        </a-form-item>
+
                                     </a-col>
                                 </a-row>
 
                             </div>
 
-                            <a-divider/>
 
                         </a-form>
 
@@ -140,11 +155,12 @@
     .m-8 {
         margin-right: 8px;
     }
-    span{
+
+    span {
         margin-right: 20px;
     }
 
-    .ant-row{
+    .ant-row {
         padding-bottom: 1px;
     }
 </style>
