@@ -1,6 +1,5 @@
 package com.erzhiqianyi.yitian.admin.system.dao.entity;
 
-import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

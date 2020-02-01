@@ -3,18 +3,14 @@ package com.erzhiqianyi.yitian.admin.administrator.service.impl;
 import com.erzhiqianyi.yitian.admin.administrator.dao.reactor.AdministratorRepository;
 import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
 import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
-import com.erzhiqianyi.yitian.admin.system.model.dto.SystemConfigDto;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemLogDto;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.service.SystemLogService;
-import com.erzhiqianyi.yitian.security.manager.PasswordAuthenticationManager;
 import com.erzhiqianyi.yitian.security.model.bo.MyPasswordEncoder;
 import com.erzhiqianyi.yitian.security.model.bo.PasswordAuthUser;
 import lombok.extern.log4j.Log4j2;
-import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import sun.rmi.runtime.Log;
 
 @Service
 @Log4j2

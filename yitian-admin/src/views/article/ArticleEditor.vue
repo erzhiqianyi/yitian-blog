@@ -5,10 +5,10 @@
             </a-button>
         </div>
         <div style="margin-bottom: 16px">
-            <a-input/>
+            <a-input v-model="article.title" :placeholder='$t("article.hint_input_title")' @change="setArticleLink"/>
         </div>
         <div>
-            <MarkdownEditor v-model="content"/>
+            <mavon-editor v-model="article.content" class="mavonEditor"/>
         </div>
         <div>
             <a-drawer
@@ -26,15 +26,18 @@
                             <div>
                                 <a-row>
                                     <a-col>
-                                        <a-form-item :label='$t("article.article_link")'>
-                                            <a-input :placeholder='$t("article.hint_input_link")'/>
+                                        <a-form-item :label='$t("article.article_link")'
+                                                     :help="'/blog/'+ (article.link ? article.link :article.title)" >
+                                            <a-input :placeholder='$t("article.hint_input_link")'
+                                                     v-model="article.link" />
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
                                 <a-row>
                                     <a-col>
                                         <a-form-item :label='$t("article.password")'>
-                                            <a-input :placeholder='$t("article.hint_input_password")'/>
+                                            <a-input :placeholder='$t("article.hint_input_password")'
+                                                     v-model="article.password"/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -43,7 +46,9 @@
                                         <a-form-item>
                                             <span>{{$t('article.recommend')}}</span>
                                             <a-switch :checkedChildren='$t("basic.Y")'
-                                                      :unCheckedChildren='$t("basic.N")'/>
+                                                      :unCheckedChildren='$t("basic.N")'
+                                                      v-model="article.recommend"
+                                            />
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -55,6 +60,7 @@
                                             <a-switch defaultChecked
                                                       :checkedChildren='$t("basic.open")'
                                                       :unCheckedChildren='$t("basic.close")'
+                                                      v-model="article.allowComment"
                                             />
                                         </a-form-item>
                                     </a-col>
@@ -62,7 +68,9 @@
                                         <a-form-item>
                                             <span>{{$t('article.check_comment')}}</span>
                                             <a-switch :checkedChildren='$t("basic.Y")'
-                                                      :unCheckedChildren='$t("basic.N")'/>
+                                                      :unCheckedChildren='$t("basic.N")'
+                                                      v-model="article.checkComment"
+                                            />
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -70,13 +78,16 @@
                                 <a-row>
                                     <a-col>
                                         <a-form-item :label='$t("article.publish_time")'>
-                                            <a-select labelInValue :defaultValue="{ key: 'instance' }">
+                                            <a-select labelInValue :defaultValue="{ key: 'instance' }"
+                                                      v-model="article.publishTrigger">
                                                 <a-select-option value="instance">立即发布</a-select-option>
                                                 <a-select-option value="time">定时发布</a-select-option>
                                             </a-select>
                                         </a-form-item>
                                         <a-form-item>
-                                            <a-date-picker show-time format="YYYY-MM-DD HH:mm:ss"/>
+                                            <a-date-picker show-time format="YYYY-MM-DD HH:mm:ss"
+                                                           v-model="article.publishTime"
+                                            />
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -84,9 +95,9 @@
                                 <a-row>
                                     <a-col>
                                         <a-form-item label="标签">
-                                            <a-select mode="tags" style="width: 100%" placeholder="Tags Mode">
-                                                <a-select-option v-for="i in 25" :key="(i + 9).toString(36) + i"
-                                                >{{(i + 9).toString(36) + i}}
+                                            <a-select mode="tags" style="width: 100%" placeholder="Tags Mode"
+                                                      v-model="article.tags">
+                                                <a-select-option>
                                                 </a-select-option>
                                             </a-select>
                                         </a-form-item>
@@ -102,7 +113,7 @@
                         <div class="bottom-control">
                             <a-button class="m-8" @click="onClose">保存草稿</a-button>
                             <a-button class="m-8">保存</a-button>
-                            <a-button class="m-8" type="primary">发布</a-button>
+                            <a-button class="m-8" type="primary" @click="post">发布</a-button>
                         </div>
                     </div>
                 </div>
@@ -113,17 +124,26 @@
 </template>
 
 <script>
-
-    import MarkdownEditor from '@/components/markdown' // internationalization
+    import {mavonEditor} from 'mavon-editor'
+    import 'mavon-editor/dist/css/index.css'
 
     export default {
         name: "ArticleEditor",
-        components: {MarkdownEditor},
+        components: {
+            mavonEditor
+        },
         data() {
             return {
-                content: '',
                 visible: false,
                 placement: 'right',
+                article: {
+                    title:'',
+                    content:'',
+                    link:'',
+                    publishTrigger:{
+                        key:'instance'
+                    }
+                },
             }
         },
         methods: {
@@ -132,6 +152,14 @@
             },
             onClose() {
                 this.visible = false;
+            },
+            post() {
+                console.log(this.article)
+                console.log(this.article.publishTrigger.key)
+            },
+            setArticleLink(){
+                console.log("修改标题")
+                this.article.link = this.article.title
             }
 
         },
@@ -160,7 +188,10 @@
         margin-right: 20px;
     }
 
-    .ant-row {
-        padding-bottom: 1px;
+
+    .mavonEditor {
+        width: 100%;
+        height: 100%;
+        z-index: inherit;
     }
 </style>
