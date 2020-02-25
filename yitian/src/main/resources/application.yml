@@ -39,6 +39,7 @@ app:
       /api/admin/auth/**,
       /api/admin/system/install,
       /api/admin/system/installed,
+      /api/open/**
 
 logging:
   level:

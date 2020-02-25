@@ -75,3 +75,54 @@ select id, email, nickname, username, password from administrator where email = 
 insert into system_log (type, remark, status, key_word ,create_at, create_by) values ('ARTICLE','Test','SUCCESS','ARTICLE',1573204513496,1573204513496)
 -- 分页查询日志
 select id, type, status, key_word, remark, create_at, create_by from system_log limit 0 ,10
+
+-- 第三方机构业务员
+CREATE TABLE `t_third_agency_sale` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(20) NOT NULL  COMMENT '用户编号',
+  `phone` varchar(20) NOT NULL  COMMENT '业务员手机号',
+  `job_number` varchar(20) NOT NULL  COMMENT '业务员工号',
+  `channel_name` varchar(20) NOT NULL  COMMENT '机构名称',
+  `channel_id` varchar(20) DEFAULT NULL  COMMENT '所属机构，和运营管理后台机构关联，最好在运营后台建立关联机构',
+  `channel_code` varchar(20) NOT NULL  COMMENT '机构唯一编码,为防止所属机构为空,机构编码不能为空，以便识别所属机构',
+  `create_date` datetime NOT NULL,
+  `create_by` varchar(20) NOT NULL,
+  `update_date` datetime NOT NULL,
+  `update_by` varchar(20) NOT NULL,
+  `remark` varchar(200) NOT NULL comment '备注说明',
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='第三方机构业务员';
+
+-- 订单支付记录
+CREATE TABLE `t_order_pay_record` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `payment` varchar(20) NOT NULL  COMMENT '款项类型,ADVANCE_PAYMENT-预付款,BALANCE_PAYMENT-尾款,其他有需求再添加,付款流程以预付款订单状态为准',
+   `state` varchar(20) NOT NULL  COMMENT '状态,PAY-已支付,UNPAY-未支付',
+   `pay_date` datetime COMMENT '支付时间',
+   `payment_amount` double(20,2)  NOT NULL COMMENT '支付金额',
+.  `advance_order_num` varchar(20) NOT NULL  COMMENT '预付款订单编号',
+   `order_num` varchar(20) NOT NULL  COMMENT '订单编号',
+   `create_date` datetime NOT NULL,
+   `create_by` varchar(20) NOT NULL,
+   `update_date` datetime NOT NULL,
+   `update_by` varchar(20) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单支付记录';
+
+-- 预付订单状态
+CREATE TABLE `t_advance_order` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+   `advance_order_num` varchar(20) NOT NULL  COMMENT '预付款订单编号',
+   `state` varchar(20) NOT NULL  COMMENT '状态，FINISH-已完成，UNDERWAY-分享中',
+   `total_count` int NOT NULL  COMMENT '购买总数量',
+   `remain_count` int NOT NULL  COMMENT '剩余数量，剩余数量为0时活动终止',
+   `per_count` int DEFAULT 1   COMMENT '每人购买数量，预设一人一份',
+   `start_date` datetime DEFAULT NULL COMMENT '活动开始时间',
+   `end_date` datetime DEFAULT NULL COMMENT '活动结束时间',
+   `create_date` datetime NOT NULL,
+   `create_by` varchar(20) NOT NULL,
+   `update_date` datetime NOT NULL,
+   `update_by` varchar(20) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='预付订单状态';
+

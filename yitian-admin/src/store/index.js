@@ -1,21 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import getters from './getters'
+import user from './modules/user'
+import configs from './modules/configs'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    state: {
-        token: {
-            expire: '',
-            token: ''
-        }
+    modules: {
+        user,
+        configs
     },
-    mutations: {
-        setToken(state, payload) {
-            state.token.expire = payload.expirationAt
-            state.token.token = payload.token
-        }
-    }
+    state: {},
+    mutations: {},
+    actions: {},
+    getters
 })
 
 export default store;

@@ -72,8 +72,7 @@ export function getBaseUrl() {
 
 //获取token
 export function getToken() {
-
-    return "Bearer " +store.state.token.token
+    return "Bearer " + store.getters.token
 }
 
 export default request

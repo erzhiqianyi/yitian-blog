@@ -36,17 +36,6 @@ public class SystemInfoController {
                 .map(SystemInfoVo::new);
     }
 
-    @GetMapping("installed")
-    @ApiOperation(
-            value = "验证系统是否已经初始化",
-            consumes = SwaggerConstant.MEDIA_JSON,
-            produces = SwaggerConstant.MEDIA_JSON,
-            response = SystemInfoVo.class
-    )
-    public Mono<SystemInfoVo> verifyInstall() {
-        return systemConfigService.verifyInstall()
-                .map(SystemInfoVo::new);
-    }
 
     @GetMapping("config/{code}")
     @ApiOperation(

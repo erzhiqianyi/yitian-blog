@@ -50,9 +50,13 @@ public class SystemConfigServiceImpl implements SystemConfigService {
                     if (tuple2.getT2()) {
                         throw new IllegalStateException("用户已经存在，请检查数据。");
                     }
-                    return logService.addSystemLog(new SystemLogDto(LogType.SYSTEM_INITIALIZATION, LogStatus.SUCCESS, null))
+                    return logService
+                            .addSystemLog(new SystemLogDto(
+                                    LogType.SYSTEM_INITIALIZATION,
+                                    LogStatus.SUCCESS, null))
                             .then(administratorService.addAdministrator(new AdministratorDto(dto)))
-                            .flatMapMany(administratorDto -> Flux.fromIterable(dto.toSystemConfig(administratorDto.getId())))
+                            .flatMapMany(administratorDto ->
+                                    Flux.fromIterable(dto.toSystemConfig(administratorDto.getId())))
                             .flatMap(config -> addSystemConfig(config))
                             .then(verifyInstall());
                 })
