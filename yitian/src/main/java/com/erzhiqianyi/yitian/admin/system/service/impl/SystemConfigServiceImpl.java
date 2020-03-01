@@ -12,7 +12,6 @@ import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
 import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
 import com.erzhiqianyi.yitian.admin.system.service.SystemConfigService;
 import com.erzhiqianyi.yitian.admin.system.service.SystemLogService;
-import com.fasterxml.jackson.core.PrettyPrinter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -41,7 +40,7 @@ public class SystemConfigServiceImpl implements SystemConfigService {
 
     @Override
     synchronized public Mono<SystemInfoDto> installSystem(SystemInstallDto dto) {
-        return verifyInstall()
+        return systemInfo()
                 .zipWith(administratorService.checkEmailExists(dto.getEmail()))
                 .flatMap(tuple2 -> {
                     if (tuple2.getT1().getInstalled()) {
@@ -58,13 +57,13 @@ public class SystemConfigServiceImpl implements SystemConfigService {
                             .flatMapMany(administratorDto ->
                                     Flux.fromIterable(dto.toSystemConfig(administratorDto.getId())))
                             .flatMap(config -> addSystemConfig(config))
-                            .then(verifyInstall());
+                            .then(systemInfo());
                 })
                 ;
     }
 
     @Override
-    public Mono<SystemInfoDto> verifyInstall() {
+    public Mono<SystemInfoDto> systemInfo() {
         SystemInfoDto dto = new SystemInfoDto();
         return systemConfigRepository.findByParent(SystemConfigEnum.SYSTEM_INFO.getCode())
                 .doOnNext(item -> {

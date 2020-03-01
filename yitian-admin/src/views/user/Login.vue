@@ -5,7 +5,7 @@
                 <div class="login-form">
 
                     <a-spin :spinning="spinning" :tip='$t("tip.login")'>
-                        <h1>{{$t("system.name")}}</h1>
+                        <h1>{{siteName}}</h1>
                         <a-form id="login" :form="form" @submit="handleLogin">
                             <a-form-item>
                                 <a-input :placeholder='$t("form.login.email")'
@@ -52,7 +52,8 @@
                 passwordRule,
                 form: this.$form.createForm(this, {name: 'login'}),
                 loginCanClick: true,
-                spinning: false
+                spinning: false,
+                siteName:this.$store.getters.siteName
             };
         },
         mounted() {

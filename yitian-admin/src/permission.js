@@ -1,34 +1,53 @@
 import router from "./router"
 import store from "./store";
+import i18n from '@/locales' // internationalization
 
 router.beforeEach((to, from, next) => {
-    console.log("初始化")
-    console.log(store.getters.config.length)
-    if (store.getters.config.length ===0 ) {
-        console.log("加载配置")
-        store.dispatch('loadOptions').then()
-        if (store.getters.config.)
-
+    if (!store.getters.siteName) {
+        store.dispatch('loadSiteInfo')
+            .then(() => {
+                checkPermission(to, from, next)
+            })
+    } else {
+        checkPermission(to, from, next)
     }
-    //
-    // //todo 判断系统是否已经初始化
-    // //todo 获取系统配置
-    // if (to.meta.requireAuth) {
-    //     //判断是否已经登录，如果已经登录，直接next()
-    //     if (store.getters.token) {
-    //         next()
-    //     } else {
-    //         next({
-    //             name: "Login",
-    //             query: {
-    //                 redirect: to.fullPath
-    //             }
-    //         })
-    //     }
-    // } else {
-    //     next()
-    // }
 })
 
+function checkPermission(to, from, next) {
+    checkInstalled(to, next)
+    let title = to.meta.title ? to.meta.title : ''
+    title = title + "-" + (store.getters.siteName ?
+        store.getters.siteName : i18n.t("system.name"))
+    document.title = title
+    if (to.meta.requireAuth) {
+        //判断是否已经登录，如果已经登录，直接next()
+        if (store.getters.token) {
+            next()
+        } else {
+            next({
+                name: "Login",
+                query: {
+                    redirect: to.fullPath
+                }
+            })
+        }
+    } else {
+        next()
+    }
+}
 
 
+function checkInstalled(to, next) {
+    if (!store.getters.installed) {
+        if (to.name != "Install") {
+            next({
+                name: "Install",
+                query: {
+                    redirect: to.fullPath
+                }
+            })
+        } else {
+            next();
+        }
+    }
+}

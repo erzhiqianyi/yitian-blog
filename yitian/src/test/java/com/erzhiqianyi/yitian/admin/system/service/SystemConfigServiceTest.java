@@ -27,7 +27,7 @@ public class SystemConfigServiceTest {
     @Test
     public void verifyInstall() {
         StepVerifier.create(
-                systemConfigService.verifyInstall()
+                systemConfigService.systemInfo()
                         .map(SystemInfoDto::getInstalled)
         )
                 .expectNext(true)

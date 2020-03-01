@@ -8,9 +8,4 @@ export function install(data) {
     })
 }
 
-export function installed() {
-    return request({
-        url: `api/admin/system/installed`,
-        method: 'get',
-    })
-}
+

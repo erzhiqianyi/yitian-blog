@@ -47,7 +47,7 @@
     "view_type": "查看形式"
   },
   "system": {
-    "name": "一天"
+    "name": "一天博客"
   },
   "rule": {
     "email_required": "请输入邮箱(3-50位)",
@@ -136,7 +136,7 @@
   },
   "h1": {
     "install": {
-      "title": "一天安装向导"
+      "title": "一天博客安装向导"
     }
   },
   "step": {
@@ -178,5 +178,26 @@
     "N": "否",
     "open": "开",
     "close": "关"
+  },
+  "page": {
+    "title": {
+      "dashboard": "首页",
+      "install": "系统初始化",
+      "articleList": "所有文章",
+      "articleEdit": "写文章",
+      "articleCategory": "文章分类",
+      "articleTag": "文章标签",
+      "articleComment": "评论",
+      "notification": "通知",
+      "user": "用户",
+      "setting": "设置",
+      "tools": "工具",
+      "about": "关于",
+      "log": "日志",
+      "userCenter": "个人中心",
+      "login": "登录",
+      "register": "注册",
+      "install":"系统初始化"
+    }
   }
 }

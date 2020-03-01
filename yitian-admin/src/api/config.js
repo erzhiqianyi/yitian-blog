@@ -1,12 +1,9 @@
 import request from '@/utils/http'
 
-export function listOpenConfigs(keys) {
+export function siteInfo() {
     return request({
-            url: `api/open/site/config`,
+            url: `api/open/site/info`,
             method: 'get',
-            params: {
-                key: keys
-            }
         }
     )
 }

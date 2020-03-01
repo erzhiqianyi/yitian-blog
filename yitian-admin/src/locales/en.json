@@ -176,7 +176,27 @@
   "basic": {
     "Y": "YES",
     "N": "NO",
-    "open": "开",
-    "close": "关"
+    "open": "open",
+    "close": "close"
+  },
+  "page": {
+    "title": {
+      "dashboard": "dashboard",
+      "articleList": "article list",
+      "articleEdit": "write article",
+      "articleCategory": "article category ",
+      "articleTag": "article tag",
+      "articleComment": "article comment",
+      "notification": "notification",
+      "user": "user",
+      "setting": "setting",
+      "tools": "tools",
+      "about": "about",
+      "log": "log",
+      "userCenter": "user center",
+      "login": "login",
+      "register": "register",
+      "install":"system initialization"
+    }
   }
 }

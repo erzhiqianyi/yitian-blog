@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import i18n from '@/locales' // internationalization
 
 //引入组件
 import BasicLayout from '@/layout/BasicLayout'
@@ -27,7 +28,7 @@ Vue.use(Router)
 //将组件 (components) 映射到路由
 export default new Router({
     routes: [
-        //根路径,默认到文章页面
+        //根路径,默认到首页
         {
             path: '/',
             component: BasicLayout,
@@ -37,7 +38,8 @@ export default new Router({
                     path: '',
                     component: DashBoard,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.dashboard")
                     }
 
                 }
@@ -53,7 +55,8 @@ export default new Router({
                     path: '',
                     component: ArticleList,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.articleList")
                     }
 
                 },
@@ -69,7 +72,8 @@ export default new Router({
                     path: '',
                     component: ArticleEditor,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.articleEdit")
                     }
 
                 }
@@ -85,7 +89,8 @@ export default new Router({
                     path: '',
                     component: ArticleCategoryList,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.articleCategory")
                     }
 
                 }
@@ -101,7 +106,8 @@ export default new Router({
                     path: '',
                     component: ArticleTagList,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.articleTag")
                     }
 
                 }
@@ -117,7 +123,8 @@ export default new Router({
                     path: '',
                     component: ArticleComment,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.articleComment")
                     }
 
                 }
@@ -133,7 +140,8 @@ export default new Router({
                     path: '',
                     component: DashBoard,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.dashboard")
                     }
 
                 }
@@ -149,7 +157,8 @@ export default new Router({
                     path: '',
                     component: Notification,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.notification")
                     }
 
                 }
@@ -165,7 +174,8 @@ export default new Router({
                     path: '',
                     component: UserList,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.user")
                     }
 
                 }
@@ -179,7 +189,8 @@ export default new Router({
                 {
                     name: 'Setting',
                     path: '',
-                    component: Setting
+                    component: Setting,
+                    title:i18n.t("page.title.setting")
                 }
             ],
         },
@@ -193,7 +204,8 @@ export default new Router({
                     path: '',
                     component: Tools,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.tools")
                     }
 
                 }
@@ -209,7 +221,8 @@ export default new Router({
                     path: '',
                     component: About,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.about")
                     }
 
                 }
@@ -225,7 +238,8 @@ export default new Router({
                     path: '',
                     component: Log,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.log")
                     }
 
                 }
@@ -241,7 +255,8 @@ export default new Router({
                     path: '',
                     component: UserCenter,
                     meta: {
-                        requireAuth: true
+                        requireAuth: true,
+                        title:i18n.t("page.title.userCenter")
                     }
 
                 }
@@ -257,7 +272,8 @@ export default new Router({
                     path: '',
                     component: Login,
                     meta: {
-                        requireAuth: false
+                        requireAuth: false,
+                        title:i18n.t("page.title.login")
                     }
                 },
             ]
@@ -272,7 +288,8 @@ export default new Router({
                     path: '',
                     component: Register,
                     meta: {
-                        requireAuth: false
+                        requireAuth: false,
+                        title:i18n.t("page.title.register")
                     }
 
                 }
@@ -288,7 +305,8 @@ export default new Router({
                     path: '',
                     component: Installation,
                     meta: {
-                        requireAuth: false
+                        requireAuth: false,
+                        title:i18n.t("page.title.install")
                     }
 
                 }

@@ -1,4 +1,4 @@
-import {listOpenConfigs} from '@/api/config'
+import {siteInfo} from '@/api/config'
 import store from "../index";
 
 
@@ -9,20 +9,29 @@ const keys = [
 ]
 const configs = {
     state: {
-        configs: []
+        configs: [],
+        siteInfo: {}
     },
     mutations: {
         setConfigs(state, payload) {
             state.configs = payload
+        },
+        setSiteInfo(state, payload) {
+            console.log("配置信息")
+            state.siteInfo = payload
+            console.log(state.siteInfo)
         }
     },
     actions: {
         loadConfigs({commit}) {
-            return new Promise((resolve, reject) => {
-                listOpenConfigs(keys)
+
+        },
+        loadSiteInfo({commit}) {
+            return new Promise(async (resolve, reject) => {
+                siteInfo()
                     .then(response => {
-                        commit('setConfigs', response)
-                        resolve(response)
+                        commit('setSiteInfo', response)
+                        resolve()
                     }).cache(error => {
                     reject(error)
                 })

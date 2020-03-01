@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 public interface SystemConfigService {
     Mono<SystemInfoDto> installSystem(SystemInstallDto dto);
 
-    Mono<SystemInfoDto> verifyInstall();
+    Mono<SystemInfoDto> systemInfo();
 
     Mono<SystemConfigDto> addSystemConfig(SystemConfigDto config);
 }

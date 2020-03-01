@@ -119,7 +119,8 @@
         emailRule, passwordRule, nicknameRule, hasErrors, fieldError, domainRule, systemNameRule
     } from '@/utils/formRule'
 
-    import {install, installed} from '@/api/system'
+    import {install} from '@/api/system'
+    import {siteInfo} from '@/api/config'
     import i18n from '@/locales' // internationalization
 
     export default {
@@ -199,7 +200,7 @@
 
             },
             verifyInstall() {
-                installed().then(data => {
+                siteInfo().then(data => {
                     if (data.installed) {
                         this.goToLogin()
                     }else {
@@ -211,6 +212,7 @@
             },
             goToLogin(){
                 this.visible = false
+                this.spinning = false
                 this.$router.push({name: 'Login'})
             }
         },
