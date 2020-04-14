@@ -4,13 +4,22 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 @Configuration//标记为配置文件
 @EnableSwagger2WebFlux //开启Swagger ,项目使用WebFlux,所以要使用WebFlux相关的注解
@@ -45,12 +54,19 @@ public class SwaggerConfig {
 
     @Bean
     public Docket swaggerApi() {
+        ParameterBuilder authorizationHeader = new ParameterBuilder();
+        authorizationHeader.name("Authorization").description("Authorization")
+                .modelRef(new ModelRef("string")).parameterType("header")
+                .required(false).build(); //header中的Authorization参数非必填，传空也可以
+        List<Parameter> parameterList = Stream.of(authorizationHeader.build()).collect(toList());
+
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(swaggerApiInfo())//指定Api配置信息
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(controllerPackage))//指定路由类所在包
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .globalOperationParameters(parameterList);
     }
 
     private ApiInfo swaggerApiInfo() {
