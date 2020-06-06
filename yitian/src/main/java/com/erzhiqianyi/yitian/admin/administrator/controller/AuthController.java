@@ -1,16 +1,12 @@
 package com.erzhiqianyi.yitian.admin.administrator.controller;
 
 
-import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
 import com.erzhiqianyi.yitian.admin.administrator.service.AuthService;
 import com.erzhiqianyi.yitian.security.model.bo.AuthResponse;
 import com.erzhiqianyi.yitian.security.model.dto.PasswordAuthDto;
 import com.erzhiqianyi.yitian.security.model.vo.PasswordAuthRequest;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -26,7 +22,7 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @RequestMapping(value = "/login/password", method = RequestMethod.POST)
+    @PostMapping( value = "/login/password")
     public Mono<AuthResponse> login(@RequestBody @Valid PasswordAuthRequest request) {
         return authService.loginByPassword(new PasswordAuthDto(request.getEmail(),request.getPassword()));
     }

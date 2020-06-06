@@ -1,7 +1,6 @@
 package com.erzhiqianyi.yitian.admin.administrator.model.dto;
 
-import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
-import com.erzhiqianyi.yitian.admin.system.model.dto.SystemConfigDto;
+import com.erzhiqianyi.yitian.admin.administrator.repository.entity.AdministratorEntity;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemInstallDto;
 import lombok.Data;
 

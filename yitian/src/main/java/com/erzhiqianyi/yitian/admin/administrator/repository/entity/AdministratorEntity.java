@@ -1,4 +1,4 @@
-package com.erzhiqianyi.yitian.admin.administrator.dao.entity;
+package com.erzhiqianyi.yitian.admin.administrator.repository.entity;
 
 
 import lombok.Data;
@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
-@ToString
 @EqualsAndHashCode(callSuper = false)
 public class AdministratorEntity {
     private Long id;

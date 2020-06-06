@@ -51,7 +51,6 @@ public class AuthServiceImpl implements AuthService {
                         passwordAuthenticationManager.getSecret()),
                         authTokenBo.getExpirationAt());
             } else {
-
                 return new AuthResponse();
             }
         }).flatMap(authResponse -> systemLogService.addSystemLog(SystemLogDto.addLoginLog(authInfo, authResponse))

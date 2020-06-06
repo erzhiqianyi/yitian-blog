@@ -1,6 +1,6 @@
 package com.erzhiqianyi.yitian.admin.administrator.service.impl;
 
-import com.erzhiqianyi.yitian.admin.administrator.dao.reactor.AdministratorRepository;
+import com.erzhiqianyi.yitian.admin.administrator.repository.reactor.AdministratorRepository;
 import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
 import com.erzhiqianyi.yitian.admin.administrator.service.AdministratorService;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemLogDto;

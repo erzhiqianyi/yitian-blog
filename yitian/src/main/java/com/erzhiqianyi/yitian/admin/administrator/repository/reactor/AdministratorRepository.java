@@ -1,6 +1,6 @@
-package com.erzhiqianyi.yitian.admin.administrator.dao.reactor;
+package com.erzhiqianyi.yitian.admin.administrator.repository.reactor;
 
-import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.administrator.repository.entity.AdministratorEntity;
 import reactor.core.publisher.Mono;
 
 public interface AdministratorRepository {

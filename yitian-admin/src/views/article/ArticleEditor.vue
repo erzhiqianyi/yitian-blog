@@ -5,10 +5,11 @@
             </a-button>
         </div>
         <div style="margin-bottom: 16px">
-            <a-input v-model="article.title" :placeholder='$t("article.hint_input_title")' @change="setArticleLink"/>
+            <a-input v-model="title.title" :placeholder='$t("article.hint_input_title")'
+                     @change="setArticleLink"/>
         </div>
         <div>
-            <mavon-editor v-model="article.content" class="mavonEditor"/>
+            <mavon-editor v-model="content.content" class="mavonEditor"/>
         </div>
         <div>
             <a-drawer
@@ -27,9 +28,10 @@
                                 <a-row>
                                     <a-col>
                                         <a-form-item :label='$t("article.article_link")'
-                                                     :help="'/blog/'+ (article.link ? article.link :article.title)" >
+                                                     :help="'/blog/'+ (link.url ? link.url :
+                                                     title.title)">
                                             <a-input :placeholder='$t("article.hint_input_link")'
-                                                     v-model="article.link" />
+                                                     v-model="link.url"/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -37,7 +39,7 @@
                                     <a-col>
                                         <a-form-item :label='$t("article.password")'>
                                             <a-input :placeholder='$t("article.hint_input_password")'
-                                                     v-model="article.password"/>
+                                                     v-model="link.password"/>
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
@@ -47,7 +49,7 @@
                                             <span>{{$t('article.recommend')}}</span>
                                             <a-switch :checkedChildren='$t("basic.Y")'
                                                       :unCheckedChildren='$t("basic.N")'
-                                                      v-model="article.recommend"
+                                                      v-model="recommend.recommend"
                                             />
                                         </a-form-item>
                                     </a-col>
@@ -60,7 +62,7 @@
                                             <a-switch defaultChecked
                                                       :checkedChildren='$t("basic.open")'
                                                       :unCheckedChildren='$t("basic.close")'
-                                                      v-model="article.allowComment"
+                                                      v-model="comment.allow"
                                             />
                                         </a-form-item>
                                     </a-col>
@@ -69,7 +71,7 @@
                                             <span>{{$t('article.check_comment')}}</span>
                                             <a-switch :checkedChildren='$t("basic.Y")'
                                                       :unCheckedChildren='$t("basic.N")'
-                                                      v-model="article.checkComment"
+                                                      v-model="comment.check"
                                             />
                                         </a-form-item>
                                     </a-col>
@@ -78,32 +80,34 @@
                                 <a-row>
                                     <a-col>
                                         <a-form-item :label='$t("article.publish_time")'>
-                                            <a-select labelInValue :defaultValue="{ key: 'instance' }"
-                                                      v-model="article.publishTrigger">
-                                                <a-select-option value="instance">立即发布</a-select-option>
-                                                <a-select-option value="time">定时发布</a-select-option>
+                                            <a-select labelInValue :defaultValue="{ key: 'NOW' }"
+                                                      v-model="publish.trigger">
+                                                <a-select-option value="NOW">立即发布</a-select-option>
+                                                <a-select-option value="TIMING">定时发布</a-select-option>
                                             </a-select>
                                         </a-form-item>
                                         <a-form-item>
                                             <a-date-picker show-time format="YYYY-MM-DD HH:mm:ss"
-                                                           v-model="article.publishTime"
+                                                           v-model="publish.time"
                                             />
                                         </a-form-item>
                                     </a-col>
                                 </a-row>
 
-                                <a-row>
-                                    <a-col>
-                                        <a-form-item label="标签">
-                                            <a-select mode="tags" style="width: 100%" placeholder="Tags Mode"
-                                                      v-model="article.tags">
-                                                <a-select-option>
-                                                </a-select-option>
-                                            </a-select>
-                                        </a-form-item>
+                                <!--
+                                                                <a-row>
+                                                                    <a-col>
+                                                                        <a-form-item label="标签">
+                                                                            <a-select mode="tags" style="width: 100%" placeholder="Tags Mode"
+                                                                                      v-model="article.tags">
+                                                                                <a-select-option>
+                                                                                </a-select-option>
+                                                                            </a-select>
+                                                                        </a-form-item>
 
-                                    </a-col>
-                                </a-row>
+                                                                    </a-col>
+                                                                </a-row>
+                                 -->
 
                             </div>
 
@@ -126,6 +130,8 @@
 <script>
     import {mavonEditor} from 'mavon-editor'
     import 'mavon-editor/dist/css/index.css'
+    import {postArticle} from '@/api/article'
+
 
     export default {
         name: "ArticleEditor",
@@ -136,14 +142,31 @@
             return {
                 visible: false,
                 placement: 'right',
-                article: {
-                    title:'',
-                    content:'',
-                    link:'',
-                    publishTrigger:{
-                        key:'instance'
-                    }
+                title: {
+                    title: '测试标题'
                 },
+                content: {
+                    content: '测试内容'
+                },
+                link: {
+                    url: '',
+                    password: ''
+                },
+                publish: {
+                    trigger: 'NOW',
+                    time: null,
+                },
+                comment: {
+                    allow: true,
+                    check: true
+                },
+                recommend: {
+                    recommend: true
+                },
+                switch:{
+                    true:"OPEN",
+                    false:"CLOSE"
+                }
             }
         },
         methods: {
@@ -154,12 +177,27 @@
                 this.visible = false;
             },
             post() {
-                console.log(this.article)
-                console.log(this.article.publishTrigger.key)
+                var article = {
+                    title: this.title,
+                    content: this.content,
+                    config:{
+                        link:this.link,
+                        publish: {
+
+                        },
+                        comment:{
+                            allow: this.switch[this.comment.allow]
+                        }
+                    }
+                }
+                postArticle(article).then(data => {
+                    console.log(data)
+                }).catch(error => {
+                    console.log(error)
+                });
             },
-            setArticleLink(){
-                console.log("修改标题")
-                this.article.link = this.article.title
+            setArticleLink() {
+                this.link.link = this.title.title
             }
 
         },

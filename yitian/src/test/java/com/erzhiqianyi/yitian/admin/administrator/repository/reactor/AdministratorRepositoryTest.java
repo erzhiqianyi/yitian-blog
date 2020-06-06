@@ -1,8 +1,7 @@
-package com.erzhiqianyi.yitian.admin.administrator.dao.reactor;
+package com.erzhiqianyi.yitian.admin.administrator.repository.reactor;
 
 import com.erzhiqianyi.yitian.YitianApplication;
-import com.erzhiqianyi.yitian.admin.administrator.dao.entity.AdministratorEntity;
-import com.erzhiqianyi.yitian.admin.administrator.dao.reactor.AdministratorRepository;
+import com.erzhiqianyi.yitian.admin.administrator.repository.entity.AdministratorEntity;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Before;
 import org.junit.Test;
