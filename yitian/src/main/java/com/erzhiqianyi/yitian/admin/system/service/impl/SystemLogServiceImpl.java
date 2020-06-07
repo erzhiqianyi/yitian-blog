@@ -1,7 +1,7 @@
 package com.erzhiqianyi.yitian.admin.system.service.impl;
 
-import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
-import com.erzhiqianyi.yitian.admin.system.dao.reactor.SystemLogRepository;
+import com.erzhiqianyi.yitian.admin.system.model.query.SystemLogQuery;
+import com.erzhiqianyi.yitian.admin.system.repository.reactor.SystemLogRepository;
 import com.erzhiqianyi.yitian.admin.system.model.dto.SystemLogDto;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemLogRequest;
 import com.erzhiqianyi.yitian.admin.system.service.SystemLogService;

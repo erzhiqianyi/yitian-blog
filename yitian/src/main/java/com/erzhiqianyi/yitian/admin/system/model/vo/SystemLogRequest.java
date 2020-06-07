@@ -1,6 +1,6 @@
 package com.erzhiqianyi.yitian.admin.system.model.vo;
 
-import com.erzhiqianyi.yitian.admin.system.dao.query.SystemLogQuery;
+import com.erzhiqianyi.yitian.admin.system.model.query.SystemLogQuery;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
 import com.erzhiqianyi.yitian.common.model.vo.PaginationRequest;

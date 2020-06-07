@@ -1,7 +1,7 @@
 package com.erzhiqianyi.yitian.admin.administrator.repository.mapper;
 
 import com.erzhiqianyi.yitian.YitianApplication;
-import com.erzhiqianyi.yitian.admin.administrator.repository.entity.AdministratorEntity;
+import com.erzhiqianyi.yitian.admin.administrator.model.entity.AdministratorEntity;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;

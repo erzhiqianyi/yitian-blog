@@ -36,7 +36,8 @@
     "recommend": "是否置顶",
     "comment": "开启评论",
     "check_comment": "审核评论",
-    "publish_time": "发表时间"
+    "publish_time": "发表时间",
+    "permission": "谁可以看"
   },
   "log": {
     "keyword": "关键词",

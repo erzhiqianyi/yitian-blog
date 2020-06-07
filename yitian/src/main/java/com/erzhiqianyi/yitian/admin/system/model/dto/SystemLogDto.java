@@ -1,8 +1,7 @@
 package com.erzhiqianyi.yitian.admin.system.model.dto;
 
 import com.erzhiqianyi.yitian.admin.administrator.model.dto.AdministratorDto;
-import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
-import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemLogEntity;
+import com.erzhiqianyi.yitian.admin.system.model.entity.SystemLogEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogStatus;
 import com.erzhiqianyi.yitian.admin.system.model.enums.LogType;
 import com.erzhiqianyi.yitian.security.model.bo.AuthResponse;

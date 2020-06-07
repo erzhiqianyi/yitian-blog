@@ -36,7 +36,8 @@
     "recommend": "recommend",
     "comment": "comment",
     "check_comment": "check comment",
-    "publish_time": "publish time"
+    "publish_time": "publish time",
+    "permission": "who can view"
   },
   "log": {
     "keyword": "keyword",

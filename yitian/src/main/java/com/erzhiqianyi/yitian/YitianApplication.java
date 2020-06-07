@@ -11,7 +11,8 @@ import org.springframework.web.reactive.accept.RequestedContentTypeResolver;
 public class YitianApplication {
 
 	@Bean
-	public ApiResponseWrapper responseWrapper(ServerCodecConfigurer serverCodecConfigurer,RequestedContentTypeResolver requestedContentTypeResolver) {
+	public ApiResponseWrapper responseWrapper(ServerCodecConfigurer serverCodecConfigurer,
+											  RequestedContentTypeResolver requestedContentTypeResolver) {
 		return new ApiResponseWrapper(serverCodecConfigurer
 				.getWriters(), requestedContentTypeResolver);
 	}

@@ -79,6 +79,20 @@
 
                                 <a-row>
                                     <a-col>
+                                        <a-form-item :label='$t("article.permission")'>
+                                            <a-select labelInValue :defaultValue="{ key: 'PUBLIC' }"
+                                                      v-model="permission.group">
+                                                <a-select-option value="PUBLIC">公开</a-select-option>
+                                                <a-select-option value="SELF">仅自己</a-select-option>
+                                                <a-select-option value="WHITELIST">部分可见</a-select-option>
+                                                <a-select-option value="BLACKLIST">不给谁看</a-select-option>
+                                            </a-select>
+                                        </a-form-item>
+                                    </a-col>
+                                </a-row>
+
+                                <a-row>
+                                    <a-col>
                                         <a-form-item :label='$t("article.publish_time")'>
                                             <a-select labelInValue :defaultValue="{ key: 'NOW' }"
                                                       v-model="publish.trigger">
@@ -153,8 +167,15 @@
                     password: ''
                 },
                 publish: {
-                    trigger: 'NOW',
+                    trigger: {
+                        key:'NOW'
+                    },
                     time: null,
+                },
+                permission: {
+                    group: {
+                        key: 'PUBLIC'
+                    },
                 },
                 comment: {
                     allow: true,
@@ -163,9 +184,9 @@
                 recommend: {
                     recommend: true
                 },
-                switch:{
-                    true:"OPEN",
-                    false:"CLOSE"
+                switch: {
+                    true: "OPEN",
+                    false: "CLOSE"
                 }
             }
         },
@@ -177,17 +198,27 @@
                 this.visible = false;
             },
             post() {
+                console.log(this.publish.time)
                 var article = {
                     title: this.title,
                     content: this.content,
-                    config:{
-                        link:this.link,
+                    config: {
+                        link: this.link,
                         publish: {
-
+                            trigger: this.publish.trigger.key,
+                            time: this.publish.time
                         },
-                        comment:{
-                            allow: this.switch[this.comment.allow]
+                        comment: {
+                            allow: this.switch[this.comment.allow],
+                            check: this.switch[this.comment.check]
+                        },
+                        recommend: {
+                            recommend: this.switch[this.recommend.recommend]
+                        },
+                        permission:{
+                           group:this.permission.group.key
                         }
+
                     }
                 }
                 postArticle(article).then(data => {
@@ -197,7 +228,7 @@
                 });
             },
             setArticleLink() {
-                this.link.link = this.title.title
+                this.link.url = this.title.title
             }
 
         },

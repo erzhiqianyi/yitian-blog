@@ -1,6 +1,5 @@
 package com.erzhiqianyi.yitian.admin.system.model.dto;
 
-import com.erzhiqianyi.yitian.admin.system.dao.entity.SystemConfigEntity;
 import com.erzhiqianyi.yitian.admin.system.model.enums.SystemConfigEnum;
 import com.erzhiqianyi.yitian.admin.system.model.vo.SystemInstallRequest;
 import lombok.Data;
